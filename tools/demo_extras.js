@@ -13,39 +13,67 @@ function autoCycle(){
   const io2=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io2.disconnect(); start(); } },{ threshold:.3 }); io2.observe(body);
 }
 
-/* ---------- booking form ---------- */
+/* ---------- booking form: one form everywhere (inline on project pages, a sheet elsewhere) ---------- */
 const SLOTS=["8:00 AM","9:00 AM","10:00 AM","11:00 AM","1:00 PM","2:00 PM","3:00 PM","4:00 PM"];
-function bookForm(P){
+const modelOpts=(P,mid)=>`<option value="">Not sure yet</option>`+Object.entries(P.models).map(([id,m])=>`<option value="${id}"${id===mid?" selected":""}>${m.name}</option>`).join("");
+function bookForm(P, pre="", mid=""){
+  P=P||PROJECTS[0];
   const d=new Date(); d.setDate(d.getDate()+((6-d.getDay()+7)%7||7));
   const iso=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
-  return `<form id="leadForm" autocomplete="on">
-    <div class="two"><label for="fName">Full name<input id="fName" required autocomplete="name" placeholder="Juan dela Cruz"></label>
-    <label for="fMobile">Mobile number<input id="fMobile" required inputmode="tel" autocomplete="tel" placeholder="0917 123 4567"></label></div>
-    <div class="two"><label for="fProj">Project<select id="fProj">${PROJECTS.map(x=>`<option${x===P?" selected":""}>${x.brand} ${x.name}</option>`).join("")}</select></label>
-    <label for="fDay">Preferred day<input id="fDay" type="date" required value="${iso}"></label></div>
-    <label>Preferred time<div class="times" id="fTimes" role="group" aria-label="Preferred time">${SLOTS.map(t=>`<button type="button" aria-pressed="${t==="10:00 AM"}">${t}</button>`).join("")}</div></label>
+  return `<form class="leadForm" id="${pre}leadForm" autocomplete="on">
+    <div class="two"><label for="${pre}fName">Full name<input id="${pre}fName" name="name" required autocomplete="name" placeholder="Juan dela Cruz"></label>
+    <label for="${pre}fMobile">Mobile number<input id="${pre}fMobile" name="mobile" required inputmode="tel" autocomplete="tel" placeholder="0917 123 4567"></label></div>
+    <div class="two"><label for="${pre}fProj">Project<select id="${pre}fProj" name="project">${PROJECTS.map(x=>`<option value="${x.id}"${x===P?" selected":""}>${x.brand} ${x.name}</option>`).join("")}</select></label>
+    <label for="${pre}fModel">House model<select id="${pre}fModel" name="model">${modelOpts(P,mid)}</select></label></div>
+    <label for="${pre}fDay">Preferred day<input id="${pre}fDay" name="day" type="date" required value="${iso}"></label>
+    <label>Preferred time<div class="times" role="group" aria-label="Preferred time">${SLOTS.map(t=>`<button type="button" aria-pressed="${t==="10:00 AM"}">${t}</button>`).join("")}</div></label>
     <button class="btn" type="submit">${cal}Book my free tripping</button>
     <p class="fine">Free, no obligation. Your details go only to ${SELLER.name}.</p>
   </form>`;
 }
-function wireBook(){
-  const f=$("#leadForm"); if(!f) return;
-  const times=[...f.querySelectorAll("#fTimes button")];
+function wireBook(f){
+  f=f||$("#leadForm"); if(!f) return;
+  const q=n=>f.elements[n], times=[...f.querySelectorAll(".times button")];
   times.forEach(b=>b.onclick=()=>times.forEach(x=>x.setAttribute("aria-pressed",x===b)));
+  q("project").onchange=()=>{ const P=PROJECTS.find(x=>x.id===q("project").value); q("model").innerHTML=modelOpts(P,""); };
   f.onsubmit=e=>{ e.preventDefault();
-    const name=$("#fName").value.trim()||"Client", first=name.split(" ")[0];
+    const name=q("name").value.trim()||"Client", first=name.split(" ")[0];
     const time=(times.find(b=>b.getAttribute("aria-pressed")==="true")||times[2]).textContent;
-    const day=$("#fDay").value ? new Date($("#fDay").value+"T00:00").toLocaleDateString("en-PH",{weekday:"short",month:"short",day:"numeric"}) : "Any day";
-    const lead={ type:"lead", name, mobile:$("#fMobile").value, project:$("#fProj").value, day, time, agent:SELLER.name };
+    const day=q("day").value ? new Date(q("day").value+"T00:00").toLocaleDateString("en-PH",{weekday:"short",month:"short",day:"numeric"}) : "Any day";
+    const P=PROJECTS.find(x=>x.id===q("project").value)||CUR, mid=q("model").value, M=mid&&MODELS[mid];
+    const lead={ type:"lead", name, mobile:q("mobile").value, project:`${P.brand} ${P.name}${M?" · "+M.name:""}`, day, time, agent:SELLER.name };
     try{ if(window.parent!==window) parent.postMessage(lead,"*"); }catch(_){}
+    closeBook();
     let root=$("#sent"); if(!root){ root=document.createElement("div"); root.id="sent"; root.className="sent"; document.body.appendChild(root); }
     root.innerHTML=`<div class="sheet"><span class="eyebrow">Request sent</span><h3>Thanks, ${first.replace(/[<>&"]/g,"")}!</h3>
       <p class="fine" style="font-size:15px">${SELLER.name} got your request for ${day}, ${time}. Tap below to confirm in Messenger; your details are ready to send.</p>
-      <a class="btn fb" href="${msg("book",CUR)}" target="_blank" rel="noopener">Continue in Messenger</a><button class="x" type="button">Back to the site</button></div>`;
+      <a class="btn fb" href="${msg("book",P,mid||null)}" target="_blank" rel="noopener" data-sent="1">Continue in Messenger</a><button class="x" type="button">Back to the site</button></div>`;
     root.querySelector(".x").onclick=()=>root.classList.remove("on");
     requestAnimationFrame(()=>requestAnimationFrame(()=>root.classList.add("on")));
   };
 }
+function closeBook(){ const m=$("#bookSheet"); if(m) m.classList.remove("on"); }
+function openBook(P, mid){
+  let m=$("#bookSheet");
+  if(!m){ m=document.createElement("div"); m.id="bookSheet"; m.className="sent"; document.body.appendChild(m);
+    m.addEventListener("click",e=>{ if(e.target===m) closeBook(); }); }
+  m.innerHTML=`<div class="sheet book"><button class="x top" type="button" aria-label="Close">✕</button><span class="eyebrow">Free tripping · any day, 8 AM–5 PM</span><h3>Book your visit.</h3>${bookForm(P||CUR,"m",mid||"")}</div>`;
+  m.querySelector(".x.top").onclick=closeBook;
+  wireBook(m.querySelector("form"));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>m.classList.add("on")));
+}
+// Every "book" button leads to the same form: on a project page it scrolls to the form in the card, elsewhere it opens the sheet.
+// "Ask" and "video tour" buttons still open Messenger.
+document.addEventListener("click",e=>{
+  const a=e.target.closest&&e.target.closest('a[href*="m.me/"]'); if(!a || a.dataset.sent || e.metaKey || e.ctrlKey) return;
+  let ref=""; try{ ref=new URL(a.href).searchParams.get("ref")||""; }catch(_){}
+  if(ref && !ref.startsWith("book")) return;
+  e.preventDefault(); e.stopImmediatePropagation();
+  const parts=ref.split("_"), P=PROJECTS.find(x=>x.slug===parts[1])||CUR, mid=parts[2] ? Object.keys(MODELS).find(id=>(MODELS[id].path||id)===parts[2]&&MODELS[id].P===P)||"" : "";
+  const inline=$("#leadForm");
+  if(inline && !mid){ document.getElementById("book").scrollIntoView({behavior:reduce?"auto":"smooth"}); return; }
+  openBook(P, mid);
+}, true);
 document.addEventListener("click",e=>{ const a=e.target.closest&&e.target.closest("[data-jump]"); if(!a) return; e.preventDefault(); const t=document.getElementById(a.dataset.jump); if(t) t.scrollIntoView({behavior:reduce?"auto":"smooth"}); });
 
 /* ---------- when shown inside the proposal's phone ---------- */
@@ -63,9 +91,7 @@ addEventListener("scroll",()=>{ if(!EMBED) return; let cur="top";
   if(cur!==lastSec){ lastSec=cur; try{ parent.postMessage({type:"section",id:cur},"*"); }catch(_){} } },{passive:true});
 
 function bookLinks(P, modelId){
-  ["#msgBtn","#stickyBtn"].forEach(s=>{ const a=$(s);
-    if(P && $("#leadForm")){ a.href="#book"; a.dataset.jump="book"; a.removeAttribute("target"); }
-    else { a.href=msg("book",CUR,modelId); delete a.dataset.jump; a.target="_blank"; } });
+  ["#msgBtn","#stickyBtn"].forEach(s=>{ const a=$(s); a.href=msg("book",CUR,modelId); delete a.dataset.jump; a.target="_blank"; });
 }
 
 /* ---------- AI assistant: sample conversation (optional add-on) ---------- */

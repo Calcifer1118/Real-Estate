@@ -53,3 +53,6 @@
 .aiin{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
 .aiin input{flex:1;min-width:0;padding:10px 12px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:500 14px var(--body)}
 .aiin button{width:40px;border-radius:50%;background:var(--line);color:var(--muted)}
+#bookSheet .sheet{max-height:calc(100vh - 40px);overflow-y:auto;position:relative}
+#bookSheet .sheet h3{font-size:28px;margin-bottom:4px}
+#bookSheet .x.top{position:absolute;top:14px;right:16px;font-size:18px;padding:6px}
