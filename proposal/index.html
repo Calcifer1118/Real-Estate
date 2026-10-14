@@ -70,7 +70,8 @@ section.block{padding-block:84px 8px;scroll-margin-top:70px}
 .phone{position:sticky;top:76px;justify-self:center;width:100%;max-width:370px;border-radius:44px;padding:11px;background:#05080A;border:1px solid #2A3438;box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 0 0 6px #10171A}
 @media (max-width:860px){.phone{position:relative;top:0}}
 .screen{position:relative;height:min(700px,78vh);min-height:520px;border-radius:34px;overflow:hidden}
-.scroller{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;scroll-behavior:smooth;scrollbar-width:none}
+.urlbar{position:absolute;top:0;left:0;right:0;height:34px;z-index:2;display:flex;align-items:center;justify-content:center;gap:5px;background:#F3F4F1;color:#5C6568;font:600 11.5px var(--body);border-bottom:1px solid #DCE0DA}
+.screen iframe{position:absolute;top:34px;left:0;width:100%;height:calc(100% - 34px);border:0;background:#F3F4F1}
 .scroller::-webkit-scrollbar{display:none}
 
 /* the client site inside the phone stays light */
@@ -315,102 +316,24 @@ th.rec{color:var(--amber)}
 <section class="block" id="site">
   <div class="wrap">
     <div class="head"><span class="eyebrow">What your clients see</span><h2>The unit page, <span class="serif">live.</span></h2>
-      <p>This phone runs the real thing: the Gen Tri video, the calculator cycling through payment terms, the route from Manila, and the booking form. Tap a step to jump there, or scroll inside the phone.</p></div>
+      <p>This phone runs the full Gen Tri page from your current site, rebranded for Team HML: video, house models, the calculator, amenities, the 3D map and the booking form. Tap a step to jump there, or scroll inside the phone. <a href="https://claude.ai/artifact/Pz9BecntgwqYC1JarJW3dN" target="_blank" rel="noopener" style="color:var(--amber)">Open it full screen →</a></p></div>
     <div class="demo">
       <div class="phone">
         <div class="screen">
-          <div class="scroller" id="scroller">
-            <div class="site" id="siteRoot">
-              <span class="s-url" id="sUrl">phirstparkhomes-hml.com/juan</span>
-              <div class="s-bar">
-                <div class="s-av"><svg data-logo viewBox="0 0 120 120" aria-hidden="true"></svg></div>
-                <div class="s-who"><small>Presented by</small><b id="sAgent">Juan dela Cruz · Team HML</b></div>
-                <a class="s-btn" href="#sForm" data-jump="form">Book tripping</a>
-              </div>
-              <div class="s-hero" id="sHero">
-                <video autoplay muted loop playsinline poster="assets/hero-poster.jpg" aria-label="Aerial video of PHirst Impressions Gen Tri"><source src="assets/hero.mp4" type="video/mp4"></video>
-                <div class="t">
-                  <span class="e">PHirst Impressions · General Trias, Cavite</span>
-                  <h3>Gen Tri<span class="serif">Impressions</span></h3>
-                  <p>23.8 hectares of green, open living. Finished townhomes on bigger lots.</p>
-                  <div class="s-chips"><span>Calista Mid</span><span>Calista End</span><span>Manila ⇄ Gen Tri</span></div>
-                </div>
-              </div>
-              <div class="s-sec" id="sUnit">
-                <span class="s-eb">Townhouse · inner unit</span>
-                <h4>Calista <span class="serif">Mid</span></h4>
-                <div class="s-spec"><div><b>60<small>sqm</small></b><span>Lot</span></div><div><b>40<small>sqm</small></b><span>Floor</span></div><div><b>2</b><span>Beds</span></div><div><b>1</b><span>T&amp;B</span></div></div>
-              </div>
-              <div class="s-sec" id="sCalc">
-                <span class="s-eb">Sample computation</span>
-                <h4>What it <span class="serif">costs</span> per month.</h4>
-                <div class="s-panel">
-                  <h5>Downpayment · 10% over 12 months</h5>
-                  <div class="months armed" id="sMonths" aria-hidden="true"></div>
-                  <div class="mlabels"><span>Reserve</span><span>Spot DP</span><span>12 monthly</span></div>
-                  <dl class="kv">
-                    <div><dt>Reservation fee</dt><dd>₱30,000</dd></div>
-                    <div><dt>Spot downpayment</dt><dd>₱124,474.97</dd></div>
-                    <div><dt>Monthly for 12 months</dt><dd>₱12,872.91</dd></div>
-                    <div class="big"><dt>Total downpayment</dt><dd>₱308,949.94</dd></div>
-                  </dl>
-                </div>
-                <div class="s-panel">
-                  <h5>Monthly amortization after the DP</h5>
-                  <div class="seg dark" id="sFin" style="--n:2" role="group" aria-label="Financing"><span class="pill"></span><button aria-pressed="true" data-f="pag">Pag-IBIG Loan</button><button aria-pressed="false" data-f="bank">Bank Loan</button></div>
-                  <div class="seg" id="sYears" style="--n:5" role="group" aria-label="Years to pay"><span class="pill"></span></div>
-                  <div class="ma" id="sMa">—</div>
-                  <span class="autotag" id="sAuto"><i></i>Cycling through terms · tap a term to stop</span>
-                  <dl class="kv">
-                    <div><dt>Net contract price</dt><dd>₱3,089,499.38</dd></div>
-                    <div class="big"><dt>Balance to finance (90%)</dt><dd>₱2,780,549.44</dd></div>
-                  </dl>
-                  <p class="s-fine" id="sFinNote"></p>
-                </div>
-              </div>
-              <div class="s-sec" id="sMap">
-                <span class="s-eb">Location</span>
-                <h4>About an hour from <span class="serif">Manila.</span></h4>
-                <div class="seg dark" id="sMapT" style="--n:2" role="group" aria-label="Map view"><span class="pill"></span><button aria-pressed="true" data-v="0">From Manila</button><button aria-pressed="false" data-v="1">Nearby</button></div>
-                <div class="mapcard" id="sMapCard"><div id="sMapBox"></div>
-                  <div class="trip"><span>Manila ⇄ Gen Tri</span><b>≈ 1 hr via CAVITEX + CALAX</b></div></div>
-              </div>
-              <div class="s-sec" id="sForm">
-                <span class="s-eb">Free tripping · any day, 8 AM–5 PM</span>
-                <h4>Book your <span class="serif">visit.</span></h4>
-                <form class="s-form" id="leadForm" autocomplete="off">
-                  <label for="fName">Full name<input id="fName" required value="Maria Santos"></label>
-                  <label for="fMobile">Mobile number<input id="fMobile" inputmode="tel" required value="0917 555 0123"></label>
-                  <label for="fProj">Project<select id="fProj"><option>PHirst Impressions Gen Tri</option><option>PHirst Editions Batulao</option></select></label>
-                  <div class="two">
-                    <label for="fDay">Preferred day<input id="fDay" type="date" required></label>
-                    <label for="fTimeSel">Preferred time<select id="fTimeSel"></select></label>
-                  </div>
-                  <div class="times" id="fTimes" role="group" aria-label="Preferred time"></div>
-                  <button class="s-btn" type="submit">Book my free tripping</button>
-                </form>
-              </div>
-              <div class="s-foot"><b>Authorized PHirst Park Homes Seller · Team HML</b><span>Prices change often; confirm before reserving. Privacy policy · Data deletion</span></div>
-            </div>
-          </div>
-          <div class="sent" id="sent" aria-live="polite">
-            <div class="sheet site">
-              <span class="s-eb">Request sent</span>
-              <h5 id="sentTitle">Thanks, Maria!</h5>
-              <p id="sentText" style="font-size:13px;color:var(--mut)"></p>
-              <a class="s-btn fb" id="sentMsgr" href="#" target="_blank" rel="noopener">Continue in Messenger</a>
-              <button class="x" id="sentClose" type="button">Back to the site</button>
-            </div>
-          </div>
+          <div class="urlbar"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span id="sUrl">phirstparkhomes-hml.com/juan</span></div>
+          <iframe id="siteFrame" src="site/index.html#gen-tri-impressions" title="Team HML site preview: PHirst Impressions Gen Tri" loading="eager"></iframe>
         </div>
       </div>
 
       <div>
         <div class="chapters" id="chapters">
-          <button class="chap" data-jump="hero" aria-current="true"><span class="n">1</span><b>Gen Tri video</b><span>The project opens with your drone video instead of a still photo.</span></button>
-          <button class="chap" data-jump="calc"><span class="n">2</span><b>Animated calculator</b><span>Terms cycle on their own until the client taps one. Pag-IBIG and bank, from the official sheet.</span></button>
-          <button class="chap" data-jump="map"><span class="n">3</span><b>Route map</b><span>Manila and NAIA to Gen Tri via CAVITEX and CALAX, plus malls, schools and hospitals nearby.</span></button>
-          <button class="chap" data-jump="form"><span class="n">4</span><b>Booking form<span class="new">now with time</span></b><span>Name, mobile, project, preferred day and time. Try it: tap "Book my free tripping".</span></button>
+          <button class="chap" data-jump="top" aria-current="true"><span class="n">1</span><b>Gen Tri video</b><span>The project opens with your drone video, then the key numbers.</span></button>
+          <button class="chap" data-jump="models"><span class="n">2</span><b>House models</b><span>Calista Mid and End: model house and as-turned-over photos, floor plan and walkthrough video.</span></button>
+          <button class="chap" data-jump="finished"><span class="n">3</span><b>Finished, not bare</b><span>What every unit is turned over with.</span></button>
+          <button class="chap" data-jump="compute"><span class="n">4</span><b>Animated calculator</b><span>Terms cycle on their own until the client taps one. Pag-IBIG and bank, from the official sheet.</span></button>
+          <button class="chap" data-jump="amenities"><span class="n">5</span><b>Things to do</b><span>Tap an amenity to open its photo.</span></button>
+          <button class="chap" data-jump="location"><span class="n">6</span><b>3D map and nearby places</b><span>Fly-in 3D terrain map with malls, schools and hospitals, the route from Manila, and distances.</span></button>
+          <button class="chap" data-jump="book"><span class="n">7</span><b>Booking form<span class="new">now with time</span></b><span>Name, mobile, project, preferred day and time. Try it.</span></button>
         </div>
         <div class="fires" id="fires">
           <h3>What happens when they tap Book</h3>
@@ -708,153 +631,36 @@ function tween(el,to,fmt,ms=700){
   (function f(t){ const k=Math.min(1,(t-t0)/ms), e=1-Math.pow(1-k,3); el.innerHTML=fmt(from+(to-from)*e); if(k<1) requestAnimationFrame(f); })(t0);
 }
 
-/* ---------- calculator (Calista Mid official sheet) ---------- */
-const CALC={ balance:2780549.44, bankRate:.07, pag:{30:17120.32,25:18342.43,20:20323.82,15:23841.07,10:31220.04},
-  schedule:[[30000,"r"],[124474.97,"r"],...Array(12).fill([12872.91,""])] };
-const amort=(P,rate,y)=>{ const r=rate/12,n=y*12; return P*r/(1-Math.pow(1+r,-n)); };
-(function(){
-  const hmax=Math.max(...CALC.schedule.map(x=>x[0]));
-  const m=$("#sMonths"); m.style.gridTemplateColumns=`repeat(${CALC.schedule.length},1fr)`;
-  m.innerHTML=CALC.schedule.map(([a,c],i)=>`<i class="${c}" style="--d:${i};--h:${Math.max(6,a/hmax*100).toFixed(0)}%"></i>`).join("");
-})();
-let fin="pag", years=20, auto=true, autoT;
-const TERMS={pag:[30,25,20,15,10],bank:[25,20,15,10,5]};
-const mo=v=>peso(v)+"<small> /month</small>";
-function renderYears(){
-  const ys=TERMS[fin]; if(!ys.includes(years)) years=20;
-  $("#sYears").innerHTML=`<span class="pill"></span>`+ys.map(y=>`<button aria-pressed="${y===years}" data-y="${y}">${y} yrs</button>`).join("");
-  setYear=seg($("#sYears"),(b,user)=>{ years=+b.dataset.y; if(user) stopAuto(); updMa(); });
-}
-let setYear;
-function updMa(){
-  const v=fin==="pag"?CALC.pag[years]:amort(CALC.balance,CALC.bankRate,years);
-  tween($("#sMa"),v,mo);
-  $("#sFinNote").textContent = fin==="pag"
-    ? "Pag-IBIG at 6.25%, fixed for the first 3 years. Needs at least 24 monthly contributions; the final loan amount depends on Pag-IBIG's approval."
-    : "Indicative at 7% a year on the same balance. Actual rates and terms depend on the bank and the borrower's age.";
-}
-seg($("#sFin"),(b,user)=>{ fin=b.dataset.f; if(user) stopAuto(); renderYears(); updMa(); });
-renderYears(); updMa();
-function stopAuto(){ auto=false; clearInterval(autoT); $("#sAuto").innerHTML="Tap any term to compare"; }
-function startAuto(){
-  if(reduce) { $("#sAuto").hidden=true; return; }
-  autoT=setInterval(()=>{ if(!auto) return; const ys=TERMS[fin], i=(ys.indexOf(years)+1)%ys.length;
-    const b=$(`#sYears button[data-y="${ys[i]}"]`); if(b) setYear(b,false); }, 2200);
-}
-
-/* ---------- map (from the prototype; OpenStreetMap positions) ---------- */
-const MAPS=[{
-  lon0:120.80, lat0:14.62, K:1500, cos:0.969, w:407, h:600,
-  water:[{pts:[[120.975,14.62],[120.98,14.58],[120.985,14.54],[120.99,14.51],[120.975,14.49],[120.955,14.465],[120.925,14.455],[120.905,14.45],[120.895,14.475],[120.885,14.492],[120.87,14.465],[120.86,14.445],[120.84,14.435],[120.82,14.425],[120.80,14.415],[120.80,14.62]],label:"Manila Bay",at:[120.83,14.55]}],
-  roads:[{pts:[[120.993,14.52],[120.99,14.5],[120.965,14.472],[120.935,14.458],[120.91,14.447]],label:"CAVITEX",at:[120.96,14.487],rot:28},
-         {pts:[[120.91,14.447],[120.905,14.41],[120.908,14.37],[120.922,14.32],[120.935,14.285],[120.96,14.262],[121.0,14.255],[121.05,14.265],[121.071,14.27]],label:"CALAX",at:[120.93,14.35]}],
-  route:[[121.015,14.509],[120.993,14.505],[120.99,14.5],[120.965,14.472],[120.935,14.458],[120.91,14.447],[120.905,14.41],[120.908,14.37],[120.922,14.32],[120.918,14.281]],
-  places:[[120.985,14.593,"Manila",8,4,"big"],[121.015,14.509,"NAIA",8,4,"big"],[120.881,14.386,"General Trias",-78,4],[120.968,14.235,"Silang",8,4]],
-  lm:[], pin:[120.918,14.281], pinTitle:"PHirst Impressions Gen Tri", pinSub:"Brgy. Biclatan",
-  aria:"Map: PHirst Impressions Gen Tri in Brgy. Biclatan, General Trias, reached from Manila and NAIA via CAVITEX and CALAX"
-},{
-  lon0:120.845, lat0:14.41, K:2700, cos:0.969, w:392, h:405, water:[],
-  roads:[{pts:[[120.905,14.41],[120.908,14.37],[120.922,14.32],[120.935,14.285],[120.96,14.262],[120.99,14.256]],label:"CALAX",at:[120.9135,14.352],rot:75}],
-  places:[[120.881,14.386,"Gen. Trias town",8,4]],
-  lm:[["mall",120.9117,14.3231,"Vista Mall Gen. Trias",10,4],["mall",120.9568,14.3018,"SM City Dasmariñas",-10,4,"end"],["mall",120.8648,14.3971,"Robinsons Place Gen. Trias",10,4],["mall",120.9823,14.3596,"The District Dasmariñas",-10,4,"end"],["school",120.9160,14.2902,"LPU Cavite",-10,4,"end"],["school",120.9586,14.3242,"DLSU-D",10,16],["hospital",120.9433,14.3278,"DLSU Medical Center",-10,-6,"end"],["hospital",120.9121,14.3650,"King Solomon Hospital",10,4]],
-  pin:[120.918,14.281], pinTitle:"PHirst Impressions Gen Tri", pinSub:"Brgy. Biclatan",
-  aria:"Map: malls, schools and hospitals near PHirst Impressions Gen Tri in Brgy. Biclatan, General Trias"
-}];
-const LM={mall:"#C2542D",school:"#3E7CB1",hospital:"#D23F4E"};
-function lmIcon(type,cx,cy){
-  const w="#fff", g = type==="hospital" ? `<rect x="${cx-1.1}" y="${cy-4}" width="2.2" height="8" fill="${w}"/><rect x="${cx-4}" y="${cy-1.1}" width="8" height="2.2" fill="${w}"/>`
-    : type==="school" ? `<path d="M${cx-5} ${cy-1}L${cx} ${cy-4}L${cx+5} ${cy-1}L${cx} ${cy+2}Z" fill="${w}"/>`
-    : `<rect x="${cx-3.5}" y="${cy-1.5}" width="7" height="5.5" rx="1" fill="${w}"/>`;
-  return `<circle cx="${cx}" cy="${cy}" r="7.5" fill="${LM[type]}" stroke="var(--surface)" stroke-width="1.5"/>${g}`;
-}
-function locMap(g){
-  const x=lon=>((lon-g.lon0)*g.cos*g.K).toFixed(1), y=lat=>((g.lat0-lat)*g.K).toFixed(1);
-  const pts=a=>a.map(([lo,la])=>x(lo)+","+y(la)).join(" ");
-  const label=(lo,la,t,rot,cls="")=>`<text x="${x(lo)}" y="${y(la)}" class="${cls}"${rot?` transform="rotate(${rot} ${x(lo)} ${y(la)})"`:""}>${t}</text>`;
-  const dot=([lo,la,t,dx=8,dy=4,cls=""])=>`<circle cx="${x(lo)}" cy="${y(la)}" r="4" fill="var(--ink)"/><text x="${(+x(lo)+dx).toFixed(1)}" y="${(+y(la)+dy).toFixed(1)}" class="${cls}">${t}</text>`;
-  const px=+x(g.pin[0]), py=+y(g.pin[1]), bx=px-150, by=py+8;
-  return `<svg class="map" viewBox="0 0 ${g.w} ${g.h}" role="img" aria-label="${g.aria}">
-    <rect width="${g.w}" height="${g.h}" fill="var(--surface)"/>
-    ${g.water.map(w=>`<polygon points="${pts(w.pts)}" fill="var(--water)"/>${label(w.at[0],w.at[1],w.label,0,"water-l")}`).join("")}
-    ${g.roads.map(r=>`<polyline points="${pts(r.pts)}" fill="none" stroke="var(--line)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`).join("")}
-    ${g.route?`<polyline class="route" pathLength="1" points="${pts(g.route)}" fill="none" stroke="var(--rust)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>`:""}
-    ${g.roads.map(r=>label(r.at[0],r.at[1],r.label,r.rot)).join("")}
-    ${g.lm.map(([t,lo,la,txt,dx=10,dy=4,an="start"])=>{const cx=+x(lo),cy=+y(la);return `<g>${lmIcon(t,cx,cy)}<text x="${cx+dx}" y="${cy+dy}" text-anchor="${an}" style="fill:var(--ink);font-size:10.5px;paint-order:stroke;stroke:var(--surface);stroke-width:3px">${txt}</text></g>`}).join("")}
-    ${g.places.map(dot).join("")}
-    <circle class="pulse" cx="${px}" cy="${py}" r="10" fill="var(--rust)"/>
-    <g style="animation:drop 1.3s var(--ease) both"><path d="M${px} ${py} c-9 -12 -13 -17 -13 -24 a13 13 0 0 1 26 0 c0 7 -4 12 -13 24z" fill="var(--rust)"/><circle cx="${px}" cy="${py-24}" r="5" fill="var(--surface)"/></g>
-    <rect x="${bx}" y="${by}" width="140" height="36" rx="8" fill="var(--char)"/>
-    <text x="${bx+8}" y="${by+15}" style="fill:var(--on-char);font-size:11px;font-weight:700">${g.pinTitle}</text>
-    <text x="${bx+8}" y="${by+29}" style="fill:var(--on-char);opacity:.75;font-size:10px">${g.pinSub}</text>
-    <g transform="translate(${g.w-29} 30)"><path d="M0 -14 L6 4 L0 0 L-6 4Z" fill="var(--ink)"/><text x="-4" y="18" style="fill:var(--ink)">N</text></g>
-  </svg>`;
-}
-function drawMap(i){
-  const card=$("#sMapCard"); $("#sMapBox").innerHTML=locMap(MAPS[i]);
-  if(!reduce){ card.classList.add("armed"); card.getBoundingClientRect(); requestAnimationFrame(()=>card.classList.remove("armed")); }
-}
-drawMap(0);
-seg($("#sMapT"),b=>drawMap(+b.dataset.v));
-
-/* ---------- reveal inside the phone ---------- */
-const scroller=$("#scroller");
-const io=new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting) return;
-  if(e.target.id==="sMonths") e.target.classList.remove("armed");
-  if(e.target.id==="sMapCard") drawMap(+$("#sMapT button[aria-pressed=true]").dataset.v);
-  if(e.target.id==="sCalc" && !autoT) startAuto();
-  io.unobserve(e.target);
-}),{root:scroller,threshold:.35});
-["#sMonths","#sMapCard","#sCalc"].forEach(s=>io.observe($(s)));
-if(reduce) $("#sMonths").classList.remove("armed");
-
-/* chapters ↔ phone */
-const JUMP={hero:"#sHero",calc:"#sCalc",map:"#sMap",form:"#sForm"};
-function jump(k){ const t=$(JUMP[k]); scroller.scrollTo({top:t.offsetTop-(k==="hero"?0:58),behavior:reduce?"auto":"smooth"}); }
-$$("[data-jump]").forEach(b=>b.addEventListener("click",e=>{ e.preventDefault(); jump(b.dataset.jump);
-  if(b.classList.contains("chap") && innerWidth<=860) $(".phone").scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"}); }));
-scroller.addEventListener("scroll",()=>{
-  const y=scroller.scrollTop+120; let cur="hero";
-  for(const k of ["calc","map","form"]) if($(JUMP[k]).offsetTop<=y) cur=k;
-  $$(".chap").forEach(c=>c.setAttribute("aria-current",c.dataset.jump===cur));
-},{passive:true});
-
-/* ---------- booking form ---------- */
-const SLOTS=["8:00 AM","9:00 AM","10:00 AM","11:00 AM","1:00 PM","2:00 PM","3:00 PM","4:00 PM"];
-$("#fTimeSel").innerHTML=SLOTS.map(s=>`<option${s==="10:00 AM"?" selected":""}>${s}</option>`).join("");
-$("#fTimes").innerHTML=SLOTS.map(s=>`<button type="button" aria-pressed="${s==="10:00 AM"}">${s}</button>`).join("");
-$$("#fTimes button").forEach(b=>b.onclick=()=>{ $$("#fTimes button").forEach(x=>x.setAttribute("aria-pressed",x===b)); $("#fTimeSel").value=b.textContent; });
-$("#fTimeSel").onchange=e=>$$("#fTimes button").forEach(x=>x.setAttribute("aria-pressed",x.textContent===e.target.value));
-$("#fTimeSel").parentElement.style.display="none"; // chips are the picker; the select stays as the form value
-(function(){ const d=new Date(); d.setDate(d.getDate()+((6-d.getDay()+7)%7||7)); $("#fDay").value=d.toISOString().slice(0,10); })();
-
+/* ---------- the site inside the phone ---------- */
+const frame=$("#siteFrame");
+const toSite=m=>{ try{ frame.contentWindow.postMessage(m,"*"); }catch(e){} };
 let agent={slug:"juan",name:"Juan dela Cruz"};
-const MSGR="https://m.me/";
-$("#leadForm").addEventListener("submit",e=>{
-  e.preventDefault();
-  const name=$("#fName").value.trim()||"Client", first=name.split(" ")[0];
-  const day=$("#fDay").value?new Date($("#fDay").value+"T00:00").toLocaleDateString("en-PH",{weekday:"short",month:"short",day:"numeric"}):"Any day";
-  const time=$("#fTimeSel").value, proj=$("#fProj").value;
-  $("#sentTitle").textContent=`Thanks, ${first}!`;
-  $("#sentText").textContent=`${agent.name.split(" ")[0]} got your request for ${day}, ${time}. Tap below to confirm in Messenger; your details are ready to send.`;
-  $("#sentMsgr").href=MSGR+"TeamHML?ref="+encodeURIComponent(`book_${agent.slug}_gentri`);
-  $("#sent").classList.add("on");
-  $("#tgText").textContent=`🏠 New tripping request\nAgent: ${agent.name} (/${agent.slug})\nClient: ${name}\nMobile: ${$("#fMobile").value}\nProject: ${proj}\nWhen: ${day}, ${time}\nSource: Facebook ad`;
-  $("#fireTg").textContent=`To ${agent.name.split(" ")[0]}: ${day}, ${time}`;
+frame.addEventListener("load",()=>toSite({type:"agent",name:agent.name}));
+$$(".chap").forEach(b=>b.addEventListener("click",()=>{ toSite({type:"jump",to:b.dataset.jump});
+  $$(".chap").forEach(c=>c.setAttribute("aria-current",c===b));
+  if(innerWidth<=860) $(".phone").scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"}); }));
+addEventListener("message",e=>{ if(e.source!==frame.contentWindow) return; const m=e.data||{};
+  if(m.type==="section") $$(".chap").forEach(c=>c.setAttribute("aria-current",c.dataset.jump===m.id));
+  if(m.type==="lead") fireLead(m);
+});
+function fireLead(m){
+  const first=agent.name.split(" ")[0];
+  $("#tgText").textContent=`🏠 New tripping request\nAgent: ${agent.name} (/${agent.slug})\nClient: ${m.name}\nMobile: ${m.mobile}\nProject: ${m.project}\nWhen: ${m.day}, ${m.time}\nSource: Facebook ad`;
+  $("#fireTg").textContent=`To ${first}: ${m.day}, ${m.time}`;
   const fires=$$(".fire"); fires.forEach(f=>{ f.classList.remove("on"); f.querySelector(".st").textContent="waiting"; });
   $("#tgcard").hidden=true;
   fires.forEach((f,i)=>setTimeout(()=>{ f.classList.add("on"); f.querySelector(".st").textContent="sent ✓"; if(f.dataset.k==="tg") $("#tgcard").hidden=false; }, reduce?0:350+i*450));
-});
-$("#sentClose").onclick=()=>$("#sent").classList.remove("on");
+}
 
 /* ---------- agent link demo ---------- */
 $$("#typer button").forEach(b=>b.onclick=()=>{
   $$("#typer button").forEach(x=>x.setAttribute("aria-pressed",x===b));
   agent={slug:b.dataset.s,name:b.dataset.n};
   $("#slug").textContent=agent.slug; $("#sUrl").textContent="phirstparkhomes-hml.com/"+agent.slug;
-  $("#sAgent").textContent=agent.name+" · Team HML";
+  toSite({type:"agent",name:agent.name});
   $("#fireTg").textContent="Instant, with the client's day and time";
-  const tg=$(".fire[data-k=tg] b"); tg.textContent="Telegram alert to "+agent.name.split(" ")[0];
-  const fb=$(".fire[data-k=fb] b"); fb.textContent="Messenger opens on "+agent.name.split(" ")[0]+"'s page";
+  $(".fire[data-k=tg] b").textContent="Telegram alert to "+agent.name.split(" ")[0];
+  $(".fire[data-k=fb] b").textContent="Messenger opens on "+agent.name.split(" ")[0]+"'s page";
 });
 
 /* ---------- pricing builder ---------- */

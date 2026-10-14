@@ -1,0 +1,1607 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Team HML PHirst Homes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="PHirst Impressions Gen Tri and PHirst Editions Batulao: house models, photos, walkthrough videos, prices and payment estimates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap">
+<style>
+:root{
+  --paper:#F3F4F1; --surface:#FFFFFF; --ink:#1F2426; --muted:#5C6568; --line:#DCE0DA;
+  --rust:#C2542D; --on-rust:#FFFFFF; --sage:#4F7F55; --sage-soft:#E3ECE1;
+  --char:#23292B; --on-char:#F1F2EE;
+  --ph:#2F8F46; --ph-on-dark:#7DD08F;
+  --shadow:0 22px 44px -26px rgba(20,26,28,.55);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Figtree",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --accent:"Instrument Serif",Georgia,serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#111415; --surface:#191E1F; --ink:#E8EBE7; --muted:#9AA3A3; --line:#2A3133;
+    --rust:#E0693F; --on-rust:#1A0D07; --ph:#6FC883; --sage:#8BBB8E; --sage-soft:#1D2A21;
+    --char:#0B0E0F; --on-char:#EDEFEA; --shadow:0 22px 44px -26px rgba(0,0,0,.85);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#111415; --surface:#191E1F; --ink:#E8EBE7; --muted:#9AA3A3; --line:#2A3133;
+  --rust:#E0693F; --on-rust:#1A0D07; --ph:#6FC883; --sage:#8BBB8E; --sage-soft:#1D2A21;
+  --char:#0B0E0F; --on-char:#EDEFEA; --shadow:0 22px 44px -26px rgba(0,0,0,.85);
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.02;letter-spacing:-.025em;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+img,video{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--rust);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.serif{font-family:var(--accent);font-style:italic;font-weight:400;letter-spacing:0}
+.eyebrow{font:700 12px/1.2 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--sage)}
+.todo{display:inline-block;font:500 12px/1.3 var(--body);color:var(--rust);border:1px dashed currentColor;border-radius:6px;padding:3px 8px}
+
+/* seller bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--paper) 84%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:12px;height:60px}
+.back{display:none;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);flex:none}
+.has-back .back{display:inline-flex}
+.seller{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--char);color:var(--on-char);display:grid;place-items:center;font:700 14px var(--display);flex:none}
+.seller small{display:block;font-size:12px;color:var(--muted);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seller b{display:block;font-weight:600;font-size:15px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:10px 18px;font-weight:600;font-size:15px;text-decoration:none;background:var(--rust);color:var(--on-rust);transition:transform .35s var(--ease),box-shadow .35s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn.ghost{background:transparent;color:inherit;border:1px solid currentColor}
+
+/* reveal: always rests visible; only lifts in when armed below the fold */
+.rv{transition:transform .9s var(--ease),opacity .9s var(--ease);transition-delay:calc(var(--d,0)*80ms)}
+.rv.armed{transform:translateY(30px);opacity:.2}
+
+/* ---------- HUB ---------- */
+.hub-hero{padding-block:44px 24px;display:grid;gap:16px}
+.hub-hero h1{font-size:clamp(42px,8vw,88px);font-weight:800}
+.hub-hero h1 .serif{color:var(--rust)}
+.ph{color:var(--ph)!important}
+.hero .ph,.mhero .ph,.darkcard .ph,.cta .ph,.mcard .ph{color:var(--ph-on-dark)!important}
+.hub-hero p{max-width:50ch;color:var(--muted);font-size:18px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:20px;padding-block:12px 64px}
+.pcard{position:relative;display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s}
+.pcard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.pcard .art{aspect-ratio:4/3;overflow:hidden;background:var(--char)}
+.pcard .art img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.pcard:hover .art img{scale:1.06}
+.pcard .meta{padding:18px 20px 22px;display:grid;gap:6px}
+.pcard h2{font-size:30px}
+.pcard .loc{color:var(--muted);font-size:14px}
+.details{position:absolute;top:14px;right:14px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:8px 12px 8px 16px;border-radius:999px;background:var(--rust);color:var(--on-rust);font:600 14px/1 var(--body);box-shadow:0 8px 20px -10px rgba(0,0,0,.5)}
+.details svg{width:16px;height:16px;transition:transform .45s var(--ease)}
+.pcard:hover .details svg,.mcard:hover .details svg{transform:translateX(4px)}
+.pcard.empty{border-style:dashed;display:grid;place-items:center;min-height:260px;color:var(--muted);text-align:center;padding:24px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:var(--sage-soft);color:var(--sage)}
+
+/* ---------- PROJECT HERO ---------- */
+.hero{position:relative;background:var(--char);color:var(--on-char);overflow:hidden;min-height:min(92vh,760px);display:flex;align-items:flex-end}
+.hero video,.hero .still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:settle 2.6s var(--ease) both}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,15,16,.25) 0%,rgba(12,15,16,.1) 35%,rgba(12,15,16,.88) 100%)}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-block:120px 34px;display:grid;gap:12px}
+.hero .eyebrow{color:#F4B08F}
+.hero h1{font-size:clamp(56px,13vw,150px);font-weight:800;letter-spacing:-.045em;line-height:.88}
+.hero h1 .serif{display:block;font-size:.72em;letter-spacing:-.01em;color:#F4B08F;line-height:1}
+.hero .lede{font-size:clamp(17px,2.3vw,21px);max-width:38ch;opacity:.9}
+.words>span{display:inline-block;animation:rise 1s var(--ease) both;animation-delay:calc(var(--i)*110ms + 150ms)}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.hero-chips a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:999px;border:1px solid rgba(241,242,238,.35);background:rgba(241,242,238,.08);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);text-decoration:none;animation:rise .8s var(--ease) both;animation-delay:calc(var(--i)*90ms + 650ms);transition:background .3s}
+.hero-chips a:hover{background:rgba(241,242,238,.2)}
+.scrollcue{width:1px;height:44px;background:linear-gradient(var(--on-char),transparent);margin-top:14px;animation:cue 2s ease-in-out infinite;transform-origin:top}
+
+/* sections */
+section.block{padding-block:72px 8px;scroll-margin-top:80px}
+@media (max-width:600px){section.block{padding-block:44px 4px}.cta{margin-block:48px 24px!important}}
+.head{display:grid;gap:10px;margin-bottom:28px}
+.head h2{font-size:clamp(32px,5.4vw,54px)}
+.head h2 .serif{color:var(--rust)}
+.head p{color:var(--muted);max-width:58ch}
+
+/* value stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:14px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 20px 18px}
+.stat .n{font:800 clamp(44px,7vw,64px)/1 var(--display);letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.stat .n small{font-size:.36em;font-weight:600;color:var(--muted);letter-spacing:0;margin-left:3px}
+.stat .l{color:var(--muted);font-size:14px;margin-top:8px}
+.stat.hl{background:var(--char);color:var(--on-char);border-color:var(--char)}
+.stat.hl .n small,.stat.hl .l{color:color-mix(in srgb,var(--on-char) 70%,transparent)}
+
+/* lot to scale */
+.lots{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:18px}
+.lots .row{display:flex;align-items:flex-end;gap:36px;flex-wrap:wrap}
+.lot{display:grid;gap:8px;justify-items:start}
+.lot .sq{box-sizing:content-box;background:repeating-linear-gradient(135deg,var(--sage-soft) 0 8px,transparent 8px 14px);border:2px solid var(--sage);border-radius:4px;position:relative;transform-origin:bottom left;transition:transform 1.2s var(--ease);transition-delay:calc(var(--d,0)*160ms)}
+.lot .sq i{position:absolute;background:var(--rust);opacity:.9;border-radius:2px}
+.lot .sq em{position:absolute;font:600 10px/1.1 var(--body);font-style:normal;color:var(--muted);white-space:nowrap}
+.street{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-top:2px dashed var(--line);padding-top:6px;width:100%}
+.lots.armed .sq{transform:scaleY(.08)}
+.lot b{font:700 18px var(--display)}
+.lot span{font-size:13px;color:var(--muted)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+/* model cards */
+.models{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px}
+.mcard{position:relative;display:block;text-decoration:none;border-radius:24px;overflow:hidden;background:var(--char);color:var(--on-char);aspect-ratio:4/5;max-height:640px;width:100%}
+.mcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),opacity .8s}
+.mcard img.alt{opacity:0}
+.mcard:hover img{scale:1.05}
+.mcard:hover img.alt{opacity:1}
+.mcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(12,15,16,.9))}
+.mcard .txt{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:22px;display:grid;gap:8px}
+.mcard h3{font-size:clamp(34px,5vw,46px)}
+.mcard .kind{font:700 12px var(--body);letter-spacing:.12em;text-transform:uppercase;color:#F4B08F}
+.mcard .spec{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;opacity:.9}
+.mcard .spec b{font:700 18px var(--display)}
+
+/* inclusions */
+.incl{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:10px}
+.inc{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-weight:500}
+.inc svg{width:26px;height:26px;flex:none;color:var(--sage)}
+.inc svg path{stroke-dasharray:30;stroke-dashoffset:0;transition:stroke-dashoffset .8s var(--ease);transition-delay:calc(var(--d,0)*70ms + 250ms)}
+.inc.armed svg path{stroke-dashoffset:30}
+.note{margin-top:14px;display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--muted);border-left:3px solid var(--rust);padding:4px 0 4px 14px}
+.note b{color:var(--ink)}
+
+/* computation */
+.comp{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;display:grid;gap:16px;align-content:start}
+.panel h3{font-size:22px}
+.kv{display:grid;gap:10px}
+.kv div{display:flex;justify-content:space-between;gap:12px;font-variant-numeric:tabular-nums;border-bottom:1px dashed var(--line);padding-bottom:10px}
+.kv div:last-child{border:0;padding:0}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;font-weight:600;text-align:right}
+.kv .big dd{font:800 22px var(--display)}
+.seg{position:relative;display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:4px}
+.seg button{position:relative;z-index:1;padding:9px 6px;border-radius:999px;font-weight:600;font-size:14px;transition:color .35s}
+.seg button[aria-pressed="true"]{color:var(--on-rust)}
+.seg button{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.seg .pill{position:absolute;top:4px;bottom:4px;left:4px;width:calc((100% - 8px)/var(--n,3));border-radius:999px;background:var(--rust);transition:transform .5s var(--ease)}
+.ma{font:800 clamp(46px,8vw,68px)/1 var(--display);letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.ma small{font-size:.34em;font-weight:600;color:var(--muted);letter-spacing:0}
+.months{display:grid;grid-template-columns:repeat(14,1fr);gap:3px;align-items:end;height:90px}
+.months i{display:block;border-radius:3px 3px 0 0;background:var(--sage);height:var(--h);transform-origin:bottom;transition:transform .9s var(--ease);transition-delay:calc(var(--d)*45ms)}
+.months i.r{background:var(--rust)}
+.panel.armed .months i{transform:scaleY(0)}
+.mlabels{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.fine{font-size:12px;color:var(--muted)}
+
+/* map */
+:root{--water:#D6E6EA}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--water:#15282E}}
+:root[data-theme="dark"]{--water:#15282E}
+.locgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));align-items:stretch}
+.mapcard{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:10px;display:grid;gap:8px}
+.mapcard svg{width:100%;height:auto;display:block;border-radius:14px;background:var(--paper)}
+.mapcard .cap{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:4px 6px 2px;font-size:12px;color:var(--muted)}
+.map .route{stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset 2.4s var(--ease) .3s}
+.mapcard.armed .map .route{stroke-dashoffset:1}
+.map .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.2s ease-out infinite}
+.map text{font-family:var(--body);fill:var(--muted);font-size:11px;font-weight:600}
+.map .big{font:700 13px var(--display);fill:var(--ink)}
+.map .water-l{fill:var(--sage);opacity:.7;font-style:italic;font-weight:500;font-size:12px}
+@keyframes pulse{0%{transform:scale(.4);opacity:.9}100%{transform:scale(2.4);opacity:0}}
+/* amenities */
+.amen{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,170px),1fr));gap:12px}
+.am{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:10px;align-content:start;transition:transform .45s var(--ease),border-color .45s}
+.am:hover{transform:translateY(-4px);border-color:var(--sage)}
+.am svg{width:38px;height:38px;stroke:var(--sage);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.am svg>*{stroke-dasharray:100;stroke-dashoffset:0;transition:stroke-dashoffset 1.4s var(--ease);transition-delay:calc(var(--d,0)*70ms + 200ms)}
+.am.armed svg>*{stroke-dashoffset:100}
+.am b{font:700 17px/1.15 var(--display)}
+.am span{font-size:13px;color:var(--muted)}
+.am{text-align:left;width:100%;cursor:pointer;position:relative}
+.am .more{position:absolute;top:16px;right:16px;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);transition:transform .45s var(--ease),background .3s,color .3s}
+.am[aria-expanded="true"]{border-color:var(--rust)}
+.am[aria-expanded="true"] .more{transform:rotate(45deg);background:var(--rust);color:var(--on-rust);border-color:var(--rust)}
+.am-panel{grid-column:1/-1;display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.am-panel.open{grid-template-rows:1fr}
+.am-panel>div{overflow:hidden;min-height:0}
+.am-card{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;align-items:center;background:var(--char);color:var(--on-char);border-radius:18px;padding:12px;margin-block:2px}
+.am-card img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px;animation:settle 1.2s var(--ease) both}
+.am-card .ph-slot{aspect-ratio:16/10;border-radius:12px;display:grid;place-items:center;text-align:center;gap:6px;padding:16px;background:repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0 10px,transparent 10px 20px);border:1px dashed rgba(255,255,255,.25)}
+.am-card .ph-slot svg{width:54px;height:54px;stroke:#F4B08F;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;margin:0 auto}
+.am-card .txt{display:grid;gap:8px;padding:8px}
+.am-card h3{font-size:26px}
+.am-card p{opacity:.8}
+
+/* location + trust */
+.duo{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.darkcard{background:var(--char);color:var(--on-char);border-radius:20px;padding:24px;display:grid;gap:12px;align-content:start;position:relative;overflow:hidden}
+.darkcard h3{font-size:26px}
+.darkcard p{opacity:.82}
+.pin{width:30px;height:30px;color:#F4B08F;animation:drop 1.3s var(--ease) both}
+.road{height:3px;border-radius:3px;background:repeating-linear-gradient(90deg,#F4B08F 0 14px,transparent 14px 24px);background-size:24px 3px;animation:drive .9s linear infinite;opacity:.8}
+.trust{display:grid;gap:12px}
+.trust li{list-style:none;display:flex;gap:12px;align-items:flex-start}
+.trust svg{width:22px;height:22px;flex:none;color:var(--sage);margin-top:2px}
+.trust{padding:0;margin:0}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:8px;grid-auto-flow:dense}
+.gal button{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:3/4;background:var(--line)}
+.gal button.w{grid-column:span 2;aspect-ratio:auto}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.gal button:hover img{scale:1.05}
+.gal button span{position:absolute;left:8px;bottom:8px;font-size:12px;font-weight:600;background:rgba(12,15,16,.62);color:#fff;padding:3px 8px;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.gal .in{animation:wipe .9s var(--ease) both;animation-delay:calc(var(--d)*55ms)}
+.toggle{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;margin-bottom:12px}
+.toggle button{position:relative;z-index:1;padding:9px 16px;border-radius:999px;font-weight:600;font-size:14px;transition:color .35s;white-space:nowrap}
+.toggle button[aria-pressed="true"]{color:var(--on-char)}
+.toggle .pill{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:999px;background:var(--char);transition:transform .5s var(--ease)}
+.toggle-note{font-size:14px;color:var(--muted);margin-bottom:16px;min-height:1.5em}
+
+/* videos */
+.vids{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:none}
+.vids::-webkit-scrollbar{display:none}
+.vid{flex:0 0 min(78%,300px);scroll-snap-align:start;display:grid;gap:8px}
+.vid video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:18px;background:var(--char)}
+.vid b{font-weight:600}
+.vid span{font-size:13px;color:var(--muted)}
+
+/* model page */
+.mhero{position:relative;height:min(78vh,680px);overflow:hidden;background:var(--char);color:var(--on-char)}
+.mhero img{position:absolute;inset:-8% 0 0 0;width:100%;height:108%;object-fit:cover;will-change:transform;animation:settle 2.2s var(--ease) both}
+.mhero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,15,16,.2),transparent 40%,rgba(12,15,16,.9))}
+.mhero .wrap{position:absolute;left:0;right:0;bottom:0;z-index:1;padding-block:0 30px;display:grid;gap:10px}
+.mhero .eyebrow{color:#F4B08F}
+.mhero h1{font-size:clamp(56px,12vw,128px);font-weight:800;letter-spacing:-.045em;line-height:.9}
+.specbar{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:18px;background:var(--surface);margin-top:-28px;position:relative;z-index:2;overflow:hidden}
+.specbar div{padding:16px 14px;border-right:1px solid var(--line)}
+.specbar div:last-child{border:0}
+.specbar b{display:block;font:800 clamp(26px,4.5vw,40px)/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.specbar b small{font-size:.45em;font-weight:600;color:var(--muted);letter-spacing:0}
+.specbar span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+@media (max-width:560px){.specbar{grid-template-columns:1fr 1fr}.specbar div:nth-child(2){border-right:0}.specbar div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+.plan{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));align-items:center}
+.plan img{border-radius:16px;border:1px solid var(--line);background:#fff;cursor:zoom-in}
+.rooms{display:grid;gap:10px;padding:0;margin:0}
+.rooms li{list-style:none;display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding-bottom:10px}
+.rooms li span{color:var(--muted)}
+.next{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:56px;padding-top:22px}
+.next a{text-decoration:none;font:700 clamp(26px,4vw,36px) var(--display);display:inline-flex;align-items:center;gap:12px}
+.next a svg{transition:transform .4s var(--ease)}
+.next a:hover svg{transform:translateX(6px)}
+
+/* cta */
+.cta{margin-block:72px 28px;background:var(--char);color:var(--on-char);border-radius:26px;padding:clamp(24px,5vw,48px);display:grid;gap:16px;position:relative;overflow:hidden}
+.cta h2{font-size:clamp(30px,5vw,50px);max-width:17ch}
+.cta p{opacity:.8;max-width:52ch}
+.cta .glow{position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,var(--rust),transparent 70%);opacity:.55;animation:breathe 7s ease-in-out infinite}
+.cta .btns{display:flex;gap:10px;flex-wrap:wrap}
+.week{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.week span{font:600 13px var(--body);padding:7px 11px;border-radius:10px;border:1px solid rgba(241,242,238,.2);opacity:.4}
+.week span.on{opacity:1;background:rgba(241,242,238,.1);border-color:#F4B08F;animation:rise .7s var(--ease) both;animation-delay:calc(var(--i)*80ms)}
+.week em{font-style:normal;font-weight:600;font-size:14px;color:#F4B08F;margin-left:6px}
+.nudge{margin-top:18px;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;justify-content:space-between;background:var(--sage-soft);border-radius:16px;padding:14px 16px 14px 20px}
+.nudge span{font-weight:600;max-width:52ch}
+#stickyBook{position:fixed;left:0;right:0;bottom:0;z-index:45;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--char) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--on-char);transform:translateY(110%);transition:transform .5s var(--ease)}
+#stickyBook.show{transform:none}
+#stickyBook span{font-size:13px;opacity:.75}
+@media (max-width:420px){#stickyBook span{display:none}#stickyBook .btn{width:100%;justify-content:center}}
+.foot{font-size:12px;color:var(--muted);padding-bottom:44px;max-width:80ch}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:60;background:rgba(8,10,11,0);transition:background .45s}
+.lb.on{background:rgba(8,10,11,.94)}
+.lb img{position:fixed;transform-origin:top left;transition:transform .55s var(--ease),opacity .3s;border-radius:6px;touch-action:none;user-select:none}
+.lb .ctl{position:fixed;z-index:2;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;opacity:0;transition:opacity .4s .15s}
+.lb.on .ctl{opacity:1}
+.lb .x{right:14px;top:calc(env(safe-area-inset-top,0px) + 14px)}
+.lb .pv{left:14px;top:50%;margin-top:-22px}
+.lb .nx{right:14px;top:50%;margin-top:-22px}
+.lb .cap{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);text-align:center;color:#fff;font-size:14px;opacity:0;transition:opacity .4s .15s}
+.lb.on .cap{opacity:.85}
+
+@keyframes rise{from{transform:translateY(.5em);opacity:.12}to{transform:none;opacity:1}}
+@keyframes settle{from{transform:scale(1.14)}to{transform:scale(1)}}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes drive{to{background-position:24px 0}}
+@keyframes drop{0%{transform:translateY(-16px)}60%{transform:translateY(2px)}100%{transform:none}}
+@keyframes breathe{50%{transform:scale(1.18)}}
+@keyframes wipe{from{clip-path:inset(0 0 100% 0);transform:translateY(14px)}to{clip-path:inset(0);transform:none}}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.5s}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv.armed,.lots.armed .sq,.panel.armed .months i{transform:none;opacity:1}
+  .sizes.armed .sbar i{width:var(--w)}
+  .inc.armed svg path,.am.armed svg>*,.mapcard.armed .map .route{stroke-dashoffset:0}
+}
+
+.map .lml{font:600 10.5px var(--body);fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+.map .lmk{animation:rise .6s var(--ease) both}
+.maplegend{display:flex;flex-wrap:wrap;gap:6px 14px;padding:2px 6px;font-size:12px;color:var(--muted)}
+.maplegend span{display:inline-flex;align-items:center;gap:5px}
+.mapt{margin-bottom:0}
+.mapcard.armed .map .lmk{opacity:0}
+.plans{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.plans figure{margin:0;display:grid;gap:8px}
+.plans img{width:100%;border-radius:16px;border:1px solid var(--line);background:#fff;cursor:zoom-in;transition:transform .5s var(--ease),box-shadow .5s}
+.plans img:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.plans figcaption{font:700 15px var(--display)}
+.bar{view-transition-name:bar}
+::view-transition-group(bar){animation:none}
+.xclone{position:fixed;z-index:65;object-fit:cover;max-width:none;margin:0;pointer-events:none}
+.mhero.flying{background:transparent}
+.mhero::after{transition:opacity .5s .35s}
+.mhero.flying::after{opacity:0}
+.alt-link{font-size:14px;font-weight:600;color:#F4B08F;text-decoration:none;justify-self:start}
+.alt-link:hover{text-decoration:underline}
+.mapcard.is3d{grid-column:1/-1;background:#0f1213;border-color:#23292b}
+.mapcard.is3d .maplegend{color:#9aa3a3}
+.map3d{position:relative;height:clamp(380px,64vh,600px);border-radius:14px;overflow:hidden;background:#0f1213}
+.map3d-hint{position:absolute;inset:0;display:grid;place-items:center;color:#8f9898;font-size:14px}
+.map3d .maplibregl-ctrl-group{background:rgba(20,24,25,.85);border:1px solid #2b3235}
+.map3d .maplibregl-ctrl-group button .maplibregl-ctrl-icon{filter:invert(1)}
+.map3d .maplibregl-ctrl-attrib{background:rgba(15,18,19,.7);color:#8f9898}
+.map3d .maplibregl-ctrl-attrib a{color:#b9c0c0}
+.mk{display:flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;transform:translateX(-11px)}
+.mk span{font:600 11.5px var(--body);color:#eef0ec;background:rgba(12,15,16,.72);padding:3px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12);white-space:nowrap;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);transition:background .25s}
+.mk:hover span{background:#C2542D}
+.mk-pin{display:grid;justify-items:center;gap:6px;text-decoration:none}
+.mk-card{display:grid;gap:1px;background:#C2542D;color:#fff;padding:7px 12px;border-radius:12px;box-shadow:0 10px 30px -8px rgba(0,0,0,.7);text-align:center;position:relative}
+.mk-card::after{content:"";position:absolute;left:50%;bottom:-6px;width:12px;height:12px;background:#C2542D;transform:translateX(-50%) rotate(45deg)}
+.mk-card b{font:700 13px var(--display)}
+.mk-card small{font-size:11px;opacity:.85}
+.mk-pulse{order:2;width:14px;height:14px;border-radius:50%;background:#E0693F;box-shadow:0 0 0 0 rgba(224,105,63,.6);animation:mkpulse 2s infinite;margin-top:4px}
+@keyframes mkpulse{0%{box-shadow:0 0 0 0 rgba(224,105,63,.6)}100%{box-shadow:0 0 0 18px rgba(224,105,63,0)}}
+.maplegend svg{width:16px;height:16px;flex:none}
+/* scroll parallax: photo floats inside its frame */
+img.px{scale:1.16;translate:0 var(--py,0px);will-change:translate;transition:scale .9s var(--ease),opacity .8s}
+.mcard:hover img.px,.pcard:hover .art img.px,.gal button:hover img.px{scale:1.22}
+.plans.site{grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))}
+.plans.site img{cursor:zoom-in}
+[hidden]{display:none!important}
+.avatar svg{width:26px;height:26px}
+.demo{background:var(--char);color:var(--on-char);font-size:12.5px;text-align:center;padding:7px max(16px,env(safe-area-inset-right,0px)) 7px max(16px,env(safe-area-inset-left,0px))}
+.demo b{color:#F4B08F}
+/* multi-project additions */
+.models.four{grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))}
+.models.four .mcard{aspect-ratio:3/4}
+.models.four .mcard h3{font-size:clamp(28px,4vw,36px)}
+.mcard .spec span:first-child b{color:#F4B08F}
+.nophoto{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:4px;background:radial-gradient(circle at 30% 20%,color-mix(in srgb,var(--rust) 45%,var(--char)),var(--char) 70%);color:var(--on-char);font:600 16px var(--body)}
+.nophoto b{font:800 clamp(64px,12vw,120px)/.9 var(--display);letter-spacing:-.04em}
+.nophoto em{font-style:normal;font-size:13px;opacity:.7;margin-top:8px;padding:4px 10px;border:1px dashed rgba(255,255,255,.35);border-radius:999px}
+.mcard .nophoto{padding-bottom:120px}
+.nophoto-block{display:grid;gap:6px;padding:28px;border:1px dashed var(--line);border-radius:18px;background:repeating-linear-gradient(135deg,transparent 0 10px,var(--sage-soft) 10px 11px)}
+.nophoto-block span{color:var(--muted)}
+.fromtag{display:inline-flex}
+.fromtag>span{font:700 15px var(--body);padding:7px 14px;border-radius:999px;background:var(--rust);color:var(--on-rust)}
+.specbar{grid-template-columns:repeat(auto-fit,minmax(min(100%,110px),1fr))!important}
+.sizes{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:14px}
+.srow{display:grid;grid-template-columns:80px 1fr auto;gap:12px;align-items:center;text-decoration:none}
+.sname{font:700 16px var(--display)}
+.sbar{position:relative;height:26px}
+.sbar i{position:absolute;left:0;top:0;bottom:0;width:var(--w);border-radius:6px;transition:width 1.2s var(--ease);transition-delay:calc(var(--d,0)*120ms)}
+.sbar .lotb{background:var(--sage-soft);border:1px solid var(--sage)}
+.sbar .floorb{top:6px;bottom:6px;background:var(--rust);transition-delay:calc(var(--d,0)*120ms + 250ms)}
+.sizes.armed .sbar i{width:0}
+.snum{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.snum b{color:var(--ink);font:700 15px var(--display)}
+.srow:hover .sname{color:var(--rust)}
+.near{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:6px;font-size:14px}
+.near li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed rgba(241,242,238,.18);padding-bottom:6px}
+.near b{color:#F4B08F;white-space:nowrap;font-variant-numeric:tabular-nums}
+.mhero .nophoto.big{padding-bottom:80px}
+.book{display:grid;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,4vw,28px)}
+.book form{display:grid;gap:12px}
+.book label{display:grid;gap:5px;font-size:13px;font-weight:600;color:var(--muted)}
+.book input,.book select{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:500 16px var(--body)}
+.book .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:10px}
+.times{display:flex;flex-wrap:wrap;gap:6px}
+.times button{font-size:14px;font-weight:600;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--paper)}
+.times button[aria-pressed="true"]{background:var(--char);color:var(--on-char);border-color:var(--char)}
+.book .btn{justify-content:center}
+.sent{position:fixed;inset:0;z-index:70;display:grid;align-content:end;background:rgba(10,14,15,.5);opacity:0;pointer-events:none;transition:opacity .35s}
+.sent.on{opacity:1;pointer-events:auto}
+.sheet{background:var(--paper);border-radius:24px 24px 0 0;padding:22px max(18px,env(safe-area-inset-left,0px)) calc(24px + env(safe-area-inset-bottom,0px));display:grid;gap:12px;transform:translateY(100%);transition:transform .55s var(--ease);max-width:560px;width:100%;margin:0 auto}
+.sent.on .sheet{transform:none}
+.sheet h3{font-size:26px}
+.sheet .fb{background:#0866FF;color:#fff;justify-content:center}
+.sheet .x{font-weight:600;color:var(--muted);justify-self:center;padding:6px}
+.autonote{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.autonote i{width:6px;height:6px;border-radius:50%;background:var(--rust);animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.embedded .demo{display:none}
+/* MapLibre GL 5.6.0 stylesheet (BSD-3-Clause) */
+.maplibregl-map{font:12px/20px Helvetica Neue,Arial,Helvetica,sans-serif;overflow:hidden;position:relative;-webkit-tap-highlight-color:rgb(0 0 0/0)}.maplibregl-canvas{left:0;position:absolute;top:0}.maplibregl-map:fullscreen{height:100%;width:100%}.maplibregl-ctrl-group button.maplibregl-ctrl-compass{touch-action:none}.maplibregl-canvas-container.maplibregl-interactive,.maplibregl-ctrl-group button.maplibregl-ctrl-compass{cursor:grab;-webkit-user-select:none;-moz-user-select:none;user-select:none}.maplibregl-canvas-container.maplibregl-interactive.maplibregl-track-pointer{cursor:pointer}.maplibregl-canvas-container.maplibregl-interactive:active,.maplibregl-ctrl-group button.maplibregl-ctrl-compass:active{cursor:grabbing}.maplibregl-canvas-container.maplibregl-touch-zoom-rotate,.maplibregl-canvas-container.maplibregl-touch-zoom-rotate .maplibregl-canvas{touch-action:pan-x pan-y}.maplibregl-canvas-container.maplibregl-touch-drag-pan,.maplibregl-canvas-container.maplibregl-touch-drag-pan .maplibregl-canvas{touch-action:pinch-zoom}.maplibregl-canvas-container.maplibregl-touch-zoom-rotate.maplibregl-touch-drag-pan,.maplibregl-canvas-container.maplibregl-touch-zoom-rotate.maplibregl-touch-drag-pan .maplibregl-canvas{touch-action:none}.maplibregl-canvas-container.maplibregl-touch-drag-pan.maplibregl-cooperative-gestures,.maplibregl-canvas-container.maplibregl-touch-drag-pan.maplibregl-cooperative-gestures .maplibregl-canvas{touch-action:pan-x pan-y}.maplibregl-ctrl-bottom-left,.maplibregl-ctrl-bottom-right,.maplibregl-ctrl-top-left,.maplibregl-ctrl-top-right{pointer-events:none;position:absolute;z-index:2}.maplibregl-ctrl-top-left{left:0;top:0}.maplibregl-ctrl-top-right{right:0;top:0}.maplibregl-ctrl-bottom-left{bottom:0;left:0}.maplibregl-ctrl-bottom-right{bottom:0;right:0}.maplibregl-ctrl{clear:both;pointer-events:auto;transform:translate(0)}.maplibregl-ctrl-top-left .maplibregl-ctrl{float:left;margin:10px 0 0 10px}.maplibregl-ctrl-top-right .maplibregl-ctrl{float:right;margin:10px 10px 0 0}.maplibregl-ctrl-bottom-left .maplibregl-ctrl{float:left;margin:0 0 10px 10px}.maplibregl-ctrl-bottom-right .maplibregl-ctrl{float:right;margin:0 10px 10px 0}.maplibregl-ctrl-group{background:#fff;border-radius:4px}.maplibregl-ctrl-group:not(:empty){box-shadow:0 0 0 2px rgba(0,0,0,.1)}@media (forced-colors:active){.maplibregl-ctrl-group:not(:empty){box-shadow:0 0 0 2px ButtonText}}.maplibregl-ctrl-group button{background-color:transparent;border:0;box-sizing:border-box;cursor:pointer;display:block;height:29px;outline:none;padding:0;width:29px}.maplibregl-ctrl-group button+button{border-top:1px solid #ddd}.maplibregl-ctrl button .maplibregl-ctrl-icon{background-position:50%;background-repeat:no-repeat;display:block;height:100%;width:100%}@media (forced-colors:active){.maplibregl-ctrl-icon{background-color:transparent}.maplibregl-ctrl-group button+button{border-top:1px solid ButtonText}}.maplibregl-ctrl button::-moz-focus-inner{border:0;padding:0}.maplibregl-ctrl-attrib-button:focus,.maplibregl-ctrl-group button:focus{box-shadow:0 0 2px 2px #0096ff}.maplibregl-ctrl button:disabled{cursor:not-allowed}.maplibregl-ctrl button:disabled .maplibregl-ctrl-icon{opacity:.25}@media (hover:hover){.maplibregl-ctrl button:not(:disabled):hover{background-color:rgb(0 0 0/5%)}}.maplibregl-ctrl button:not(:disabled):active{background-color:rgb(0 0 0/5%)}.maplibregl-ctrl-group button:focus:focus-visible{box-shadow:0 0 2px 2px #0096ff}.maplibregl-ctrl-group button:focus:not(:focus-visible){box-shadow:none}.maplibregl-ctrl-group button:focus:first-child{border-radius:4px 4px 0 0}.maplibregl-ctrl-group button:focus:last-child{border-radius:0 0 4px 4px}.maplibregl-ctrl-group button:focus:only-child{border-radius:inherit}.maplibregl-ctrl button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23333' viewBox='0 0 29 29'%3E%3Cpath d='M10 13c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h9c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23333' viewBox='0 0 29 29'%3E%3Cpath d='M14.5 8.5c-.75 0-1.5.75-1.5 1.5v3h-3c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h3v3c0 .75.75 1.5 1.5 1.5S16 19.75 16 19v-3h3c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-3v-3c0-.75-.75-1.5-1.5-1.5'/%3E%3C/svg%3E")}@media (forced-colors:active){.maplibregl-ctrl button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23fff' viewBox='0 0 29 29'%3E%3Cpath d='M10 13c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h9c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23fff' viewBox='0 0 29 29'%3E%3Cpath d='M14.5 8.5c-.75 0-1.5.75-1.5 1.5v3h-3c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h3v3c0 .75.75 1.5 1.5 1.5S16 19.75 16 19v-3h3c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-3v-3c0-.75-.75-1.5-1.5-1.5'/%3E%3C/svg%3E")}}@media (forced-colors:active) and (prefers-color-scheme:light){.maplibregl-ctrl button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' viewBox='0 0 29 29'%3E%3Cpath d='M10 13c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h9c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' viewBox='0 0 29 29'%3E%3Cpath d='M14.5 8.5c-.75 0-1.5.75-1.5 1.5v3h-3c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h3v3c0 .75.75 1.5 1.5 1.5S16 19.75 16 19v-3h3c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-3v-3c0-.75-.75-1.5-1.5-1.5'/%3E%3C/svg%3E")}}.maplibregl-ctrl button.maplibregl-ctrl-fullscreen .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23333' viewBox='0 0 29 29'%3E%3Cpath d='M24 16v5.5c0 1.75-.75 2.5-2.5 2.5H16v-1l3-1.5-4-5.5 1-1 5.5 4 1.5-3zM6 16l1.5 3 5.5-4 1 1-4 5.5 3 1.5v1H7.5C5.75 24 5 23.25 5 21.5V16zm7-11v1l-3 1.5 4 5.5-1 1-5.5-4L6 13H5V7.5C5 5.75 5.75 5 7.5 5zm11 2.5c0-1.75-.75-2.5-2.5-2.5H16v1l3 1.5-4 5.5 1 1 5.5-4 1.5 3h1z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-shrink .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' viewBox='0 0 29 29'%3E%3Cpath d='M18.5 16c-1.75 0-2.5.75-2.5 2.5V24h1l1.5-3 5.5 4 1-1-4-5.5 3-1.5v-1zM13 18.5c0-1.75-.75-2.5-2.5-2.5H5v1l3 1.5L4 24l1 1 5.5-4 1.5 3h1zm3-8c0 1.75.75 2.5 2.5 2.5H24v-1l-3-1.5L25 5l-1-1-5.5 4L17 5h-1zM10.5 13c1.75 0 2.5-.75 2.5-2.5V5h-1l-1.5 3L5 4 4 5l4 5.5L5 12v1z'/%3E%3C/svg%3E")}@media (forced-colors:active){.maplibregl-ctrl button.maplibregl-ctrl-fullscreen .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23fff' viewBox='0 0 29 29'%3E%3Cpath d='M24 16v5.5c0 1.75-.75 2.5-2.5 2.5H16v-1l3-1.5-4-5.5 1-1 5.5 4 1.5-3zM6 16l1.5 3 5.5-4 1 1-4 5.5 3 1.5v1H7.5C5.75 24 5 23.25 5 21.5V16zm7-11v1l-3 1.5 4 5.5-1 1-5.5-4L6 13H5V7.5C5 5.75 5.75 5 7.5 5zm11 2.5c0-1.75-.75-2.5-2.5-2.5H16v1l3 1.5-4 5.5 1 1 5.5-4 1.5 3h1z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-shrink .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23fff' viewBox='0 0 29 29'%3E%3Cpath d='M18.5 16c-1.75 0-2.5.75-2.5 2.5V24h1l1.5-3 5.5 4 1-1-4-5.5 3-1.5v-1zM13 18.5c0-1.75-.75-2.5-2.5-2.5H5v1l3 1.5L4 24l1 1 5.5-4 1.5 3h1zm3-8c0 1.75.75 2.5 2.5 2.5H24v-1l-3-1.5L25 5l-1-1-5.5 4L17 5h-1zM10.5 13c1.75 0 2.5-.75 2.5-2.5V5h-1l-1.5 3L5 4 4 5l4 5.5L5 12v1z'/%3E%3C/svg%3E")}}@media (forced-colors:active) and (prefers-color-scheme:light){.maplibregl-ctrl button.maplibregl-ctrl-fullscreen .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' viewBox='0 0 29 29'%3E%3Cpath d='M24 16v5.5c0 1.75-.75 2.5-2.5 2.5H16v-1l3-1.5-4-5.5 1-1 5.5 4 1.5-3zM6 16l1.5 3 5.5-4 1 1-4 5.5 3 1.5v1H7.5C5.75 24 5 23.25 5 21.5V16zm7-11v1l-3 1.5 4 5.5-1 1-5.5-4L6 13H5V7.5C5 5.75 5.75 5 7.5 5zm11 2.5c0-1.75-.75-2.5-2.5-2.5H16v1l3 1.5-4 5.5 1 1 5.5-4 1.5 3h1z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-shrink .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' viewBox='0 0 29 29'%3E%3Cpath d='M18.5 16c-1.75 0-2.5.75-2.5 2.5V24h1l1.5-3 5.5 4 1-1-4-5.5 3-1.5v-1zM13 18.5c0-1.75-.75-2.5-2.5-2.5H5v1l3 1.5L4 24l1 1 5.5-4 1.5 3h1zm3-8c0 1.75.75 2.5 2.5 2.5H24v-1l-3-1.5L25 5l-1-1-5.5 4L17 5h-1zM10.5 13c1.75 0 2.5-.75 2.5-2.5V5h-1l-1.5 3L5 4 4 5l4 5.5L5 12v1z'/%3E%3C/svg%3E")}}.maplibregl-ctrl button.maplibregl-ctrl-compass .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23333' viewBox='0 0 29 29'%3E%3Cpath d='m10.5 14 4-8 4 8z'/%3E%3Cpath fill='%23ccc' d='m10.5 16 4 8 4-8z'/%3E%3C/svg%3E")}@media (forced-colors:active){.maplibregl-ctrl button.maplibregl-ctrl-compass .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23fff' viewBox='0 0 29 29'%3E%3Cpath d='m10.5 14 4-8 4 8z'/%3E%3Cpath fill='%23ccc' d='m10.5 16 4 8 4-8z'/%3E%3C/svg%3E")}}@media (forced-colors:active) and (prefers-color-scheme:light){.maplibregl-ctrl button.maplibregl-ctrl-compass .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' viewBox='0 0 29 29'%3E%3Cpath d='m10.5 14 4-8 4 8z'/%3E%3Cpath fill='%23ccc' d='m10.5 16 4 8 4-8z'/%3E%3C/svg%3E")}}.maplibregl-ctrl button.maplibregl-ctrl-globe .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='none' stroke='%23333' viewBox='0 0 22 22'%3E%3Ccircle cx='11' cy='11' r='8.5'/%3E%3Cpath d='M17.5 11c0 4.819-3.02 8.5-6.5 8.5S4.5 15.819 4.5 11 7.52 2.5 11 2.5s6.5 3.681 6.5 8.5Z'/%3E%3Cpath d='M13.5 11c0 2.447-.331 4.64-.853 6.206-.262.785-.562 1.384-.872 1.777-.314.399-.58.517-.775.517s-.461-.118-.775-.517c-.31-.393-.61-.992-.872-1.777C8.831 15.64 8.5 13.446 8.5 11s.331-4.64.853-6.206c.262-.785.562-1.384.872-1.777.314-.399.58-.517.775-.517s.461.118.775.517c.31.393.61.992.872 1.777.522 1.565.853 3.76.853 6.206Z'/%3E%3Cpath d='M11 7.5c-1.909 0-3.622-.166-4.845-.428-.616-.132-1.08-.283-1.379-.434a1.3 1.3 0 0 1-.224-.138q.07-.058.224-.138c.299-.151.763-.302 1.379-.434C7.378 5.666 9.091 5.5 11 5.5s3.622.166 4.845.428c.616.132 1.08.283 1.379.434.105.053.177.1.224.138q-.07.058-.224.138c-.299.151-.763.302-1.379.434-1.223.262-2.936.428-4.845.428ZM4.486 6.436ZM11 16.5c-1.909 0-3.622-.166-4.845-.428-.616-.132-1.08-.283-1.379-.434a1.3 1.3 0 0 1-.224-.138 1.3 1.3 0 0 1 .224-.138c.299-.151.763-.302 1.379-.434C7.378 14.666 9.091 14.5 11 14.5s3.622.166 4.845.428c.616.132 1.08.283 1.379.434.105.053.177.1.224.138a1.3 1.3 0 0 1-.224.138c-.299.151-.763.302-1.379.434-1.223.262-2.936.428-4.845.428Zm-6.514-1.064ZM11 12.5c-2.46 0-4.672-.222-6.255-.574-.796-.177-1.406-.38-1.805-.59a1.5 1.5 0 0 1-.39-.272.3.3 0 0 1-.047-.064.3.3 0 0 1 .048-.064c.066-.073.189-.167.389-.272.399-.21 1.009-.413 1.805-.59C6.328 9.722 8.54 9.5 11 9.5s4.672.222 6.256.574c.795.177 1.405.38 1.804.59.2.105.323.2.39.272a.3.3 0 0 1 .047.064.3.3 0 0 1-.048.064 1.4 1.4 0 0 1-.389.272c-.399.21-1.009.413-1.804.59-1.584.352-3.796.574-6.256.574Zm-8.501-1.51v.002zm0 .018v.002zm17.002.002v-.002zm0-.018v-.002z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-globe-enabled .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='none' stroke='%2333b5e5' viewBox='0 0 22 22'%3E%3Ccircle cx='11' cy='11' r='8.5'/%3E%3Cpath d='M17.5 11c0 4.819-3.02 8.5-6.5 8.5S4.5 15.819 4.5 11 7.52 2.5 11 2.5s6.5 3.681 6.5 8.5Z'/%3E%3Cpath d='M13.5 11c0 2.447-.331 4.64-.853 6.206-.262.785-.562 1.384-.872 1.777-.314.399-.58.517-.775.517s-.461-.118-.775-.517c-.31-.393-.61-.992-.872-1.777C8.831 15.64 8.5 13.446 8.5 11s.331-4.64.853-6.206c.262-.785.562-1.384.872-1.777.314-.399.58-.517.775-.517s.461.118.775.517c.31.393.61.992.872 1.777.522 1.565.853 3.76.853 6.206Z'/%3E%3Cpath d='M11 7.5c-1.909 0-3.622-.166-4.845-.428-.616-.132-1.08-.283-1.379-.434a1.3 1.3 0 0 1-.224-.138q.07-.058.224-.138c.299-.151.763-.302 1.379-.434C7.378 5.666 9.091 5.5 11 5.5s3.622.166 4.845.428c.616.132 1.08.283 1.379.434.105.053.177.1.224.138q-.07.058-.224.138c-.299.151-.763.302-1.379.434-1.223.262-2.936.428-4.845.428ZM4.486 6.436ZM11 16.5c-1.909 0-3.622-.166-4.845-.428-.616-.132-1.08-.283-1.379-.434a1.3 1.3 0 0 1-.224-.138 1.3 1.3 0 0 1 .224-.138c.299-.151.763-.302 1.379-.434C7.378 14.666 9.091 14.5 11 14.5s3.622.166 4.845.428c.616.132 1.08.283 1.379.434.105.053.177.1.224.138a1.3 1.3 0 0 1-.224.138c-.299.151-.763.302-1.379.434-1.223.262-2.936.428-4.845.428Zm-6.514-1.064ZM11 12.5c-2.46 0-4.672-.222-6.255-.574-.796-.177-1.406-.38-1.805-.59a1.5 1.5 0 0 1-.39-.272.3.3 0 0 1-.047-.064.3.3 0 0 1 .048-.064c.066-.073.189-.167.389-.272.399-.21 1.009-.413 1.805-.59C6.328 9.722 8.54 9.5 11 9.5s4.672.222 6.256.574c.795.177 1.405.38 1.804.59.2.105.323.2.39.272a.3.3 0 0 1 .047.064.3.3 0 0 1-.048.064 1.4 1.4 0 0 1-.389.272c-.399.21-1.009.413-1.804.59-1.584.352-3.796.574-6.256.574Zm-8.501-1.51v.002zm0 .018v.002zm17.002.002v-.002zm0-.018v-.002z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-terrain .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='%23333' viewBox='0 0 22 22'%3E%3Cpath d='m1.754 13.406 4.453-4.851 3.09 3.09 3.281 3.277.969-.969-3.309-3.312 3.844-4.121 6.148 6.886h1.082v-.855l-7.207-8.07-4.84 5.187L6.169 6.57l-5.48 5.965v.871ZM.688 16.844h20.625v1.375H.688Zm0 0'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-terrain-enabled .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='%2333b5e5' viewBox='0 0 22 22'%3E%3Cpath d='m1.754 13.406 4.453-4.851 3.09 3.09 3.281 3.277.969-.969-3.309-3.312 3.844-4.121 6.148 6.886h1.082v-.855l-7.207-8.07-4.84 5.187L6.169 6.57l-5.48 5.965v.871ZM.688 16.844h20.625v1.375H.688Zm0 0'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23333' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate:disabled .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23aaa' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3Cpath fill='red' d='m14 5 1 1-9 9-1-1z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-active .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%2333b5e5' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-active-error .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23e58978' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-background .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%2333b5e5' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-background-error .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23e54e33' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-waiting .maplibregl-ctrl-icon{animation:maplibregl-spin 2s linear infinite}@media (forced-colors:active){.maplibregl-ctrl button.maplibregl-ctrl-geolocate .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23fff' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate:disabled .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23999' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3Cpath fill='red' d='m14 5 1 1-9 9-1-1z'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-active .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%2333b5e5' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-active-error .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23e58978' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-background .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%2333b5e5' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-background-error .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23e54e33' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3C/svg%3E")}}@media (forced-colors:active) and (prefers-color-scheme:light){.maplibregl-ctrl button.maplibregl-ctrl-geolocate .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3C/svg%3E")}.maplibregl-ctrl button.maplibregl-ctrl-geolocate:disabled .maplibregl-ctrl-icon{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='29' fill='%23666' viewBox='0 0 20 20'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 0 0 5.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 0 0 9 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 0 0 3.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0 0 11 5.1V5s0-1-1-1m0 2.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 1 0-7'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3Cpath fill='red' d='m14 5 1 1-9 9-1-1z'/%3E%3C/svg%3E")}}@keyframes maplibregl-spin{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}a.maplibregl-ctrl-logo{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='23' fill='none'%3E%3Cpath fill='%23000' fill-opacity='.4' fill-rule='evenodd' d='M17.408 16.796h-1.827l2.501-12.095h.198l3.324 6.533.988 2.19.988-2.19 3.258-6.533h.181l2.6 12.095h-1.81l-1.218-5.644-.362-1.71-.658 1.71-2.929 5.644h-.098l-2.914-5.644-.757-1.71-.345 1.71zm1.958-3.42-.726 3.663a1.255 1.255 0 0 1-1.232 1.011h-1.827a1.255 1.255 0 0 1-1.229-1.509l2.501-12.095a1.255 1.255 0 0 1 1.23-1.001h.197a1.25 1.25 0 0 1 1.12.685l3.19 6.273 3.125-6.263a1.25 1.25 0 0 1 1.123-.695h.181a1.255 1.255 0 0 1 1.227.991l1.443 6.71a5 5 0 0 1 .314-.787l.009-.016a4.6 4.6 0 0 1 1.777-1.887c.782-.46 1.668-.667 2.611-.667a4.6 4.6 0 0 1 1.7.32l.306.134c.21-.16.474-.256.759-.256h1.694a1.255 1.255 0 0 1 1.212.925 1.255 1.255 0 0 1 1.212-.925h1.711c.284 0 .545.094.755.252.613-.3 1.312-.45 2.075-.45 1.356 0 2.557.445 3.482 1.4q.47.48.763 1.064V4.701a1.255 1.255 0 0 1 1.255-1.255h1.86A1.255 1.255 0 0 1 54.44 4.7v9.194h2.217c.19 0 .37.043.532.118v-4.77c0-.356.147-.678.385-.906a2.42 2.42 0 0 1-.682-1.71c0-.665.267-1.253.735-1.7a2.45 2.45 0 0 1 1.722-.674 2.43 2.43 0 0 1 1.705.675q.318.302.504.683V4.7a1.255 1.255 0 0 1 1.255-1.255h1.744A1.255 1.255 0 0 1 65.812 4.7v3.335a4.8 4.8 0 0 1 1.526-.246c.938 0 1.817.214 2.59.69a4.47 4.47 0 0 1 1.67 1.743v-.98a1.255 1.255 0 0 1 1.256-1.256h1.777c.233 0 .451.064.639.174a3.4 3.4 0 0 1 1.567-.372c.346 0 .861.02 1.285.232a1.25 1.25 0 0 1 .689 1.004 4.7 4.7 0 0 1 .853-.588c.795-.44 1.675-.647 2.61-.647 1.385 0 2.65.39 3.525 1.396.836.938 1.168 2.173 1.168 3.528q-.001.515-.056 1.051a1.255 1.255 0 0 1-.947 1.09l.408.952a1.255 1.255 0 0 1-.477 1.552c-.418.268-.92.463-1.458.612-.613.171-1.304.244-2.049.244-1.06 0-2.043-.207-2.886-.698l-.015-.008c-.798-.48-1.419-1.135-1.818-1.963l-.004-.008a5.8 5.8 0 0 1-.548-2.512q0-.429.053-.843a1.3 1.3 0 0 1-.333-.086l-.166-.004c-.223 0-.426.062-.643.228-.03.024-.142.139-.142.59v3.883a1.255 1.255 0 0 1-1.256 1.256h-1.777a1.255 1.255 0 0 1-1.256-1.256V15.69l-.032.057a4.8 4.8 0 0 1-1.86 1.833 5.04 5.04 0 0 1-2.484.634 4.5 4.5 0 0 1-1.935-.424 1.25 1.25 0 0 1-.764.258h-1.71a1.255 1.255 0 0 1-1.256-1.255V7.687a2.4 2.4 0 0 1-.428.625c.253.23.412.561.412.93v7.553a1.255 1.255 0 0 1-1.256 1.255h-1.843a1.25 1.25 0 0 1-.894-.373c-.228.23-.544.373-.894.373H51.32a1.255 1.255 0 0 1-1.256-1.255v-1.251l-.061.117a4.7 4.7 0 0 1-1.782 1.884 4.77 4.77 0 0 1-2.485.67 5.6 5.6 0 0 1-1.485-.188l.009 2.764a1.255 1.255 0 0 1-1.255 1.259h-1.729a1.255 1.255 0 0 1-1.255-1.255v-3.537a1.255 1.255 0 0 1-1.167.793h-1.679a1.25 1.25 0 0 1-.77-.263 4.5 4.5 0 0 1-1.945.429c-.885 0-1.724-.21-2.495-.632l-.017-.01a5 5 0 0 1-1.081-.836 1.255 1.255 0 0 1-1.254 1.312h-1.81a1.255 1.255 0 0 1-1.228-.99l-.782-3.625-2.044 3.939a1.25 1.25 0 0 1-1.115.676h-.098a1.25 1.25 0 0 1-1.116-.68l-2.061-3.994zM35.92 16.63l.207-.114.223-.15q.493-.356.735-.785l.061-.118.033 1.332h1.678V9.242h-1.694l-.033 1.267q-.133-.329-.526-.658l-.032-.028a3.2 3.2 0 0 0-.668-.428l-.27-.12a3.3 3.3 0 0 0-1.235-.23q-1.136-.001-1.974.493a3.36 3.36 0 0 0-1.3 1.382q-.445.89-.444 2.074 0 1.2.51 2.107a3.8 3.8 0 0 0 1.382 1.381 3.9 3.9 0 0 0 1.893.477q.795 0 1.455-.33zm-2.789-5.38q-.576.675-.575 1.762 0 1.102.559 1.794.576.675 1.645.675a2.25 2.25 0 0 0 .934-.19 2.2 2.2 0 0 0 .468-.29l.178-.161a2.2 2.2 0 0 0 .397-.561q.244-.5.244-1.15v-.115q0-.708-.296-1.267l-.043-.077a2.2 2.2 0 0 0-.633-.709l-.13-.086-.047-.028a2.1 2.1 0 0 0-1.073-.285q-1.052 0-1.629.692zm2.316 2.706c.163-.17.28-.407.28-.83v-.114c0-.292-.06-.508-.15-.68a.96.96 0 0 0-.353-.389.85.85 0 0 0-.464-.127c-.4 0-.56.114-.664.239l-.01.012c-.148.174-.275.45-.275.945 0 .506.122.801.27.99.097.11.266.224.68.224.303 0 .504-.09.687-.269zm7.545 1.705a2.6 2.6 0 0 0 .331.423q.319.33.755.548l.173.074q.65.255 1.49.255 1.02 0 1.844-.493a3.45 3.45 0 0 0 1.316-1.4q.493-.904.493-2.089 0-1.909-.988-2.913-.988-1.02-2.584-1.02-.898 0-1.575.347a3 3 0 0 0-.415.262l-.199.166a3.4 3.4 0 0 0-.64.82V9.242h-1.712v11.553h1.729l-.017-5.134zm.53-1.138q.206.29.48.5l.155.11.053.034q.51.296 1.119.297 1.07 0 1.645-.675.577-.69.576-1.762 0-1.119-.576-1.777-.558-.675-1.645-.675-.435 0-.835.16a2 2 0 0 0-.284.136 2 2 0 0 0-.363.254 2.2 2.2 0 0 0-.46.569l-.082.162a2.6 2.6 0 0 0-.213 1.072v.115q0 .707.296 1.267l.135.211zm.964-.818a1.1 1.1 0 0 0 .367.385.94.94 0 0 0 .476.118c.423 0 .59-.117.687-.23.159-.194.28-.478.28-.95 0-.53-.133-.8-.266-.952l-.021-.025c-.078-.094-.231-.221-.68-.221a1 1 0 0 0-.503.135l-.012.007a.86.86 0 0 0-.335.343c-.073.133-.132.324-.132.614v.115a1.4 1.4 0 0 0 .14.66zm15.7-6.222q.347-.346.346-.856a1.05 1.05 0 0 0-.345-.79 1.18 1.18 0 0 0-.84-.329q-.51 0-.855.33a1.05 1.05 0 0 0-.346.79q0 .51.346.855.345.346.856.346.51 0 .839-.346zm4.337 9.314.033-1.332q.191.403.59.747l.098.081a4 4 0 0 0 .316.224l.223.122a3.2 3.2 0 0 0 1.44.322 3.8 3.8 0 0 0 1.875-.477 3.5 3.5 0 0 0 1.382-1.366q.527-.89.526-2.09 0-1.184-.444-2.073a3.24 3.24 0 0 0-1.283-1.399q-.823-.51-1.942-.51a3.5 3.5 0 0 0-1.527.344l-.086.043-.165.09a3 3 0 0 0-.33.214q-.432.315-.656.707a2 2 0 0 0-.099.198l.082-1.283V4.701h-1.744v12.095zm.473-2.509a2.5 2.5 0 0 0 .566.7q.117.098.245.18l.144.08a2.1 2.1 0 0 0 .975.232q1.07 0 1.645-.675.576-.69.576-1.778 0-1.102-.576-1.777-.56-.691-1.645-.692a2.2 2.2 0 0 0-1.015.235q-.22.113-.415.282l-.15.142a2.1 2.1 0 0 0-.42.594q-.223.479-.223 1.1v.115q0 .705.293 1.26zm2.616-.293c.157-.191.28-.479.28-.967 0-.51-.13-.79-.276-.961l-.021-.026c-.082-.1-.232-.225-.67-.225a.87.87 0 0 0-.681.279l-.012.011c-.154.155-.274.38-.274.807v.115c0 .285.057.499.144.669a1.1 1.1 0 0 0 .367.405c.137.082.28.123.455.123.423 0 .59-.118.686-.23zm8.266-3.013q.345-.13.724-.14l.069-.002q.493 0 .642.099l.247-1.794q-.196-.099-.717-.099a2.3 2.3 0 0 0-.545.063 2 2 0 0 0-.411.148 2.2 2.2 0 0 0-.4.249 2.5 2.5 0 0 0-.485.499 2.7 2.7 0 0 0-.32.581l-.05.137v-1.48h-1.778v7.553h1.777v-3.884q0-.546.159-.943a1.5 1.5 0 0 1 .466-.636 2.5 2.5 0 0 1 .399-.253 2 2 0 0 1 .224-.099zm9.784 2.656.05-.922q0-1.743-.856-2.698-.838-.97-2.584-.97-1.119-.001-2.007.493a3.46 3.46 0 0 0-1.4 1.382q-.493.906-.493 2.106 0 1.07.428 1.975.428.89 1.332 1.432.906.526 2.255.526.973 0 1.668-.185l.044-.012.135-.04q.613-.184.984-.421l-.542-1.267q-.3.162-.642.274l-.297.087q-.51.131-1.3.131-.954 0-1.497-.444a1.6 1.6 0 0 1-.192-.193q-.366-.44-.512-1.234l-.004-.021zm-5.427-1.256-.003.022h3.752v-.138q-.011-.727-.288-1.118a1 1 0 0 0-.156-.176q-.46-.428-1.316-.428-.986 0-1.494.604-.379.45-.494 1.234zm-27.053 2.77V4.7h-1.86v12.095h5.333V15.15zm7.103-5.908v7.553h-1.843V9.242h1.843z'/%3E%3Cpath fill='%23fff' d='m19.63 11.151-.757-1.71-.345 1.71-1.12 5.644h-1.827L18.083 4.7h.197l3.325 6.533.988 2.19.988-2.19L26.839 4.7h.181l2.6 12.095h-1.81l-1.218-5.644-.362-1.71-.658 1.71-2.93 5.644h-.098l-2.913-5.644zm14.836 5.81q-1.02 0-1.893-.478a3.8 3.8 0 0 1-1.381-1.382q-.51-.906-.51-2.106 0-1.185.444-2.074a3.36 3.36 0 0 1 1.3-1.382q.839-.494 1.974-.494a3.3 3.3 0 0 1 1.234.231 3.3 3.3 0 0 1 .97.575q.396.33.527.659l.033-1.267h1.694v7.553H37.18l-.033-1.332q-.279.593-1.02 1.053a3.17 3.17 0 0 1-1.662.444zm.296-1.482q.938 0 1.58-.642.642-.66.642-1.711v-.115q0-.708-.296-1.267a2.2 2.2 0 0 0-.807-.872 2.1 2.1 0 0 0-1.119-.313q-1.053 0-1.629.692-.575.675-.575 1.76 0 1.103.559 1.795.577.675 1.645.675zm6.521-6.237h1.711v1.4q.906-1.597 2.83-1.597 1.596 0 2.584 1.02.988 1.005.988 2.914 0 1.185-.493 2.09a3.46 3.46 0 0 1-1.316 1.399 3.5 3.5 0 0 1-1.844.493q-.954 0-1.662-.329a2.67 2.67 0 0 1-1.086-.97l.017 5.134h-1.728zm4.048 6.22q1.07 0 1.645-.674.577-.69.576-1.762 0-1.119-.576-1.777-.558-.675-1.645-.675-.592 0-1.12.296-.51.28-.822.823-.296.527-.296 1.234v.115q0 .708.296 1.267.313.543.823.855.51.296 1.119.297z'/%3E%3Cpath fill='%23e1e3e9' d='M51.325 4.7h1.86v10.45h3.473v1.646h-5.333zm7.12 4.542h1.843v7.553h-1.843zm.905-1.415a1.16 1.16 0 0 1-.856-.346 1.17 1.17 0 0 1-.346-.856 1.05 1.05 0 0 1 .346-.79q.346-.329.856-.329.494 0 .839.33a1.05 1.05 0 0 1 .345.79 1.16 1.16 0 0 1-.345.855q-.33.346-.84.346zm7.875 9.133a3.17 3.17 0 0 1-1.662-.444q-.723-.46-1.004-1.053l-.033 1.332h-1.71V4.701h1.743v4.657l-.082 1.283q.279-.658 1.086-1.119a3.5 3.5 0 0 1 1.778-.477q1.119 0 1.942.51a3.24 3.24 0 0 1 1.283 1.4q.445.888.444 2.072 0 1.201-.526 2.09a3.5 3.5 0 0 1-1.382 1.366 3.8 3.8 0 0 1-1.876.477zm-.296-1.481q1.069 0 1.645-.675.577-.69.577-1.778 0-1.102-.577-1.776-.56-.691-1.645-.692a2.12 2.12 0 0 0-1.58.659q-.642.641-.642 1.694v.115q0 .71.296 1.267a2.4 2.4 0 0 0 .807.872 2.1 2.1 0 0 0 1.119.313zm5.927-6.237h1.777v1.481q.263-.757.856-1.217a2.14 2.14 0 0 1 1.349-.46q.527 0 .724.098l-.247 1.794q-.149-.099-.642-.099-.774 0-1.416.494-.626.493-.626 1.58v3.883h-1.777V9.242zm9.534 7.718q-1.35 0-2.255-.526-.904-.543-1.332-1.432a4.6 4.6 0 0 1-.428-1.975q0-1.2.493-2.106a3.46 3.46 0 0 1 1.4-1.382q.889-.495 2.007-.494 1.744 0 2.584.97.855.956.856 2.7 0 .444-.05.92h-5.43q.18 1.005.708 1.45.542.443 1.497.443.79 0 1.3-.131a4 4 0 0 0 .938-.362l.542 1.267q-.411.263-1.119.46-.708.198-1.711.197zm1.596-4.558q.016-1.02-.444-1.432-.46-.428-1.316-.428-1.728 0-1.991 1.86z'/%3E%3Cpath d='M5.074 15.948a.484.657 0 0 0-.486.659v1.84a.484.657 0 0 0 .486.659h4.101a.484.657 0 0 0 .486-.659v-1.84a.484.657 0 0 0-.486-.659zm3.56 1.16H5.617v.838h3.017z' style='fill:%23fff;fill-rule:evenodd;stroke-width:1.03600001'/%3E%3Cg style='stroke-width:1.12603545'%3E%3Cpath d='M-9.408-1.416c-3.833-.025-7.056 2.912-7.08 6.615-.02 3.08 1.653 4.832 3.107 6.268.903.892 1.721 1.74 2.32 2.902l-.525-.004c-.543-.003-.992.304-1.24.639a1.87 1.87 0 0 0-.362 1.121l-.011 1.877c-.003.402.104.787.347 1.125.244.338.688.653 1.23.656l4.142.028c.542.003.99-.306 1.238-.641a1.87 1.87 0 0 0 .363-1.121l.012-1.875a1.87 1.87 0 0 0-.348-1.127c-.243-.338-.688-.653-1.23-.656l-.518-.004c.597-1.145 1.425-1.983 2.348-2.87 1.473-1.414 3.18-3.149 3.2-6.226-.016-3.59-2.923-6.684-6.993-6.707m-.006 1.1v.002c3.274.02 5.92 2.532 5.9 5.6-.017 2.706-1.39 4.026-2.863 5.44-1.034.994-2.118 2.033-2.814 3.633-.018.041-.052.055-.075.065q-.013.004-.02.01a.34.34 0 0 1-.226.084.34.34 0 0 1-.224-.086l-.092-.077c-.699-1.615-1.768-2.669-2.781-3.67-1.454-1.435-2.797-2.762-2.78-5.478.02-3.067 2.7-5.545 5.975-5.523m-.02 2.826c-1.62-.01-2.944 1.315-2.955 2.96-.01 1.646 1.295 2.988 2.916 2.999h.002c1.621.01 2.943-1.316 2.953-2.961.011-1.646-1.294-2.988-2.916-2.998m-.005 1.1c1.017.006 1.829.83 1.822 1.89s-.83 1.874-1.848 1.867c-1.018-.006-1.829-.83-1.822-1.89s.83-1.874 1.848-1.868m-2.155 11.857 4.14.025c.271.002.49.305.487.676l-.013 1.875c-.003.37-.224.67-.495.668l-4.14-.025c-.27-.002-.487-.306-.485-.676l.012-1.875c.003-.37.224-.67.494-.668' style='color:%23000;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:%23000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:evenodd;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:%23000;solid-opacity:1;vector-effect:none;fill:%23000;fill-opacity:.4;fill-rule:evenodd;stroke:none;stroke-width:2.47727823;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto' transform='translate(15.553 2.85)scale(.88807)'/%3E%3Cpath d='M-9.415-.316C-12.69-.338-15.37 2.14-15.39 5.207c-.017 2.716 1.326 4.041 2.78 5.477 1.013 1 2.081 2.055 2.78 3.67l.092.076a.34.34 0 0 0 .225.086.34.34 0 0 0 .227-.083l.019-.01c.022-.009.057-.024.074-.064.697-1.6 1.78-2.64 2.814-3.634 1.473-1.414 2.847-2.733 2.864-5.44.02-3.067-2.627-5.58-5.901-5.601m-.057 8.784c1.621.011 2.944-1.315 2.955-2.96.01-1.646-1.295-2.988-2.916-2.999-1.622-.01-2.945 1.315-2.955 2.96s1.295 2.989 2.916 3' style='clip-rule:evenodd;fill:%23e1e3e9;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.47727823;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:.4' transform='translate(15.553 2.85)scale(.88807)'/%3E%3Cpath d='M-11.594 15.465c-.27-.002-.492.297-.494.668l-.012 1.876c-.003.371.214.673.485.675l4.14.027c.271.002.492-.298.495-.668l.012-1.877c.003-.37-.215-.672-.485-.674z' style='clip-rule:evenodd;fill:%23fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.47727823;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:.4' transform='translate(15.553 2.85)scale(.88807)'/%3E%3C/g%3E%3C/svg%3E");background-repeat:no-repeat;cursor:pointer;display:block;height:23px;margin:0 0 -4px -4px;overflow:hidden;width:88px}a.maplibregl-ctrl-logo.maplibregl-compact{width:14px}@media (forced-colors:active){a.maplibregl-ctrl-logo{background-color:transparent;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='23' fill='none'%3E%3Cpath fill='%23000' fill-opacity='.4' fill-rule='evenodd' d='M17.408 16.796h-1.827l2.501-12.095h.198l3.324 6.533.988 2.19.988-2.19 3.258-6.533h.181l2.6 12.095h-1.81l-1.218-5.644-.362-1.71-.658 1.71-2.929 5.644h-.098l-2.914-5.644-.757-1.71-.345 1.71zm1.958-3.42-.726 3.663a1.255 1.255 0 0 1-1.232 1.011h-1.827a1.255 1.255 0 0 1-1.229-1.509l2.501-12.095a1.255 1.255 0 0 1 1.23-1.001h.197a1.25 1.25 0 0 1 1.12.685l3.19 6.273 3.125-6.263a1.25 1.25 0 0 1 1.123-.695h.181a1.255 1.255 0 0 1 1.227.991l1.443 6.71a5 5 0 0 1 .314-.787l.009-.016a4.6 4.6 0 0 1 1.777-1.887c.782-.46 1.668-.667 2.611-.667a4.6 4.6 0 0 1 1.7.32l.306.134c.21-.16.474-.256.759-.256h1.694a1.255 1.255 0 0 1 1.212.925 1.255 1.255 0 0 1 1.212-.925h1.711c.284 0 .545.094.755.252.613-.3 1.312-.45 2.075-.45 1.356 0 2.557.445 3.482 1.4q.47.48.763 1.064V4.701a1.255 1.255 0 0 1 1.255-1.255h1.86A1.255 1.255 0 0 1 54.44 4.7v9.194h2.217c.19 0 .37.043.532.118v-4.77c0-.356.147-.678.385-.906a2.42 2.42 0 0 1-.682-1.71c0-.665.267-1.253.735-1.7a2.45 2.45 0 0 1 1.722-.674 2.43 2.43 0 0 1 1.705.675q.318.302.504.683V4.7a1.255 1.255 0 0 1 1.255-1.255h1.744A1.255 1.255 0 0 1 65.812 4.7v3.335a4.8 4.8 0 0 1 1.526-.246c.938 0 1.817.214 2.59.69a4.47 4.47 0 0 1 1.67 1.743v-.98a1.255 1.255 0 0 1 1.256-1.256h1.777c.233 0 .451.064.639.174a3.4 3.4 0 0 1 1.567-.372c.346 0 .861.02 1.285.232a1.25 1.25 0 0 1 .689 1.004 4.7 4.7 0 0 1 .853-.588c.795-.44 1.675-.647 2.61-.647 1.385 0 2.65.39 3.525 1.396.836.938 1.168 2.173 1.168 3.528q-.001.515-.056 1.051a1.255 1.255 0 0 1-.947 1.09l.408.952a1.255 1.255 0 0 1-.477 1.552c-.418.268-.92.463-1.458.612-.613.171-1.304.244-2.049.244-1.06 0-2.043-.207-2.886-.698l-.015-.008c-.798-.48-1.419-1.135-1.818-1.963l-.004-.008a5.8 5.8 0 0 1-.548-2.512q0-.429.053-.843a1.3 1.3 0 0 1-.333-.086l-.166-.004c-.223 0-.426.062-.643.228-.03.024-.142.139-.142.59v3.883a1.255 1.255 0 0 1-1.256 1.256h-1.777a1.255 1.255 0 0 1-1.256-1.256V15.69l-.032.057a4.8 4.8 0 0 1-1.86 1.833 5.04 5.04 0 0 1-2.484.634 4.5 4.5 0 0 1-1.935-.424 1.25 1.25 0 0 1-.764.258h-1.71a1.255 1.255 0 0 1-1.256-1.255V7.687a2.4 2.4 0 0 1-.428.625c.253.23.412.561.412.93v7.553a1.255 1.255 0 0 1-1.256 1.255h-1.843a1.25 1.25 0 0 1-.894-.373c-.228.23-.544.373-.894.373H51.32a1.255 1.255 0 0 1-1.256-1.255v-1.251l-.061.117a4.7 4.7 0 0 1-1.782 1.884 4.77 4.77 0 0 1-2.485.67 5.6 5.6 0 0 1-1.485-.188l.009 2.764a1.255 1.255 0 0 1-1.255 1.259h-1.729a1.255 1.255 0 0 1-1.255-1.255v-3.537a1.255 1.255 0 0 1-1.167.793h-1.679a1.25 1.25 0 0 1-.77-.263 4.5 4.5 0 0 1-1.945.429c-.885 0-1.724-.21-2.495-.632l-.017-.01a5 5 0 0 1-1.081-.836 1.255 1.255 0 0 1-1.254 1.312h-1.81a1.255 1.255 0 0 1-1.228-.99l-.782-3.625-2.044 3.939a1.25 1.25 0 0 1-1.115.676h-.098a1.25 1.25 0 0 1-1.116-.68l-2.061-3.994zM35.92 16.63l.207-.114.223-.15q.493-.356.735-.785l.061-.118.033 1.332h1.678V9.242h-1.694l-.033 1.267q-.133-.329-.526-.658l-.032-.028a3.2 3.2 0 0 0-.668-.428l-.27-.12a3.3 3.3 0 0 0-1.235-.23q-1.136-.001-1.974.493a3.36 3.36 0 0 0-1.3 1.382q-.445.89-.444 2.074 0 1.2.51 2.107a3.8 3.8 0 0 0 1.382 1.381 3.9 3.9 0 0 0 1.893.477q.795 0 1.455-.33zm-2.789-5.38q-.576.675-.575 1.762 0 1.102.559 1.794.576.675 1.645.675a2.25 2.25 0 0 0 .934-.19 2.2 2.2 0 0 0 .468-.29l.178-.161a2.2 2.2 0 0 0 .397-.561q.244-.5.244-1.15v-.115q0-.708-.296-1.267l-.043-.077a2.2 2.2 0 0 0-.633-.709l-.13-.086-.047-.028a2.1 2.1 0 0 0-1.073-.285q-1.052 0-1.629.692zm2.316 2.706c.163-.17.28-.407.28-.83v-.114c0-.292-.06-.508-.15-.68a.96.96 0 0 0-.353-.389.85.85 0 0 0-.464-.127c-.4 0-.56.114-.664.239l-.01.012c-.148.174-.275.45-.275.945 0 .506.122.801.27.99.097.11.266.224.68.224.303 0 .504-.09.687-.269zm7.545 1.705a2.6 2.6 0 0 0 .331.423q.319.33.755.548l.173.074q.65.255 1.49.255 1.02 0 1.844-.493a3.45 3.45 0 0 0 1.316-1.4q.493-.904.493-2.089 0-1.909-.988-2.913-.988-1.02-2.584-1.02-.898 0-1.575.347a3 3 0 0 0-.415.262l-.199.166a3.4 3.4 0 0 0-.64.82V9.242h-1.712v11.553h1.729l-.017-5.134zm.53-1.138q.206.29.48.5l.155.11.053.034q.51.296 1.119.297 1.07 0 1.645-.675.577-.69.576-1.762 0-1.119-.576-1.777-.558-.675-1.645-.675-.435 0-.835.16a2 2 0 0 0-.284.136 2 2 0 0 0-.363.254 2.2 2.2 0 0 0-.46.569l-.082.162a2.6 2.6 0 0 0-.213 1.072v.115q0 .707.296 1.267l.135.211zm.964-.818a1.1 1.1 0 0 0 .367.385.94.94 0 0 0 .476.118c.423 0 .59-.117.687-.23.159-.194.28-.478.28-.95 0-.53-.133-.8-.266-.952l-.021-.025c-.078-.094-.231-.221-.68-.221a1 1 0 0 0-.503.135l-.012.007a.86.86 0 0 0-.335.343c-.073.133-.132.324-.132.614v.115a1.4 1.4 0 0 0 .14.66zm15.7-6.222q.347-.346.346-.856a1.05 1.05 0 0 0-.345-.79 1.18 1.18 0 0 0-.84-.329q-.51 0-.855.33a1.05 1.05 0 0 0-.346.79q0 .51.346.855.345.346.856.346.51 0 .839-.346zm4.337 9.314.033-1.332q.191.403.59.747l.098.081a4 4 0 0 0 .316.224l.223.122a3.2 3.2 0 0 0 1.44.322 3.8 3.8 0 0 0 1.875-.477 3.5 3.5 0 0 0 1.382-1.366q.527-.89.526-2.09 0-1.184-.444-2.073a3.24 3.24 0 0 0-1.283-1.399q-.823-.51-1.942-.51a3.5 3.5 0 0 0-1.527.344l-.086.043-.165.09a3 3 0 0 0-.33.214q-.432.315-.656.707a2 2 0 0 0-.099.198l.082-1.283V4.701h-1.744v12.095zm.473-2.509a2.5 2.5 0 0 0 .566.7q.117.098.245.18l.144.08a2.1 2.1 0 0 0 .975.232q1.07 0 1.645-.675.576-.69.576-1.778 0-1.102-.576-1.777-.56-.691-1.645-.692a2.2 2.2 0 0 0-1.015.235q-.22.113-.415.282l-.15.142a2.1 2.1 0 0 0-.42.594q-.223.479-.223 1.1v.115q0 .705.293 1.26zm2.616-.293c.157-.191.28-.479.28-.967 0-.51-.13-.79-.276-.961l-.021-.026c-.082-.1-.232-.225-.67-.225a.87.87 0 0 0-.681.279l-.012.011c-.154.155-.274.38-.274.807v.115c0 .285.057.499.144.669a1.1 1.1 0 0 0 .367.405c.137.082.28.123.455.123.423 0 .59-.118.686-.23zm8.266-3.013q.345-.13.724-.14l.069-.002q.493 0 .642.099l.247-1.794q-.196-.099-.717-.099a2.3 2.3 0 0 0-.545.063 2 2 0 0 0-.411.148 2.2 2.2 0 0 0-.4.249 2.5 2.5 0 0 0-.485.499 2.7 2.7 0 0 0-.32.581l-.05.137v-1.48h-1.778v7.553h1.777v-3.884q0-.546.159-.943a1.5 1.5 0 0 1 .466-.636 2.5 2.5 0 0 1 .399-.253 2 2 0 0 1 .224-.099zm9.784 2.656.05-.922q0-1.743-.856-2.698-.838-.97-2.584-.97-1.119-.001-2.007.493a3.46 3.46 0 0 0-1.4 1.382q-.493.906-.493 2.106 0 1.07.428 1.975.428.89 1.332 1.432.906.526 2.255.526.973 0 1.668-.185l.044-.012.135-.04q.613-.184.984-.421l-.542-1.267q-.3.162-.642.274l-.297.087q-.51.131-1.3.131-.954 0-1.497-.444a1.6 1.6 0 0 1-.192-.193q-.366-.44-.512-1.234l-.004-.021zm-5.427-1.256-.003.022h3.752v-.138q-.011-.727-.288-1.118a1 1 0 0 0-.156-.176q-.46-.428-1.316-.428-.986 0-1.494.604-.379.45-.494 1.234zm-27.053 2.77V4.7h-1.86v12.095h5.333V15.15zm7.103-5.908v7.553h-1.843V9.242h1.843z'/%3E%3Cpath fill='%23fff' d='m19.63 11.151-.757-1.71-.345 1.71-1.12 5.644h-1.827L18.083 4.7h.197l3.325 6.533.988 2.19.988-2.19L26.839 4.7h.181l2.6 12.095h-1.81l-1.218-5.644-.362-1.71-.658 1.71-2.93 5.644h-.098l-2.913-5.644zm14.836 5.81q-1.02 0-1.893-.478a3.8 3.8 0 0 1-1.381-1.382q-.51-.906-.51-2.106 0-1.185.444-2.074a3.36 3.36 0 0 1 1.3-1.382q.839-.494 1.974-.494a3.3 3.3 0 0 1 1.234.231 3.3 3.3 0 0 1 .97.575q.396.33.527.659l.033-1.267h1.694v7.553H37.18l-.033-1.332q-.279.593-1.02 1.053a3.17 3.17 0 0 1-1.662.444zm.296-1.482q.938 0 1.58-.642.642-.66.642-1.711v-.115q0-.708-.296-1.267a2.2 2.2 0 0 0-.807-.872 2.1 2.1 0 0 0-1.119-.313q-1.053 0-1.629.692-.575.675-.575 1.76 0 1.103.559 1.795.577.675 1.645.675zm6.521-6.237h1.711v1.4q.906-1.597 2.83-1.597 1.596 0 2.584 1.02.988 1.005.988 2.914 0 1.185-.493 2.09a3.46 3.46 0 0 1-1.316 1.399 3.5 3.5 0 0 1-1.844.493q-.954 0-1.662-.329a2.67 2.67 0 0 1-1.086-.97l.017 5.134h-1.728zm4.048 6.22q1.07 0 1.645-.674.577-.69.576-1.762 0-1.119-.576-1.777-.558-.675-1.645-.675-.592 0-1.12.296-.51.28-.822.823-.296.527-.296 1.234v.115q0 .708.296 1.267.313.543.823.855.51.296 1.119.297z'/%3E%3Cpath fill='%23e1e3e9' d='M51.325 4.7h1.86v10.45h3.473v1.646h-5.333zm7.12 4.542h1.843v7.553h-1.843zm.905-1.415a1.16 1.16 0 0 1-.856-.346 1.17 1.17 0 0 1-.346-.856 1.05 1.05 0 0 1 .346-.79q.346-.329.856-.329.494 0 .839.33a1.05 1.05 0 0 1 .345.79 1.16 1.16 0 0 1-.345.855q-.33.346-.84.346zm7.875 9.133a3.17 3.17 0 0 1-1.662-.444q-.723-.46-1.004-1.053l-.033 1.332h-1.71V4.701h1.743v4.657l-.082 1.283q.279-.658 1.086-1.119a3.5 3.5 0 0 1 1.778-.477q1.119 0 1.942.51a3.24 3.24 0 0 1 1.283 1.4q.445.888.444 2.072 0 1.201-.526 2.09a3.5 3.5 0 0 1-1.382 1.366 3.8 3.8 0 0 1-1.876.477zm-.296-1.481q1.069 0 1.645-.675.577-.69.577-1.778 0-1.102-.577-1.776-.56-.691-1.645-.692a2.12 2.12 0 0 0-1.58.659q-.642.641-.642 1.694v.115q0 .71.296 1.267a2.4 2.4 0 0 0 .807.872 2.1 2.1 0 0 0 1.119.313zm5.927-6.237h1.777v1.481q.263-.757.856-1.217a2.14 2.14 0 0 1 1.349-.46q.527 0 .724.098l-.247 1.794q-.149-.099-.642-.099-.774 0-1.416.494-.626.493-.626 1.58v3.883h-1.777V9.242zm9.534 7.718q-1.35 0-2.255-.526-.904-.543-1.332-1.432a4.6 4.6 0 0 1-.428-1.975q0-1.2.493-2.106a3.46 3.46 0 0 1 1.4-1.382q.889-.495 2.007-.494 1.744 0 2.584.97.855.956.856 2.7 0 .444-.05.92h-5.43q.18 1.005.708 1.45.542.443 1.497.443.79 0 1.3-.131a4 4 0 0 0 .938-.362l.542 1.267q-.411.263-1.119.46-.708.198-1.711.197zm1.596-4.558q.016-1.02-.444-1.432-.46-.428-1.316-.428-1.728 0-1.991 1.86z'/%3E%3Cpath d='M5.074 15.948a.484.657 0 0 0-.486.659v1.84a.484.657 0 0 0 .486.659h4.101a.484.657 0 0 0 .486-.659v-1.84a.484.657 0 0 0-.486-.659zm3.56 1.16H5.617v.838h3.017z' style='fill:%23fff;fill-rule:evenodd;stroke-width:1.03600001'/%3E%3Cg style='stroke-width:1.12603545'%3E%3Cpath d='M-9.408-1.416c-3.833-.025-7.056 2.912-7.08 6.615-.02 3.08 1.653 4.832 3.107 6.268.903.892 1.721 1.74 2.32 2.902l-.525-.004c-.543-.003-.992.304-1.24.639a1.87 1.87 0 0 0-.362 1.121l-.011 1.877c-.003.402.104.787.347 1.125.244.338.688.653 1.23.656l4.142.028c.542.003.99-.306 1.238-.641a1.87 1.87 0 0 0 .363-1.121l.012-1.875a1.87 1.87 0 0 0-.348-1.127c-.243-.338-.688-.653-1.23-.656l-.518-.004c.597-1.145 1.425-1.983 2.348-2.87 1.473-1.414 3.18-3.149 3.2-6.226-.016-3.59-2.923-6.684-6.993-6.707m-.006 1.1v.002c3.274.02 5.92 2.532 5.9 5.6-.017 2.706-1.39 4.026-2.863 5.44-1.034.994-2.118 2.033-2.814 3.633-.018.041-.052.055-.075.065q-.013.004-.02.01a.34.34 0 0 1-.226.084.34.34 0 0 1-.224-.086l-.092-.077c-.699-1.615-1.768-2.669-2.781-3.67-1.454-1.435-2.797-2.762-2.78-5.478.02-3.067 2.7-5.545 5.975-5.523m-.02 2.826c-1.62-.01-2.944 1.315-2.955 2.96-.01 1.646 1.295 2.988 2.916 2.999h.002c1.621.01 2.943-1.316 2.953-2.961.011-1.646-1.294-2.988-2.916-2.998m-.005 1.1c1.017.006 1.829.83 1.822 1.89s-.83 1.874-1.848 1.867c-1.018-.006-1.829-.83-1.822-1.89s.83-1.874 1.848-1.868m-2.155 11.857 4.14.025c.271.002.49.305.487.676l-.013 1.875c-.003.37-.224.67-.495.668l-4.14-.025c-.27-.002-.487-.306-.485-.676l.012-1.875c.003-.37.224-.67.494-.668' style='color:%23000;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:%23000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:evenodd;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:%23000;solid-opacity:1;vector-effect:none;fill:%23000;fill-opacity:.4;fill-rule:evenodd;stroke:none;stroke-width:2.47727823;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto' transform='translate(15.553 2.85)scale(.88807)'/%3E%3Cpath d='M-9.415-.316C-12.69-.338-15.37 2.14-15.39 5.207c-.017 2.716 1.326 4.041 2.78 5.477 1.013 1 2.081 2.055 2.78 3.67l.092.076a.34.34 0 0 0 .225.086.34.34 0 0 0 .227-.083l.019-.01c.022-.009.057-.024.074-.064.697-1.6 1.78-2.64 2.814-3.634 1.473-1.414 2.847-2.733 2.864-5.44.02-3.067-2.627-5.58-5.901-5.601m-.057 8.784c1.621.011 2.944-1.315 2.955-2.96.01-1.646-1.295-2.988-2.916-2.999-1.622-.01-2.945 1.315-2.955 2.96s1.295 2.989 2.916 3' style='clip-rule:evenodd;fill:%23e1e3e9;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.47727823;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:.4' transform='translate(15.553 2.85)scale(.88807)'/%3E%3Cpath d='M-11.594 15.465c-.27-.002-.492.297-.494.668l-.012 1.876c-.003.371.214.673.485.675l4.14.027c.271.002.492-.298.495-.668l.012-1.877c.003-.37-.215-.672-.485-.674z' style='clip-rule:evenodd;fill:%23fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.47727823;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:.4' transform='translate(15.553 2.85)scale(.88807)'/%3E%3C/g%3E%3C/svg%3E")}}@media (forced-colors:active) and (prefers-color-scheme:light){a.maplibregl-ctrl-logo{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='23' fill='none'%3E%3Cpath fill='%23000' fill-opacity='.4' fill-rule='evenodd' d='M17.408 16.796h-1.827l2.501-12.095h.198l3.324 6.533.988 2.19.988-2.19 3.258-6.533h.181l2.6 12.095h-1.81l-1.218-5.644-.362-1.71-.658 1.71-2.929 5.644h-.098l-2.914-5.644-.757-1.71-.345 1.71zm1.958-3.42-.726 3.663a1.255 1.255 0 0 1-1.232 1.011h-1.827a1.255 1.255 0 0 1-1.229-1.509l2.501-12.095a1.255 1.255 0 0 1 1.23-1.001h.197a1.25 1.25 0 0 1 1.12.685l3.19 6.273 3.125-6.263a1.25 1.25 0 0 1 1.123-.695h.181a1.255 1.255 0 0 1 1.227.991l1.443 6.71a5 5 0 0 1 .314-.787l.009-.016a4.6 4.6 0 0 1 1.777-1.887c.782-.46 1.668-.667 2.611-.667a4.6 4.6 0 0 1 1.7.32l.306.134c.21-.16.474-.256.759-.256h1.694a1.255 1.255 0 0 1 1.212.925 1.255 1.255 0 0 1 1.212-.925h1.711c.284 0 .545.094.755.252.613-.3 1.312-.45 2.075-.45 1.356 0 2.557.445 3.482 1.4q.47.48.763 1.064V4.701a1.255 1.255 0 0 1 1.255-1.255h1.86A1.255 1.255 0 0 1 54.44 4.7v9.194h2.217c.19 0 .37.043.532.118v-4.77c0-.356.147-.678.385-.906a2.42 2.42 0 0 1-.682-1.71c0-.665.267-1.253.735-1.7a2.45 2.45 0 0 1 1.722-.674 2.43 2.43 0 0 1 1.705.675q.318.302.504.683V4.7a1.255 1.255 0 0 1 1.255-1.255h1.744A1.255 1.255 0 0 1 65.812 4.7v3.335a4.8 4.8 0 0 1 1.526-.246c.938 0 1.817.214 2.59.69a4.47 4.47 0 0 1 1.67 1.743v-.98a1.255 1.255 0 0 1 1.256-1.256h1.777c.233 0 .451.064.639.174a3.4 3.4 0 0 1 1.567-.372c.346 0 .861.02 1.285.232a1.25 1.25 0 0 1 .689 1.004 4.7 4.7 0 0 1 .853-.588c.795-.44 1.675-.647 2.61-.647 1.385 0 2.65.39 3.525 1.396.836.938 1.168 2.173 1.168 3.528q-.001.515-.056 1.051a1.255 1.255 0 0 1-.947 1.09l.408.952a1.255 1.255 0 0 1-.477 1.552c-.418.268-.92.463-1.458.612-.613.171-1.304.244-2.049.244-1.06 0-2.043-.207-2.886-.698l-.015-.008c-.798-.48-1.419-1.135-1.818-1.963l-.004-.008a5.8 5.8 0 0 1-.548-2.512q0-.429.053-.843a1.3 1.3 0 0 1-.333-.086l-.166-.004c-.223 0-.426.062-.643.228-.03.024-.142.139-.142.59v3.883a1.255 1.255 0 0 1-1.256 1.256h-1.777a1.255 1.255 0 0 1-1.256-1.256V15.69l-.032.057a4.8 4.8 0 0 1-1.86 1.833 5.04 5.04 0 0 1-2.484.634 4.5 4.5 0 0 1-1.935-.424 1.25 1.25 0 0 1-.764.258h-1.71a1.255 1.255 0 0 1-1.256-1.255V7.687a2.4 2.4 0 0 1-.428.625c.253.23.412.561.412.93v7.553a1.255 1.255 0 0 1-1.256 1.255h-1.843a1.25 1.25 0 0 1-.894-.373c-.228.23-.544.373-.894.373H51.32a1.255 1.255 0 0 1-1.256-1.255v-1.251l-.061.117a4.7 4.7 0 0 1-1.782 1.884 4.77 4.77 0 0 1-2.485.67 5.6 5.6 0 0 1-1.485-.188l.009 2.764a1.255 1.255 0 0 1-1.255 1.259h-1.729a1.255 1.255 0 0 1-1.255-1.255v-3.537a1.255 1.255 0 0 1-1.167.793h-1.679a1.25 1.25 0 0 1-.77-.263 4.5 4.5 0 0 1-1.945.429c-.885 0-1.724-.21-2.495-.632l-.017-.01a5 5 0 0 1-1.081-.836 1.255 1.255 0 0 1-1.254 1.312h-1.81a1.255 1.255 0 0 1-1.228-.99l-.782-3.625-2.044 3.939a1.25 1.25 0 0 1-1.115.676h-.098a1.25 1.25 0 0 1-1.116-.68l-2.061-3.994zM35.92 16.63l.207-.114.223-.15q.493-.356.735-.785l.061-.118.033 1.332h1.678V9.242h-1.694l-.033 1.267q-.133-.329-.526-.658l-.032-.028a3.2 3.2 0 0 0-.668-.428l-.27-.12a3.3 3.3 0 0 0-1.235-.23q-1.136-.001-1.974.493a3.36 3.36 0 0 0-1.3 1.382q-.445.89-.444 2.074 0 1.2.51 2.107a3.8 3.8 0 0 0 1.382 1.381 3.9 3.9 0 0 0 1.893.477q.795 0 1.455-.33zm-2.789-5.38q-.576.675-.575 1.762 0 1.102.559 1.794.576.675 1.645.675a2.25 2.25 0 0 0 .934-.19 2.2 2.2 0 0 0 .468-.29l.178-.161a2.2 2.2 0 0 0 .397-.561q.244-.5.244-1.15v-.115q0-.708-.296-1.267l-.043-.077a2.2 2.2 0 0 0-.633-.709l-.13-.086-.047-.028a2.1 2.1 0 0 0-1.073-.285q-1.052 0-1.629.692zm2.316 2.706c.163-.17.28-.407.28-.83v-.114c0-.292-.06-.508-.15-.68a.96.96 0 0 0-.353-.389.85.85 0 0 0-.464-.127c-.4 0-.56.114-.664.239l-.01.012c-.148.174-.275.45-.275.945 0 .506.122.801.27.99.097.11.266.224.68.224.303 0 .504-.09.687-.269zm7.545 1.705a2.6 2.6 0 0 0 .331.423q.319.33.755.548l.173.074q.65.255 1.49.255 1.02 0 1.844-.493a3.45 3.45 0 0 0 1.316-1.4q.493-.904.493-2.089 0-1.909-.988-2.913-.988-1.02-2.584-1.02-.898 0-1.575.347a3 3 0 0 0-.415.262l-.199.166a3.4 3.4 0 0 0-.64.82V9.242h-1.712v11.553h1.729l-.017-5.134zm.53-1.138q.206.29.48.5l.155.11.053.034q.51.296 1.119.297 1.07 0 1.645-.675.577-.69.576-1.762 0-1.119-.576-1.777-.558-.675-1.645-.675-.435 0-.835.16a2 2 0 0 0-.284.136 2 2 0 0 0-.363.254 2.2 2.2 0 0 0-.46.569l-.082.162a2.6 2.6 0 0 0-.213 1.072v.115q0 .707.296 1.267l.135.211zm.964-.818a1.1 1.1 0 0 0 .367.385.94.94 0 0 0 .476.118c.423 0 .59-.117.687-.23.159-.194.28-.478.28-.95 0-.53-.133-.8-.266-.952l-.021-.025c-.078-.094-.231-.221-.68-.221a1 1 0 0 0-.503.135l-.012.007a.86.86 0 0 0-.335.343c-.073.133-.132.324-.132.614v.115a1.4 1.4 0 0 0 .14.66zm15.7-6.222q.347-.346.346-.856a1.05 1.05 0 0 0-.345-.79 1.18 1.18 0 0 0-.84-.329q-.51 0-.855.33a1.05 1.05 0 0 0-.346.79q0 .51.346.855.345.346.856.346.51 0 .839-.346zm4.337 9.314.033-1.332q.191.403.59.747l.098.081a4 4 0 0 0 .316.224l.223.122a3.2 3.2 0 0 0 1.44.322 3.8 3.8 0 0 0 1.875-.477 3.5 3.5 0 0 0 1.382-1.366q.527-.89.526-2.09 0-1.184-.444-2.073a3.24 3.24 0 0 0-1.283-1.399q-.823-.51-1.942-.51a3.5 3.5 0 0 0-1.527.344l-.086.043-.165.09a3 3 0 0 0-.33.214q-.432.315-.656.707a2 2 0 0 0-.099.198l.082-1.283V4.701h-1.744v12.095zm.473-2.509a2.5 2.5 0 0 0 .566.7q.117.098.245.18l.144.08a2.1 2.1 0 0 0 .975.232q1.07 0 1.645-.675.576-.69.576-1.778 0-1.102-.576-1.777-.56-.691-1.645-.692a2.2 2.2 0 0 0-1.015.235q-.22.113-.415.282l-.15.142a2.1 2.1 0 0 0-.42.594q-.223.479-.223 1.1v.115q0 .705.293 1.26zm2.616-.293c.157-.191.28-.479.28-.967 0-.51-.13-.79-.276-.961l-.021-.026c-.082-.1-.232-.225-.67-.225a.87.87 0 0 0-.681.279l-.012.011c-.154.155-.274.38-.274.807v.115c0 .285.057.499.144.669a1.1 1.1 0 0 0 .367.405c.137.082.28.123.455.123.423 0 .59-.118.686-.23zm8.266-3.013q.345-.13.724-.14l.069-.002q.493 0 .642.099l.247-1.794q-.196-.099-.717-.099a2.3 2.3 0 0 0-.545.063 2 2 0 0 0-.411.148 2.2 2.2 0 0 0-.4.249 2.5 2.5 0 0 0-.485.499 2.7 2.7 0 0 0-.32.581l-.05.137v-1.48h-1.778v7.553h1.777v-3.884q0-.546.159-.943a1.5 1.5 0 0 1 .466-.636 2.5 2.5 0 0 1 .399-.253 2 2 0 0 1 .224-.099zm9.784 2.656.05-.922q0-1.743-.856-2.698-.838-.97-2.584-.97-1.119-.001-2.007.493a3.46 3.46 0 0 0-1.4 1.382q-.493.906-.493 2.106 0 1.07.428 1.975.428.89 1.332 1.432.906.526 2.255.526.973 0 1.668-.185l.044-.012.135-.04q.613-.184.984-.421l-.542-1.267q-.3.162-.642.274l-.297.087q-.51.131-1.3.131-.954 0-1.497-.444a1.6 1.6 0 0 1-.192-.193q-.366-.44-.512-1.234l-.004-.021zm-5.427-1.256-.003.022h3.752v-.138q-.011-.727-.288-1.118a1 1 0 0 0-.156-.176q-.46-.428-1.316-.428-.986 0-1.494.604-.379.45-.494 1.234zm-27.053 2.77V4.7h-1.86v12.095h5.333V15.15zm7.103-5.908v7.553h-1.843V9.242h1.843z'/%3E%3Cpath fill='%23fff' d='m19.63 11.151-.757-1.71-.345 1.71-1.12 5.644h-1.827L18.083 4.7h.197l3.325 6.533.988 2.19.988-2.19L26.839 4.7h.181l2.6 12.095h-1.81l-1.218-5.644-.362-1.71-.658 1.71-2.93 5.644h-.098l-2.913-5.644zm14.836 5.81q-1.02 0-1.893-.478a3.8 3.8 0 0 1-1.381-1.382q-.51-.906-.51-2.106 0-1.185.444-2.074a3.36 3.36 0 0 1 1.3-1.382q.839-.494 1.974-.494a3.3 3.3 0 0 1 1.234.231 3.3 3.3 0 0 1 .97.575q.396.33.527.659l.033-1.267h1.694v7.553H37.18l-.033-1.332q-.279.593-1.02 1.053a3.17 3.17 0 0 1-1.662.444zm.296-1.482q.938 0 1.58-.642.642-.66.642-1.711v-.115q0-.708-.296-1.267a2.2 2.2 0 0 0-.807-.872 2.1 2.1 0 0 0-1.119-.313q-1.053 0-1.629.692-.575.675-.575 1.76 0 1.103.559 1.795.577.675 1.645.675zm6.521-6.237h1.711v1.4q.906-1.597 2.83-1.597 1.596 0 2.584 1.02.988 1.005.988 2.914 0 1.185-.493 2.09a3.46 3.46 0 0 1-1.316 1.399 3.5 3.5 0 0 1-1.844.493q-.954 0-1.662-.329a2.67 2.67 0 0 1-1.086-.97l.017 5.134h-1.728zm4.048 6.22q1.07 0 1.645-.674.577-.69.576-1.762 0-1.119-.576-1.777-.558-.675-1.645-.675-.592 0-1.12.296-.51.28-.822.823-.296.527-.296 1.234v.115q0 .708.296 1.267.313.543.823.855.51.296 1.119.297z'/%3E%3Cpath fill='%23e1e3e9' d='M51.325 4.7h1.86v10.45h3.473v1.646h-5.333zm7.12 4.542h1.843v7.553h-1.843zm.905-1.415a1.16 1.16 0 0 1-.856-.346 1.17 1.17 0 0 1-.346-.856 1.05 1.05 0 0 1 .346-.79q.346-.329.856-.329.494 0 .839.33a1.05 1.05 0 0 1 .345.79 1.16 1.16 0 0 1-.345.855q-.33.346-.84.346zm7.875 9.133a3.17 3.17 0 0 1-1.662-.444q-.723-.46-1.004-1.053l-.033 1.332h-1.71V4.701h1.743v4.657l-.082 1.283q.279-.658 1.086-1.119a3.5 3.5 0 0 1 1.778-.477q1.119 0 1.942.51a3.24 3.24 0 0 1 1.283 1.4q.445.888.444 2.072 0 1.201-.526 2.09a3.5 3.5 0 0 1-1.382 1.366 3.8 3.8 0 0 1-1.876.477zm-.296-1.481q1.069 0 1.645-.675.577-.69.577-1.778 0-1.102-.577-1.776-.56-.691-1.645-.692a2.12 2.12 0 0 0-1.58.659q-.642.641-.642 1.694v.115q0 .71.296 1.267a2.4 2.4 0 0 0 .807.872 2.1 2.1 0 0 0 1.119.313zm5.927-6.237h1.777v1.481q.263-.757.856-1.217a2.14 2.14 0 0 1 1.349-.46q.527 0 .724.098l-.247 1.794q-.149-.099-.642-.099-.774 0-1.416.494-.626.493-.626 1.58v3.883h-1.777V9.242zm9.534 7.718q-1.35 0-2.255-.526-.904-.543-1.332-1.432a4.6 4.6 0 0 1-.428-1.975q0-1.2.493-2.106a3.46 3.46 0 0 1 1.4-1.382q.889-.495 2.007-.494 1.744 0 2.584.97.855.956.856 2.7 0 .444-.05.92h-5.43q.18 1.005.708 1.45.542.443 1.497.443.79 0 1.3-.131a4 4 0 0 0 .938-.362l.542 1.267q-.411.263-1.119.46-.708.198-1.711.197zm1.596-4.558q.016-1.02-.444-1.432-.46-.428-1.316-.428-1.728 0-1.991 1.86z'/%3E%3Cpath d='M5.074 15.948a.484.657 0 0 0-.486.659v1.84a.484.657 0 0 0 .486.659h4.101a.484.657 0 0 0 .486-.659v-1.84a.484.657 0 0 0-.486-.659zm3.56 1.16H5.617v.838h3.017z' style='fill:%23fff;fill-rule:evenodd;stroke-width:1.03600001'/%3E%3Cg style='stroke-width:1.12603545'%3E%3Cpath d='M-9.408-1.416c-3.833-.025-7.056 2.912-7.08 6.615-.02 3.08 1.653 4.832 3.107 6.268.903.892 1.721 1.74 2.32 2.902l-.525-.004c-.543-.003-.992.304-1.24.639a1.87 1.87 0 0 0-.362 1.121l-.011 1.877c-.003.402.104.787.347 1.125.244.338.688.653 1.23.656l4.142.028c.542.003.99-.306 1.238-.641a1.87 1.87 0 0 0 .363-1.121l.012-1.875a1.87 1.87 0 0 0-.348-1.127c-.243-.338-.688-.653-1.23-.656l-.518-.004c.597-1.145 1.425-1.983 2.348-2.87 1.473-1.414 3.18-3.149 3.2-6.226-.016-3.59-2.923-6.684-6.993-6.707m-.006 1.1v.002c3.274.02 5.92 2.532 5.9 5.6-.017 2.706-1.39 4.026-2.863 5.44-1.034.994-2.118 2.033-2.814 3.633-.018.041-.052.055-.075.065q-.013.004-.02.01a.34.34 0 0 1-.226.084.34.34 0 0 1-.224-.086l-.092-.077c-.699-1.615-1.768-2.669-2.781-3.67-1.454-1.435-2.797-2.762-2.78-5.478.02-3.067 2.7-5.545 5.975-5.523m-.02 2.826c-1.62-.01-2.944 1.315-2.955 2.96-.01 1.646 1.295 2.988 2.916 2.999h.002c1.621.01 2.943-1.316 2.953-2.961.011-1.646-1.294-2.988-2.916-2.998m-.005 1.1c1.017.006 1.829.83 1.822 1.89s-.83 1.874-1.848 1.867c-1.018-.006-1.829-.83-1.822-1.89s.83-1.874 1.848-1.868m-2.155 11.857 4.14.025c.271.002.49.305.487.676l-.013 1.875c-.003.37-.224.67-.495.668l-4.14-.025c-.27-.002-.487-.306-.485-.676l.012-1.875c.003-.37.224-.67.494-.668' style='color:%23000;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:%23000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:evenodd;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:%23000;solid-opacity:1;vector-effect:none;fill:%23000;fill-opacity:.4;fill-rule:evenodd;stroke:none;stroke-width:2.47727823;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto' transform='translate(15.553 2.85)scale(.88807)'/%3E%3Cpath d='M-9.415-.316C-12.69-.338-15.37 2.14-15.39 5.207c-.017 2.716 1.326 4.041 2.78 5.477 1.013 1 2.081 2.055 2.78 3.67l.092.076a.34.34 0 0 0 .225.086.34.34 0 0 0 .227-.083l.019-.01c.022-.009.057-.024.074-.064.697-1.6 1.78-2.64 2.814-3.634 1.473-1.414 2.847-2.733 2.864-5.44.02-3.067-2.627-5.58-5.901-5.601m-.057 8.784c1.621.011 2.944-1.315 2.955-2.96.01-1.646-1.295-2.988-2.916-2.999-1.622-.01-2.945 1.315-2.955 2.96s1.295 2.989 2.916 3' style='clip-rule:evenodd;fill:%23e1e3e9;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.47727823;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:.4' transform='translate(15.553 2.85)scale(.88807)'/%3E%3Cpath d='M-11.594 15.465c-.27-.002-.492.297-.494.668l-.012 1.876c-.003.371.214.673.485.675l4.14.027c.271.002.492-.298.495-.668l.012-1.877c.003-.37-.215-.672-.485-.674z' style='clip-rule:evenodd;fill:%23fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.47727823;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:.4' transform='translate(15.553 2.85)scale(.88807)'/%3E%3C/g%3E%3C/svg%3E")}}.maplibregl-ctrl.maplibregl-ctrl-attrib{background-color:hsla(0,0%,100%,.5);margin:0;padding:0 5px}@media screen{.maplibregl-ctrl-attrib.maplibregl-compact{background-color:#fff;border-radius:12px;box-sizing:content-box;color:#000;margin:10px;min-height:20px;padding:2px 24px 2px 0;position:relative}.maplibregl-ctrl-attrib.maplibregl-compact-show{padding:2px 28px 2px 8px;visibility:visible}.maplibregl-ctrl-bottom-left>.maplibregl-ctrl-attrib.maplibregl-compact-show,.maplibregl-ctrl-top-left>.maplibregl-ctrl-attrib.maplibregl-compact-show{border-radius:12px;padding:2px 8px 2px 28px}.maplibregl-ctrl-attrib.maplibregl-compact .maplibregl-ctrl-attrib-inner{display:none}.maplibregl-ctrl-attrib-button{background-color:hsla(0,0%,100%,.5);background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill-rule='evenodd' viewBox='0 0 20 20'%3E%3Cpath d='M4 10a6 6 0 1 0 12 0 6 6 0 1 0-12 0m5-3a1 1 0 1 0 2 0 1 1 0 1 0-2 0m0 3a1 1 0 1 1 2 0v3a1 1 0 1 1-2 0'/%3E%3C/svg%3E");border:0;border-radius:12px;box-sizing:border-box;cursor:pointer;display:none;height:24px;outline:none;position:absolute;right:0;top:0;width:24px}.maplibregl-ctrl-attrib summary.maplibregl-ctrl-attrib-button{-webkit-appearance:none;-moz-appearance:none;appearance:none;list-style:none}.maplibregl-ctrl-attrib summary.maplibregl-ctrl-attrib-button::-webkit-details-marker{display:none}.maplibregl-ctrl-bottom-left .maplibregl-ctrl-attrib-button,.maplibregl-ctrl-top-left .maplibregl-ctrl-attrib-button{left:0}.maplibregl-ctrl-attrib.maplibregl-compact .maplibregl-ctrl-attrib-button,.maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-inner{display:block}.maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-button{background-color:rgb(0 0 0/5%)}.maplibregl-ctrl-bottom-right>.maplibregl-ctrl-attrib.maplibregl-compact:after{bottom:0;right:0}.maplibregl-ctrl-top-right>.maplibregl-ctrl-attrib.maplibregl-compact:after{right:0;top:0}.maplibregl-ctrl-top-left>.maplibregl-ctrl-attrib.maplibregl-compact:after{left:0;top:0}.maplibregl-ctrl-bottom-left>.maplibregl-ctrl-attrib.maplibregl-compact:after{bottom:0;left:0}}@media screen and (forced-colors:active){.maplibregl-ctrl-attrib.maplibregl-compact:after{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23fff' fill-rule='evenodd' viewBox='0 0 20 20'%3E%3Cpath d='M4 10a6 6 0 1 0 12 0 6 6 0 1 0-12 0m5-3a1 1 0 1 0 2 0 1 1 0 1 0-2 0m0 3a1 1 0 1 1 2 0v3a1 1 0 1 1-2 0'/%3E%3C/svg%3E")}}@media screen and (forced-colors:active) and (prefers-color-scheme:light){.maplibregl-ctrl-attrib.maplibregl-compact:after{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill-rule='evenodd' viewBox='0 0 20 20'%3E%3Cpath d='M4 10a6 6 0 1 0 12 0 6 6 0 1 0-12 0m5-3a1 1 0 1 0 2 0 1 1 0 1 0-2 0m0 3a1 1 0 1 1 2 0v3a1 1 0 1 1-2 0'/%3E%3C/svg%3E")}}.maplibregl-ctrl-attrib a{color:rgba(0,0,0,.75);text-decoration:none}.maplibregl-ctrl-attrib a:hover{color:inherit;text-decoration:underline}.maplibregl-attrib-empty{display:none}.maplibregl-ctrl-scale{background-color:hsla(0,0%,100%,.75);border:2px solid #333;border-top:#333;box-sizing:border-box;color:#333;font-size:10px;padding:0 5px}.maplibregl-popup{display:flex;left:0;pointer-events:none;position:absolute;top:0;will-change:transform}.maplibregl-popup-anchor-top,.maplibregl-popup-anchor-top-left,.maplibregl-popup-anchor-top-right{flex-direction:column}.maplibregl-popup-anchor-bottom,.maplibregl-popup-anchor-bottom-left,.maplibregl-popup-anchor-bottom-right{flex-direction:column-reverse}.maplibregl-popup-anchor-left{flex-direction:row}.maplibregl-popup-anchor-right{flex-direction:row-reverse}.maplibregl-popup-tip{border:10px solid transparent;height:0;width:0;z-index:1}.maplibregl-popup-anchor-top .maplibregl-popup-tip{align-self:center;border-bottom-color:#fff;border-top:none}.maplibregl-popup-anchor-top-left .maplibregl-popup-tip{align-self:flex-start;border-bottom-color:#fff;border-left:none;border-top:none}.maplibregl-popup-anchor-top-right .maplibregl-popup-tip{align-self:flex-end;border-bottom-color:#fff;border-right:none;border-top:none}.maplibregl-popup-anchor-bottom .maplibregl-popup-tip{align-self:center;border-bottom:none;border-top-color:#fff}.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip{align-self:flex-start;border-bottom:none;border-left:none;border-top-color:#fff}.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip{align-self:flex-end;border-bottom:none;border-right:none;border-top-color:#fff}.maplibregl-popup-anchor-left .maplibregl-popup-tip{align-self:center;border-left:none;border-right-color:#fff}.maplibregl-popup-anchor-right .maplibregl-popup-tip{align-self:center;border-left-color:#fff;border-right:none}.maplibregl-popup-close-button{background-color:transparent;border:0;border-radius:0 3px 0 0;cursor:pointer;position:absolute;right:0;top:0}.maplibregl-popup-close-button:hover{background-color:rgb(0 0 0/5%)}.maplibregl-popup-content{background:#fff;border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.1);padding:15px 10px;pointer-events:auto;position:relative}.maplibregl-popup-anchor-top-left .maplibregl-popup-content{border-top-left-radius:0}.maplibregl-popup-anchor-top-right .maplibregl-popup-content{border-top-right-radius:0}.maplibregl-popup-anchor-bottom-left .maplibregl-popup-content{border-bottom-left-radius:0}.maplibregl-popup-anchor-bottom-right .maplibregl-popup-content{border-bottom-right-radius:0}.maplibregl-popup-track-pointer{display:none}.maplibregl-popup-track-pointer *{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.maplibregl-map:hover .maplibregl-popup-track-pointer{display:flex}.maplibregl-map:active .maplibregl-popup-track-pointer{display:none}.maplibregl-marker{left:0;position:absolute;top:0;transition:opacity .2s;will-change:transform}.maplibregl-user-location-dot,.maplibregl-user-location-dot:before{background-color:#1da1f2;border-radius:50%;height:15px;width:15px}.maplibregl-user-location-dot:before{animation:maplibregl-user-location-dot-pulse 2s infinite;content:"";position:absolute}.maplibregl-user-location-dot:after{border:2px solid #fff;border-radius:50%;box-shadow:0 0 3px rgba(0,0,0,.35);box-sizing:border-box;content:"";height:19px;left:-2px;position:absolute;top:-2px;width:19px}@keyframes maplibregl-user-location-dot-pulse{0%{opacity:1;transform:scale(1)}70%{opacity:0;transform:scale(3)}to{opacity:0;transform:scale(1)}}.maplibregl-user-location-dot-stale{background-color:#aaa}.maplibregl-user-location-dot-stale:after{display:none}.maplibregl-user-location-accuracy-circle{background-color:#1da1f233;border-radius:100%;height:1px;width:1px}.maplibregl-crosshair,.maplibregl-crosshair .maplibregl-interactive,.maplibregl-crosshair .maplibregl-interactive:active{cursor:crosshair}.maplibregl-boxzoom{background:#fff;border:2px dotted #202020;height:0;left:0;opacity:.5;position:absolute;top:0;width:0}.maplibregl-cooperative-gesture-screen{align-items:center;background:rgba(0,0,0,.4);color:#fff;display:flex;font-size:1.4em;inset:0;justify-content:center;line-height:1.2;opacity:0;padding:1rem;pointer-events:none;position:absolute;transition:opacity 1s ease 1s;z-index:99999}.maplibregl-cooperative-gesture-screen.maplibregl-show{opacity:1;transition:opacity .05s}.maplibregl-cooperative-gesture-screen .maplibregl-mobile-message{display:none}@media (hover:none),(pointer:coarse){.maplibregl-cooperative-gesture-screen .maplibregl-desktop-message{display:none}.maplibregl-cooperative-gesture-screen .maplibregl-mobile-message{display:block}}.maplibregl-pseudo-fullscreen{height:100%!important;left:0!important;position:fixed!important;top:0!important;width:100%!important;z-index:99999}
+</style>
+
+<div class="demo"><b>Demo for Team HML</b> · a preview of your site before launch. Prices and units are from the latest PHirst list.</div>
+<header class="bar">
+  <div class="wrap">
+    <a class="back" id="back" href="#" aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></a>
+    <div class="seller">
+      <div class="avatar" id="sellerInitials">YN</div>
+      <div style="min-width:0"><small id="sellerRole">Presented by</small><b id="sellerName">Your Name</b></div>
+    </div>
+    <a class="btn" id="msgBtn" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M8 3v4M16 3v4"/><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M9 15l2 2 4-4"/></svg>Book tripping</a>
+  </div>
+</header>
+<main id="app"></main>
+<div id="lbRoot"></div>
+<div id="stickyBook" hidden><a class="btn" id="stickyBtn" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/></svg>Book a free tripping</a><span>Free · any day, 8 AM–5 PM</span></div>
+
+<script src="prices.js"></script>
+<script>
+/* ============ EDIT HERE ============ */
+// Who the page is presented by comes from pages.js, picked by the link: <site>/<slug> or ?p=<slug>.
+// The last slug a visitor arrived with is remembered on their phone.
+const ORIGINS = window.ORIGINS || {};
+const ORIGIN = (()=>{
+  const seg = location.pathname.toLowerCase().split("/").filter(Boolean).find(x=>ORIGINS[x] && x!=="default");
+  let q = null; try{ q = new URLSearchParams(location.search).get("p"); }catch(e){}
+  const s = (q || seg || "").toLowerCase();
+  if(s && s!=="default" && ORIGINS[s]){ try{ localStorage.setItem("phirst-origin", s); }catch(e){} return s; }
+  try{ const k = localStorage.getItem("phirst-origin"); if(k && ORIGINS[k]) return k; }catch(e){}
+  return "default";
+})();
+// Fallback when pages.js is missing: every CTA still routes to our own page.
+const SELLER = Object.assign({ name:"Team HML", team:"Team HML · Authorized PHirst Seller", messenger:"https://m.me/PHirstCaviteBatangas", pageId:"100076059604151" }, ORIGINS.default, ORIGINS[ORIGIN]);
+if(!/^https:\/\/m\.me\/[^/?#]+/.test(SELLER.messenger||"")) SELLER.messenger="https://m.me/PHirstCaviteBatangas";
+
+const A = "assets/";
+// Lowest TCP per model comes from prices.js (generated by update_prices.py from the availability sheet)
+const PRICES = window.PRICES || { asOf: "", models: {} };
+const priceOf = id => PRICES.models[id] ? PRICES.models[id].from : null;
+const shortM = v => v ? "₱" + (v/1e6).toFixed(2) + "M" : "—";
+
+const PROJECTS = [
+{
+  id: "gen-tri-impressions", slug: "gentri",
+  brand: "PHirst Impressions", name: "Gen Tri", accent: "Impressions",
+  area: "Brgy. Biclatan, General Trias, Cavite",
+  hectares: 23.8,
+  cardImg: "out-row",
+  hero: { video: "hero", poster: "hero-poster" },
+  lede: from => `23.8 hectares of green, open living in Cavite. Fully finished townhomes on bigger lots, starting at ${shortM(from)}. Bring your furniture and move in.`,
+  why: { eyebrow: "Why Impressions", title: 'More lot for your <span class="serif">money.</span>',
+    text: "Picture wide, tree-lined streets, a front yard for your first garden and room for your family to grow. Impressions lots are about 42% bigger on average than the first PHirst Gen Tri phase. The house comes finished, and the extra land lets you add on as your story unfolds." },
+  stats: from => [
+    { html: priceStat(from), l: "lowest total contract price today", hl: true },
+    { html: '<span data-count="40">40</span><small>sqm</small>', l: "floor area, 2 storeys" },
+    { html: '<span data-count="60">60</span>–<span data-count="90">90</span><small>sqm</small>', l: "typical lot, Mid to End" },
+    { html: '<span data-count="2">2</span><small>bedrooms</small>', l: "plus 1 toilet & bath" },
+    { html: '≈<span data-count="42">42</span><small>%</small>', l: "bigger lots than the first Gen Tri phase" },
+    { html: '<span data-count="23">23</span>.8<small>hectares</small>', l: "of planned community, parks and open space", hl: true }
+  ],
+  lots: true,
+  modelsTitle: 'Two ways to <span class="serif">start.</span>',
+  modelsIntro: "Tap a model for all its photos: the furnished model house and the actual unit as it's turned over.",
+  modelsNudge: "Photos only show so much. Walk through both model houses and a real turnover unit.",
+  inclusions: ["Gate & perimeter fence","Painted walls","Vinyl plank flooring","2nd-floor room partitions","Shower & toilet bowl","Kitchen sink","Carport","Provision to expand"],
+  // Official sample computation sheets. Bank amounts use our indicative 7%; Pag-IBIG uses 6.25%.
+  bankRate: 0.07,
+  comps: [{
+    // Calista Mid, Phase 1, Blk 42 Lot 24 (Pag-IBIG sheet, prepared Aug 2026)
+    modelId: "calista-mid", model: "Calista Mid", unit: "Phase 1 · Block 42 Lot 24 · 60 sqm lot", asOf: "August 2026", turnover: "Aug 2028",
+    compare: 3149499.38, defaultFin: "pagibig",
+    kv: [["Total contract price",3149499.38],["Spot payment discount",-60000],["Net contract price",3089499.38]],
+    schedule: [["Reservation fee",30000,1,"r"],["Spot downpayment",124474.97,1,"r"],["Monthly for 12 months",12872.91,12]],
+    labels: ["Reserve","Spot DP","12 monthly payments"],
+    dp: 308949.94, balance: 2780549.44,
+    // 10/15/20 from the sheet; 25/30 use the same Pag-IBIG formula (it reproduces the sheet exactly)
+    ma: { 10: 31220.04, 15: 23841.07, 20: 20323.82, 25: 18342.43, 30: 17120.32 }
+  }, {
+    // Calista End, Phase 1, 90 sqm lot (bank-financing sheet, 10% in 12 months)
+    modelId: "calista-end", model: "Calista End", unit: "Phase 1 · 90 sqm lot", asOf: "the official sample sheet", turnover: "May 2029",
+    compare: 5148381.69, defaultFin: "bank",
+    kv: [["Total contract price",4671097.98],["Promo discount",-25000],["VAT (12%)",502283.72],["Net contract price after VAT",5148381.69]],
+    schedule: [["Reservation fee",20000,1,"r"],["Monthly for 11 months",42000,11],["12th month",32838.17,1]],
+    labels: ["Reserve","11 monthly payments","Last"],
+    dp: 514838.17, balance: 4633543.52
+  }],
+  compNudge: "Want numbers for a specific lot? We'll go through them together on site.",
+  // [name, short label, icon, photo file in assets/ (no .jpg) or null, optional description]
+  amenIntro: "Across 23.8 hectares, there's space to swim, play, jog at sunrise and slow down in the evening, all within your own gates.",
+  amenities: [
+    ["Clubhouse","For parties & meetings","club","am-gt-club","Artist's illustration of this amenity at PHirst's Gen Tri community. I'll show you the real one on your tripping."],["Swimming pool","Adults & kids","pool","am-gt-pool","Artist's illustration of this amenity at PHirst's Gen Tri community. I'll show you the real one on your tripping."],["Basketball court","Full court","ball","am-gt-ball","Artist's illustration of this amenity at PHirst's Gen Tri community. I'll show you the real one on your tripping."],
+    ["Jogging trail","Around the park","run"],["Panorama Patch","Outdoor cinema","cinema","am-gt-cinema","Artist's illustration of this amenity at PHirst's Gen Tri community. I'll show you the real one on your tripping."],["Cube Climber","Kids' play structure","cube"],
+    ["Animal Maze","Kids' play area","maze"],["Paw Park","For your pets","paw"],["Foot Reflexology Area","Wellness path","foot"],["24/7 security","Guarded gate","shield"]
+  ],
+  locText: "About an hour to Manila and NAIA via CALAX.",
+  locNote: "PHirst runs a feasibility study, including flood and fault-line checks, before it acquires any land.",
+  // Straight-line distances from the project, measured with OpenStreetMap positions (road distances are longer).
+  nearby: [["Lyceum of the Philippines University Cavite","1.0 km"],["WalterMart General Trias","1.6 km"],["City of General Trias Doctors Medical Center","1.9 km"],["First Cavite Industrial Estate","2.0 km"],["Gateway Business Park","2.1 km"],["Eagle Ridge Golf & Country Club","3.4 km"],["Vista Mall General Trias","4.7 km"],["SM City Dasmariñas","4.8 km"],["DLSU Medical Center","5.9 km"],["De La Salle University Dasmariñas","6.5 km"]],
+  nearbyNote: "Approximate straight-line distances.",
+  mapsQuery: "PHirst Impressions Gen Tri Biclatan General Trias Cavite",
+  maps: [{
+    label: "Nearby",
+    lon0: 120.845, lat0: 14.41, K: 2700, cos: 0.969, w: 392, h: 405,
+    water: [],
+    roads: [{ pts: [[120.905,14.41],[120.908,14.37],[120.922,14.32],[120.935,14.285],[120.96,14.262],[120.99,14.256]], label: "CALAX", at: [120.9135,14.352], rot: 75 }],
+    places: [[120.881,14.386,"Gen. Trias town",8,4]],
+    // [type, lon, lat, label, dx, dy, anchor] — coordinates from OpenStreetMap
+    lm: [
+      ["mall",120.9117,14.3231,"Vista Mall Gen. Trias",10,4],
+      ["mall",120.9568,14.3018,"SM City Dasmariñas",-10,4,"end"],
+      ["mall",120.8648,14.3971,"Robinsons Place Gen. Trias",10,4],
+      ["mall",120.9823,14.3596,"The District Dasmariñas",-10,4,"end"],
+      ["school",120.9160,14.2902,"LPU Cavite",-10,4,"end"],
+      ["school",120.9586,14.3242,"DLSU-D",10,16],
+      ["hospital",120.9433,14.3278,"DLSU Medical Center",-10,-6,"end"],
+      ["hospital",120.9121,14.3650,"King Solomon Hospital",10,4]
+    ],
+    // extra landmarks shown on the 3D map only (some fall outside the flat map's frame)
+    lm3d: [
+      ["mall",120.9083,14.2918,"WalterMart Gen. Trias"],
+      ["hospital",120.9040,14.2912,"GenTri Doctors Medical Center"],
+      ["work",120.9360,14.2782,"First Cavite Industrial Estate"],
+      ["work",120.9198,14.2624,"Gateway Business Park"],
+      ["spot",120.9076,14.2519,"Eagle Ridge Golf"]
+    ],
+    pin: [120.918,14.281], pinTitle: "PHirst Impressions Gen Tri", pinSub: "Brgy. Biclatan", box: "below-left", zoom3d: 12.6,
+    aria: "Map: malls, schools and hospitals near PHirst Impressions Gen Tri in Brgy. Biclatan, General Trias"
+  }, {
+    label: "From Manila",
+    lon0: 120.80, lat0: 14.62, K: 1500, cos: 0.969, w: 407, h: 600,
+    water: [{ pts: [[120.975,14.62],[120.98,14.58],[120.985,14.54],[120.99,14.51],[120.975,14.49],[120.955,14.465],[120.925,14.455],[120.905,14.45],[120.895,14.475],[120.885,14.492],[120.87,14.465],[120.86,14.445],[120.84,14.435],[120.82,14.425],[120.80,14.415],[120.80,14.62]], label: "Manila Bay", at: [120.83,14.55] }],
+    roads: [
+      { pts: [[120.993,14.52],[120.99,14.5],[120.965,14.472],[120.935,14.458],[120.91,14.447]], label: "CAVITEX", at: [120.96,14.487], rot: 28 },
+      { pts: [[120.91,14.447],[120.905,14.41],[120.908,14.37],[120.922,14.32],[120.935,14.285],[120.96,14.262],[121.0,14.255],[121.05,14.265],[121.071,14.27]], label: "CALAX", at: [120.93,14.35] }
+    ],
+    route: [[121.015,14.509],[120.993,14.505],[120.99,14.5],[120.965,14.472],[120.935,14.458],[120.91,14.447],[120.905,14.41],[120.908,14.37],[120.922,14.32],[120.918,14.281]],
+    places: [[120.985,14.593,"Manila",8,4,"big"],[121.015,14.509,"NAIA",8,4,"big"],[120.881,14.386,"General Trias",-78,4],[120.968,14.235,"Silang",8,4]],
+    pin: [120.918,14.281], pinTitle: "PHirst Impressions Gen Tri", pinSub: "Brgy. Biclatan", box: "below-left",
+    aria: "Map: PHirst Impressions Gen Tri in Brgy. Biclatan, General Trias, reached from Manila and NAIA via CAVITEX and CALAX"
+  }],
+  siteplan: { imgs: [["gt-site-b1","Phase 1 · Batch 1"],["gt-site-b3","Phase 1 · Batch 3"],["gt-site-b5","Phase 1 · Batch 5"],["gt-site-b7","Phase 1 · Batch 7"]],
+    note: "PHirst sales maps (May 2025) showing lot sizes in sqm, Calista End and Inner units, and the amenity area. Plans may change; ask me which lots are open." },
+  ctaText: "Walk through the furnished model houses and the actual turnover units, and see the lots and amenities up close. The tripping is free. Just tell me your preferred day and I'll set it up.",
+  foot: "House photos show the Calista model houses and turnover units on site. Lot areas are typical; actual lots vary. Prices are the lowest on the latest availability list and change often, so please confirm before reserving.",
+  models: {
+    "calista-mid": {
+      name: "Calista Mid", kind: "Townhouse · inner unit",
+      lot: 60, floor: 40, beds: 2, baths: 1,
+      pitch: "The more affordable way into Impressions. It sits inside the townhouse row, with its own front yard and a small backyard for laundry and plants.",
+      cover: "midf-facade", coverAlt: "midb-facade",
+      model: [["midf-facade","Front"],["midf-living","Living area"],["midf-kitchen","Kitchen"],["midf-dining","Dining"],["gt-mid-kitchen2","Kitchen & pantry"],["gt-mid-dining2","Dining nook"],["gt-mid-office","Home office corner"],["midf-stairs","Stairs"],["midf-bed1","Master bedroom"],["midf-bed2","Bedroom 2"],["midf-bath","Toilet & bath"],["gt-mid-bath2","Vanity & bath"]],
+      turnover: [["midb-facade","Front"],["midb-living","Ground floor"],["midb-kitchen","Kitchen sink"],["midb-stairs","Stairs"],["midb-room","Bedroom"],["midb-bath","Toilet & bath"],["midb-yard","Backyard"]],
+      videos: [["stairs","Going upstairs","Actual turnover unit"]]
+    },
+    "calista-end": {
+      name: "Calista End", kind: "Townhouse · corner unit",
+      lot: 90, floor: 40, beds: 2, baths: 1,
+      pitch: "The corner of the row. Same 40 sqm house, but on a 90 sqm lot with a side garden that runs the length of the home, room to expand later.",
+      cover: "endf-facade", coverAlt: "endb-facade",
+      model: [["endf-facade","Front"],["endf-living","Living area"],["endf-living2","Living & stairs"],["endf-kitchen","Kitchen & dining"],["endf-stairs","Stairwell"],["endf-bed1","Master bedroom"],["endf-bed2","Bedroom 2"],["endf-study","Bedroom as home office"],["gt-end-kids","Kids' room"],["gt-end-bed3","Bedroom"],["endf-bath","Toilet & bath"],["endf-garden","Side garden"]],
+      turnover: [["endb-facade","Front"],["endb-yard","Front yard"],["endb-living","Ground floor"],["endb-living2","Living & stairs"],["endb-room","Bedroom"],["endb-bath","Toilet & bath"],["endb-garden","Side garden"]],
+      videos: [["end-walk","Calista End walkthrough","Model unit, gate to bedrooms"]],
+      plan: { imgs: [["end-plan","Ground & second floor"]], note: "The model unit on site sits on a 110.57 sqm lot. Typical Calista End lots are 90 sqm.",
+        rooms: [["Ground floor","Living, dining, kitchen, T&B, carport"],["Second floor","Master bedroom, bedroom 2"],["Outside","Side garden along the house"]] }
+    }
+  }
+},
+{
+  id: "editions-batulao", slug: "batulao",
+  brand: "PHirst Editions", name: "Batulao", accent: "Editions",
+  area: "Brgy. Kaylaway, Nasugbu, Batangas",
+  hectares: 14,
+  cardImg: "dv-chr-facade",
+  hero: { img: "dv-chr-facade" },
+  lede: from => `14 hectares of cool, green highland living with Mount Batulao on the horizon. Bigger single homes with three bedrooms, starting at ${shortM(from)}.`,
+  why: { eyebrow: "Why Editions", title: 'Room to <span class="serif">breathe.</span>',
+    text: "Editions is PHirst's elevated line: grander homes in a low-density community of rolling greens and morning fog. Every model has three bedrooms and at least two toilet & baths, and only 629 homes share 14 hectares, so there's space for your family to stretch out and slow down." },
+  stats: from => [
+    { html: priceStat(from), l: "lowest total contract price today", hl: true },
+    { html: '<span data-count="54">54</span>–<span data-count="120">120</span><small>sqm</small>', l: "floor area, Cartland to Corin" },
+    { html: '<span data-count="88">88</span>–<span data-count="132">132</span><small>sqm</small>', l: "typical lot" },
+    { html: '<span data-count="3">3</span><small>bedrooms</small>', l: "in every model" },
+    { html: '<span data-count="629">629</span><small>homes</small>', l: "only, for a quiet, low-density village" },
+    { html: '<span data-count="14">14</span><small>hectares</small>', l: "beside PHirst Park Homes Batulao", hl: true }
+  ],
+  sizes: true,
+  modelsTitle: 'Four editions of <span class="serif">home.</span>',
+  modelsIntro: "Each model is named after a modern author. Tap one for photos of its furnished model house and a walkthrough video.",
+  modelsNudge: "Photos only show so much. Walk through the model houses in person and feel the Batulao air.",
+  calc: { bankRate: 0.07, pagRate: 0.0625, pagMax: 6000000 },
+  compNudge: "Found a model you like? We'll pick the lot together on site and I'll prepare the official computation.",
+  amenIntro: "Across 14 hectares of rolling greens, there's room for movie nights under the stars, lazy afternoons in a hammock and weekend rides down the bike trail.",
+  amenities: [
+    ["Clubhouse","For parties & meetings","club"],["Swimming pool","Adults & kids","pool","am-bt-pool","Artist's illustration of this amenity at PHirst Editions Batulao."],["Panorama Square","Amphitheater-style outdoor cinema","cinema","am-bt-cinema","Artist's illustration of this amenity at PHirst Editions Batulao."],
+    ["Paw Park","A pet park, a PHirst first","paw","am-bt-paw","Artist's illustration of this amenity at PHirst Editions Batulao."],["Tree House","For the kids","tree","am-bt-tree","Artist's illustration of this amenity at PHirst Editions Batulao."],["Play Park","Kids' play area","play","am-bt-play","Artist's illustration of this amenity at PHirst Editions Batulao."],
+    ["WiFi Nook","Outdoor WiFi spot","wifi","am-bt-wifi","Artist's illustration of this amenity at PHirst Editions Batulao."],["Hammocks","Rest under the trees","hammock"],["Bike trail","Ride around the village","bike"],["Rope bridge","A little adventure","bridge"]
+  ],
+  locText: "About 2 hours from Makati via CALAX or SLEX, then up through Tagaytay.",
+  locNote: "On the road between Tagaytay and Nasugbu, right beside PHirst Park Homes Batulao.",
+  nearby: [["Ridge Hospital","450 m"],["Don Bosco Chapel","1.9 km"],["Kaylaway National High School","2.1 km"],["Metropolitan Medical Center","2.3 km"],["San Antonio de Padua Church","4.4 km"],["Aga Elementary School","4.7 km"],["Diana Garden Villa","7.8 km"],["Twin Lakes Tagaytay","9.8 km"],["Canyon Woods","13.3 km"]],
+  mapsQuery: "PHirst Editions Batulao Kaylaway Nasugbu Batangas",
+  maps: [{
+    label: "Nearby",
+    lon0: 120.765, lat0: 14.135, K: 2100, cos: 0.970, w: 410, h: 241,
+    water: [{ pts: [[120.935,14.0],[120.94,14.02],[120.95,14.03],[120.97,14.052],[120.99,14.06],[120.99,14.0]], label: "Taal Lake", at: [120.925,14.03] }],
+    roads: [{ pts: [[120.962,14.1153],[120.9373,14.0954],[120.90,14.082],[120.8568,14.0688],[120.8401,14.0763],[120.8224,14.09],[120.765,14.10]], label: "Tagaytay–Nasugbu Hwy", at: [120.885,14.097] }],
+    places: [[120.962,14.1153,"Tagaytay",-58,-8,"big"]],
+    peaks: [[120.802,14.0396,"Mt. Batulao"]],
+    lm: [
+      ["school",120.8224,14.0963,"Kaylaway Nat'l HS",-10,4,"end"],
+      ["church",120.8359,14.0715,"Caleruega Church",-10,14,"end"],
+      ["hospital",120.8417,14.0631,"Metropolitan Medical Center",10,12],
+      ["spot",120.8568,14.0688,"Twin Lakes Tagaytay",10,-6],
+      ["hospital",120.9608,14.1154,"Tagaytay Medical Center",-10,14,"end"]
+    ],
+    pin: [120.8401,14.0763], pinTitle: "PHirst Editions Batulao", pinSub: "Brgy. Kaylaway", box: "top-left", compass: [20, 212], zoom3d: 12.9,
+    aria: "Map: schools, hospitals, Caleruega Church and Twin Lakes Tagaytay near PHirst Editions Batulao"
+  }, {
+    label: "Getting there",
+    lon0: 120.58, lat0: 14.24, K: 850, cos: 0.970, w: 396, h: 255,
+    water: [
+      { pts: [[120.58,14.24],[120.62,14.24],[120.622,14.20],[120.625,14.13],[120.612,14.09],[120.622,14.05],[120.635,14.0],[120.628,13.94],[120.58,13.94]], label: "Nasugbu Bay", at: [120.588,14.225], rot: 90 },
+      { pts: [[120.93,13.94],[120.935,14.0],[120.95,14.03],[120.98,14.055],[121.02,14.066],[121.06,14.06],[121.06,13.94]], label: "Taal Lake", at: [120.985,13.985] }
+    ],
+    roads: [
+      { pts: [[120.962,14.115],[120.93,14.105],[120.90,14.10],[120.87,14.09],[120.845,14.083],[120.8401,14.0763],[120.78,14.07],[120.74,14.066],[120.70,14.07],[120.66,14.07],[120.635,14.07]], label: "Tagaytay–Nasugbu Hwy", at: [120.66,14.06] },
+      { pts: [[120.945,14.24],[120.95,14.20],[120.955,14.16],[120.962,14.115]], label: "to Manila", at: [120.885,14.225] },
+      { pts: [[120.962,14.115],[120.99,14.14],[121.02,14.16],[121.06,14.185]], label: "to SLEX", at: [120.99,14.175] }
+    ],
+    route: [[120.945,14.24],[120.95,14.20],[120.955,14.16],[120.962,14.115],[120.93,14.105],[120.90,14.10],[120.87,14.09],[120.8401,14.0763]],
+    places: [[120.962,14.115,"Tagaytay",8,-6,"big"],[120.635,14.07,"Nasugbu",6,-8,"big"]],
+    peaks: [[120.802,14.0396,"Mt. Batulao"]],
+    pin: [120.8401,14.0763], pinTitle: "PHirst Editions Batulao", pinSub: "Brgy. Kaylaway", box: "above-left", compass: [22, 228],
+    aria: "Map: PHirst Editions Batulao in Brgy. Kaylaway, Nasugbu, on the Tagaytay–Nasugbu Highway west of Tagaytay, near Mount Batulao"
+  }],
+  ctaText: "Walk through the furnished model houses, see the lots and amenities, and breathe in the Batulao air. The tripping is free. Just tell me your preferred day and I'll set it up.",
+  foot: "Photos show the furnished model houses on site. Lot areas are typical; actual lots vary. Prices are the lowest on the latest availability list and change often, so please confirm before reserving.",
+  models: {
+    "cartland": {
+      name: "Cartland", kind: "Single detached",
+      lot: 88, floor: 54, beds: 3, baths: 2, carports: 1,
+      pitch: "The easiest way into Editions: a two-storey detached home with three bedrooms and two toilet & baths on an 88 sqm lot, with a yard on every side.",
+      cover: "dv-cart-facade",
+      model: [["dv-cart-facade","Front"],["dv-cart-side","Side view"],["dv-cart-upper","Upper floor"],["dv-cart-yard","Front yard"],["dv-cart-living","Living & dining"],["dv-cart-living2","Living area & stairs"],["dv-cart-kitchen","Kitchen"],["bt-cart-kitchen","Dining nook"],["dv-cart-stairs","Stairwell"],["dv-cart-bed1","Master bedroom"],["dv-cart-study","Bedroom as home office"],["dv-cart-kids","Kids' room"],["dv-cart-bath","Toilet & bath"],["dv-cart-sign","Cartland 54 sign"]],
+      plan: { imgs: [["dv-cart-plan-gf","Ground floor"],["dv-cart-plan-2f","Second floor"]], note: "Floor plans from PHirst. Furniture is drawn for scale." },
+      videos: [["bt-cart-walk","Cartland walkthrough","Model house tour"]]
+    },
+    "charles": {
+      name: "Charles", kind: "Single attached",
+      lot: 99, floor: 70, beds: 3, baths: 2, carports: 2,
+      pitch: "A step up in space: 70 sqm across two floors, three bedrooms, two toilet & baths and parking for two cars.",
+      cover: "dv-cha-facade",
+      galNote: "An unfurnished Charles, showing the finished walls, floors and fixtures you receive.",
+      model: [["dv-cha-facade","Front"],["dv-cha-street","Street view"],["dv-cha-upper","Upper floor"],["dv-cha-gate","Gate & entrance"],["dv-cha-living","Ground floor & stairs"],["dv-cha-kitchen","Kitchen"],["dv-cha-ground","Living area"],["dv-cha-stairs","Stairwell"],["dv-cha-bed1","Bedroom with closet"],["dv-cha-bed2","Bedroom"],["dv-cha-bath","Toilet & bath"],["dv-cha-sign","Charles 70 sign"]],
+      plan: { imgs: [["dv-cha-plan-gf","Ground floor"]], note: "Ground floor plan from PHirst. Ask me for the second-floor layout." },
+      videos: []
+    },
+    "christie": {
+      name: "Christie", kind: "Single attached",
+      lot: 110, floor: 90, beds: 3, baths: 3, carports: 2,
+      pitch: "Ninety square meters of home with three bedrooms, three toilet & baths and parking for two. The dressed-up model shows how far the space can go.",
+      cover: "dv-chr-facade",
+      model: [["dv-chr-facade","Front"],["dv-chr-side","Side view"],["dv-chr-yard","Front yard"],["dv-chr-garden","Side garden"],["bt-chr-living","Living & dining"],["bt-chr-lounge","Lounge"],["dv-chr-kitchen","Kitchen"],["bt-chr-stairwell","Stairwell"],["dv-chr-master","Master bedroom"],["dv-chr-kids","Kids' room"],["dv-chr-bunk","Kids' bunk room"],["dv-chr-bed3","Bedroom"],["bt-chr-bath","Toilet & bath"],["dv-chr-sign","Christie 90 sign"]],
+      plan: { imgs: [["dv-chr-plan-gf","Ground floor"],["dv-chr-plan-2f","Second floor"]], note: "Floor plans from PHirst. Furniture is drawn for scale." },
+      videos: [["bt-chr-walk","Christie walkthrough","Dressed-up model house"]]
+    },
+    "corin": {
+      name: "Corin", kind: "The largest model",
+      lot: 132, floor: 120, beds: 3, baths: 3, carports: 2,
+      pitch: "The flagship of Editions: 120 sqm with a balcony upstairs, a covered carport for two and a garden along the side.",
+      cover: "dv-cor-facade",
+      model: [["dv-cor-facade","Front"],["dv-cor-upper","Balcony side"],["dv-cor-side","Side view"],["dv-cor-garden","Side garden"],["dv-cor-carport","Covered carport"],["dv-cor-living","Living area"],["dv-cor-dining","Dining"],["bt-cor-kitchen","Kitchen"],["bt-cor-stairwell","Stairwell"],["dv-cor-master","Master bedroom"],["dv-cor-nook","Master bedroom nook"],["dv-cor-bed2","Bedroom"],["dv-cor-bed3","Bedroom"],["dv-cor-bath","Toilet & bath"],["dv-cor-balcony","Balcony"],["bt-cor-view","View from the balcony"],["dv-cor-sign","Corin 120 sign"]],
+      plan: { imgs: [["dv-cor-plan-gf","Ground floor"],["dv-cor-plan-2f","Second floor"]], note: "Floor plans from PHirst. Furniture is drawn for scale." },
+      videos: [["bt-cor-walk","Corin walkthrough","Model house tour"]]
+    }
+  }
+}
+];
+/* =================================== */
+
+// A project link (<site>/gentri, <site>/batulao, or <site>/<page>/batulao) opens on that project;
+// the full catalogue stays one tap away (back button → #all).
+let FOCUS = (()=>{ const segs=location.pathname.toLowerCase().split("/").filter(Boolean);
+  let q=null; try{ q=new URLSearchParams(location.search).get("project"); }catch(e){}
+  return PROJECTS.find(P=>P.slug===q || segs.includes(P.slug)) || null; })();
+const MODELS = {};
+PROJECTS.forEach(P => Object.entries(P.models).forEach(([id,m]) => { m.id = id; m.P = P; MODELS[id] = m; }));
+// A model link (<site>/batulao/corin or <site>/<page>/batulao/corin) opens straight on that model.
+const FOCUS_MODEL = location.pathname.toLowerCase().split("/").filter(Boolean).find(x=>MODELS[x]) || null;
+if(FOCUS_MODEL && !FOCUS) FOCUS = MODELS[FOCUS_MODEL].P;
+const projFrom = P => Math.min(...Object.keys(P.models).map(priceOf).filter(Boolean));
+let CUR = null;
+
+const $ = (s,r=document)=>r.querySelector(s);
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const img = n => A+n+".jpg";
+const peso = (v,d=0)=>"₱"+v.toLocaleString("en-PH",{minimumFractionDigits:d,maximumFractionDigits:d});
+const arrow = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>';
+const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke-width="1.4" opacity=".35"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>';
+const cal = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/></svg>';
+const ICONS = {
+  club:'<path d="M4 11l8-6 8 6v9H4z"/><path d="M10 20v-5h4v5"/>',
+  pool:'<path d="M2 17c2 0 2-1.4 4-1.4s2 1.4 4 1.4 2-1.4 4-1.4 2 1.4 4 1.4 2-1.4 4-1.4"/><path d="M8 14V6a2 2 0 0 1 4 0"/><path d="M14 14V6a2 2 0 0 1 4 0"/><path d="M8 10h6"/>',
+  ball:'<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5v17"/><path d="M6 6c3 3 3 9 0 12"/><path d="M18 6c-3 3-3 9 0 12"/>',
+  run:'<circle cx="14" cy="4.5" r="1.8"/><path d="M6 21l3.5-6 3 2.5V22"/><path d="M9.5 15l1.5-6 4 3.5 3 .5"/><path d="M11 9l-3 1-1.5 3"/>',
+  cinema:'<rect x="3" y="4" width="18" height="11" rx="1"/><path d="M8 20l2-5"/><path d="M16 20l-2-5"/><path d="M10 8l4 1.8-4 1.8z"/>',
+  cube:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5"/><path d="M12 12L4 7.5"/><path d="M12 12v9"/>',
+  maze:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 3v8h5"/><path d="M17 21v-8h-5"/><path d="M12 7h5"/><path d="M7 17h2"/>',
+  paw:'<circle cx="7" cy="9" r="1.8"/><circle cx="11" cy="6" r="1.8"/><circle cx="15.5" cy="6.5" r="1.8"/><circle cx="18.5" cy="10.5" r="1.8"/><path d="M8.5 17.5c0-3 2-5 4.5-5s4 2.5 4 4.5-1.5 2.5-3 2-2.5-.5-3.5 0-2 .5-2-1.5z"/>',
+  foot:'<path d="M9 21c-2.5 0-3.5-2.5-3-5.5S7 9 9.5 9s3 3 2.5 6-0.5 6-3 6z"/><circle cx="12.5" cy="5" r="1.3"/><circle cx="15.5" cy="6" r="1.1"/><circle cx="17.5" cy="8.2" r="1"/><circle cx="18.3" cy="11" r=".9"/>',
+  shield:'<path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/>',
+  tree:'<path d="M12 3c3 0 5 2 5 4.5 1.8.5 3 2 3 4 0 2.5-2 4-4.5 4h-7C6 15.5 4 14 4 11.5c0-2 1.2-3.5 3-4C7 5 9 3 12 3z"/><path d="M12 15.5V21"/><path d="M9 21h6"/>',
+  play:'<path d="M5 20V7h4l10 13"/><path d="M5 7V4"/><path d="M9 7V4"/><path d="M5 12h4"/>',
+  wifi:'<path d="M2.5 9a14 14 0 0 1 19 0"/><path d="M5.5 12.5a9.5 9.5 0 0 1 13 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.2" r="1"/>',
+  hammock:'<path d="M3 5v15"/><path d="M21 5v15"/><path d="M3 8c3 7 15 7 18 0"/><path d="M3 8h18"/>',
+  bike:'<circle cx="6" cy="16" r="3.5"/><circle cx="18" cy="16" r="3.5"/><path d="M6 16l4-7h5l3 7"/><path d="M10 9l2 7h-6"/><path d="M14 6h2"/>',
+  bridge:'<path d="M2 9c5 5 15 5 20 0"/><path d="M2 9v6"/><path d="M22 9v6"/><path d="M2 15h20"/><path d="M7 12.5V15"/><path d="M12 13.5V15"/><path d="M17 12.5V15"/>'
+};
+function priceStat(v){
+  if(!v) return "—";
+  const [i,d]=(v/1e6).toFixed(2).split(".");
+  return `₱<span data-count="${i}">${i}</span>.${d}<small>M</small>`;
+}
+
+/* ---------- HUB ---------- */
+function hubView(){
+  return `
+  <section class="wrap hub-hero">
+    <span class="eyebrow">${SELLER.team}</span>
+    <h1 class="words"><span style="--i:0">Find</span> <span style="--i:1">your</span> <span style="--i:2" class="serif ph">PHirst</span> <span style="--i:3">home.</span></h1>
+    <p>Tap a project to see the actual houses, what comes with them and what they cost per month.</p>
+  </section>
+  <section class="wrap cards">
+    ${PROJECTS.map((P,i)=>`
+    <a class="pcard rv" style="--d:${i}" href="#${P.id}">
+      <div class="art"><img src="${img(P.cardImg)}" alt="${P.brand} ${P.name}"></div>
+      <div class="meta">
+        <span class="eyebrow">${P.brand}</span>
+        <h2>${P.name} <span class="serif" style="color:var(--rust)">${P.accent}</span></h2>
+        <span class="loc">${P.area}</span>
+        <div class="chips"><span class="chip">From ${shortM(projFrom(P))}</span><span class="chip">${P.hectares} hectares</span>${Object.values(P.models).map(m=>`<span class="chip">${m.name}</span>`).join("")}</div>
+      </div>
+      <span class="details">Details ${arrow}</span>
+    </a>`).join("")}
+  </section>`;
+}
+
+/* ---------- PROJECT ---------- */
+function lotsHTML(P){
+  const models = Object.values(P.models);
+  // Illustrative proportions: both lots share the row's depth; End is wider for its side garden.
+  const M = 12, depth = 13.33, houseW = 4.5, houseD = 4.5, back = 0, front = depth - houseD - back; // metres, 12px per m; house sits at the far end
+  const lotW = a => a/depth;
+  return `<div class="lots rv" id="lots">
+    <b style="font:700 16px var(--display)">Lot shape and size</b>
+    <div class="row">
+      ${models.map((m,i)=>{ const w=lotW(m.lot)*M, h=depth*M, hw=houseW*M, hd=houseD*M, fy=front*M, extra=w-hw;
+        return `<div class="lot"><div class="sq" style="--d:${i};width:${w}px;height:${h}px">
+          <i style="left:0;width:${hw}px;bottom:${fy}px;height:${hd}px"></i>
+          ${extra>4?`<em style="left:${hw+4}px;top:${h/2-10}px;writing-mode:vertical-rl">side garden</em>`:""}
+        </div><b>${m.name}</b><span>${m.lot} sqm typical lot</span></div>`;}).join("")}
+    </div>
+    <div class="street">Street · front yard & carport</div>
+    <div class="legend"><span><i style="background:var(--sage-soft);border:1px solid var(--sage)"></i>Lot</span><span><i style="background:var(--rust)"></i>House (2 storeys)</span></div>
+    <p class="fine">Both are long, deep lots: a long front yard and carport at the street, with the house set at the far end. The End unit adds a garden strip along the side. Proportions are illustrative; actual lot dimensions vary.</p>
+  </div>`;
+}
+function sizesHTML(P){
+  const models = Object.values(P.models), max = Math.max(...models.map(m=>m.lot));
+  return `<div class="sizes rv" id="sizes">
+    <b style="font:700 16px var(--display)">Floor area and lot, side by side</b>
+    ${models.map((m,i)=>`<a class="srow" href="#${m.id}"><span class="sname">${m.name}</span>
+      <span class="sbar"><i class="lotb" style="--w:${(m.lot/max*100).toFixed(1)}%;--d:${i}"></i><i class="floorb" style="--w:${(m.floor/max*100).toFixed(1)}%;--d:${i}"></i></span>
+      <span class="snum"><b>${m.floor}</b> / ${m.lot} sqm</span></a>`).join("")}
+    <div class="legend"><span><i style="background:var(--rust)"></i>Floor area</span><span><i style="background:var(--sage-soft);border:1px solid var(--sage)"></i>Typical lot</span></div>
+  </div>`;
+}
+function compBody(P,c){
+  const hmax=Math.max(...c.schedule.map(x=>x[1]));
+  const bars=c.schedule.flatMap(([_,amt,n,cls])=>Array.from({length:n},()=>[amt,cls])).map(([amt,cls],i)=>`<i class="${cls||""}" style="--d:${i};--h:${(amt/hmax*100).toFixed(0)}%"></i>`).join("");
+  const pag=y=>c.ma?c.ma[y]:amort(c.balance,0.0625,y), pb=c.defaultFin==="pagibig";
+  return `
+      <div class="comp">
+        <div class="panel" id="dpPanel">
+          <h3>Downpayment · 10% over 12 months</h3>
+          <div class="months" aria-hidden="true" style="grid-template-columns:repeat(${c.schedule.reduce((t,x)=>t+x[2],0)},1fr)">${bars}</div>
+          <div class="mlabels">${c.labels.map(l=>`<span>${l}</span>`).join("")}</div>
+          <dl class="kv">
+            ${c.schedule.map(([l,amt])=>`<div><dt>${l}</dt><dd>${peso(amt,amt%1?2:0)}</dd></div>`).join("")}
+            <div class="big"><dt>Total downpayment</dt><dd>${peso(c.dp,2)}</dd></div>
+          </dl>
+        </div>
+        <div class="panel">
+          <h3>Monthly amortization after the DP</h3>
+          <div class="toggle fin" role="group" aria-label="Financing" style="margin:0;display:grid;width:100%"><span class="pill" style="transform:translateX(${pb?0:100}%)"></span><button aria-pressed="${pb}" data-f="pagibig">Pag-IBIG Loan</button><button aria-pressed="${!pb}" data-f="bank">Bank Loan</button></div>
+          <div id="finPagibig" ${pb?"":"hidden"} style="display:grid;gap:14px">
+            <div class="seg" data-plan="pagibig" role="group" aria-label="Pag-IBIG years to pay" style="--n:5">
+              <span class="pill" style="transform:translateX(200%)"></span>
+              ${[30,25,20,15,10].map(y=>`<button aria-pressed="${y===20}" data-y="${y}">${y} yrs</button>`).join("")}
+            </div>
+            <div class="ma" id="ma">${peso(pag(20))}<small> /month</small></div>
+            <p class="fine">Pag-IBIG at 6.25%, fixed for the first 3 years. You need at least 24 monthly Pag-IBIG contributions; voluntary contributions can fill any gaps. Longer terms depend on the borrower's age. The final loanable amount is set by Pag-IBIG's approval; any difference is paid within the downpayment term.</p>
+          </div>
+          <div id="finBank" ${pb?"hidden":""} style="display:grid;gap:10px">
+            <div class="seg" data-plan="bank" role="group" aria-label="Bank years to pay" style="--n:5">
+              <span class="pill" style="transform:translateX(100%)"></span>
+              ${[25,20,15,10,5].map(y=>`<button aria-pressed="${y===20}" data-y="${y}">${y} yrs</button>`).join("")}
+            </div>
+            <div class="ma" id="maBank">${peso(amort(c.balance,P.bankRate,20))}<small> /month</small></div>
+            <p class="fine">Indicative at ${(P.bankRate*100).toFixed(0)}% a year on the same ${peso(c.balance,2)} balance. Actual rates, repricing periods and maximum terms depend on the bank and the borrower's age, and need bank approval. A bank loan can cover the full balance, so there's no loan difference to pay.</p>
+          </div>
+          <dl class="kv">
+            ${c.kv.map(([l,v])=>`<div><dt>${l}</dt><dd>${v<0?"− "+peso(-v,2):peso(v,2)}</dd></div>`).join("")}
+            <div class="big"><dt>Balance to finance (90%)</dt><dd>${peso(c.balance,2)}</dd></div>
+          </dl>
+          <p class="fine">${c.unit}. Estimated turnover ${c.turnover}. From ${c.asOf}. Unofficial until signed by PHirst Sales Administration.</p>
+        </div>
+      </div>
+      <p class="note"><span>${compNote(c)} Book a free tripping and I'll prepare the official computation for the unit you pick on site.</span></p>`;
+}
+function compNote(c){
+  const low=priceOf(c.modelId);
+  return low && Math.abs(low-c.compare)<1
+    ? `<b>This is the lowest-priced ${c.model} today.</b> It matches the cheapest unit on the ${PRICES.asOf} availability list.`
+    : `<b>A sample unit, not the cheapest.</b> ${c.model} starts at ${low?peso(low):"a different price"} on the ${PRICES.asOf} availability list.`;
+}
+function compHTML(P){
+  const cs=P.comps;
+  return `
+    <section class="block" id="compute">
+      <div class="head rv"><span class="eyebrow">Sample computation</span><h2>What it <span class="serif">costs</span> per month.</h2>
+        <p>Real PHirst computation sheets for each model. Your unit's figures depend on its lot and the price list on the day you reserve.</p></div>
+      ${cs.length>1?`<div class="seg rv" id="compModel" role="group" aria-label="Model" style="--n:${cs.length};max-width:420px;margin-bottom:14px"><span class="pill"></span>${cs.map((c,i)=>`<button aria-pressed="${i===0}" data-c="${i}">${c.model}</button>`).join("")}</div>`:""}
+      <div id="compBody" class="rv">${compBody(P,cs[0])}</div>
+      ${nudge(P.compNudge)}
+    </section>`;
+}
+function calcHTML(P){
+  const ids = Object.keys(P.models), k = P.calc;
+  return `
+    <section class="block" id="compute">
+      <div class="head rv"><span class="eyebrow">Estimate your payments</span><h2>What it <span class="serif">costs</span> per month.</h2>
+        <p>Based on the lowest-priced unit of each model on the ${PRICES.asOf} availability list. Your unit's figures depend on its lot.</p></div>
+      <div class="comp">
+        <div class="panel rv" id="calcPanel">
+          <h3>Pick a model</h3>
+          <div class="seg" id="calcModel" role="group" aria-label="Model" style="--n:${ids.length}"><span class="pill"></span>
+            ${ids.map((id,i)=>`<button aria-pressed="${i===0}" data-m="${id}">${P.models[id].name}</button>`).join("")}
+          </div>
+          <div class="ma" id="cTcp">—</div>
+          <p class="fine" style="margin-top:-8px">Lowest total contract price for this model today</p>
+          <div class="months" aria-hidden="true">${Array.from({length:12},(_,i)=>`<i style="--d:${i};--h:70%"></i>`).join("")}</div>
+          <div class="mlabels"><span>Month 1</span><span>Downpayment</span><span>Month 12</span></div>
+          <dl class="kv">
+            <div><dt>Downpayment (10%)</dt><dd id="cDp">—</dd></div>
+            <div><dt>Monthly for 12 months</dt><dd id="cMo">—</dd></div>
+            <div class="big"><dt>Balance to finance (90%)</dt><dd id="cBal">—</dd></div>
+          </dl>
+        </div>
+        <div class="panel rv" style="--d:1">
+          <h3>Monthly amortization after the DP</h3>
+          <div class="toggle fin2" role="group" aria-label="Financing" style="margin:0;display:grid;width:100%"><span class="pill"></span><button aria-pressed="true" data-f="bank">Bank Loan</button><button aria-pressed="false" data-f="pagibig">Pag-IBIG Loan</button></div>
+          <div id="cBank" style="display:grid;gap:14px">
+            <div class="seg" id="yBank" role="group" aria-label="Bank years to pay" style="--n:5"><span class="pill" style="transform:translateX(100%)"></span>
+              ${[25,20,15,10,5].map(y=>`<button aria-pressed="${y===20}" data-y="${y}">${y} yrs</button>`).join("")}</div>
+            <div class="ma" id="cMaBank">—</div>
+            <p class="fine">Indicative at ${(k.bankRate*100).toFixed(0)}% a year. Actual rates, repricing periods and maximum terms depend on the bank and the borrower's age, and need bank approval.</p>
+          </div>
+          <div id="cPag" hidden style="display:grid;gap:14px">
+            <div class="seg" id="yPag" role="group" aria-label="Pag-IBIG years to pay" style="--n:5"><span class="pill" style="transform:translateX(200%)"></span>
+              ${[30,25,20,15,10].map(y=>`<button aria-pressed="${y===20}" data-y="${y}">${y} yrs</button>`).join("")}</div>
+            <div class="ma" id="cMaPag">—</div>
+            <p class="fine" id="cPagNote"></p>
+          </div>
+        </div>
+      </div>
+      <p class="note rv"><span><b>Estimate only.</b> 10% downpayment over 12 months and 90% financed. Reservation fee, promos and discounts aren't included. Your official computation sheet comes from PHirst Sales Administration.</span></p>
+      ${nudge(P.compNudge)}
+    </section>`;
+}
+function projectView(P){
+  const models = Object.entries(P.models), from = projFrom(P);
+  return `
+  <section class="hero">
+    ${P.hero.video
+      ? `<video class="bgv" muted playsinline loop preload="auto" poster="${img(P.hero.poster)}" ${reduce?"":"autoplay"}><source src="${A}${P.hero.video}.mp4" type="video/mp4"></video>`
+      : `<img class="still" src="${img(P.hero.img)}" alt="">`}
+    <div class="wrap">
+      <span class="eyebrow">${P.brand} · ${P.area}</span>
+      <h1 class="words"><span style="--i:0">${P.name}</span><span style="--i:1" class="serif">${P.accent}</span></h1>
+      <p class="lede words"><span style="--i:3">${P.lede(from)}</span></p>
+      <div class="hero-chips">${models.map(([id,m],i)=>`<a href="#${id}" style="--i:${i}">${m.name} · from ${shortM(priceOf(id))}</a>`).join("")}</div>
+      <span class="scrollcue" aria-hidden="true"></span>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="block">
+      <div class="head rv"><span class="eyebrow">${P.why.eyebrow}</span><h2>${P.why.title}</h2><p>${P.why.text}</p></div>
+      <div class="stats">${P.stats(from).map((s,i)=>`<div class="stat ${s.hl?"hl":""} rv" style="--d:${i%4}"><div class="n">${s.html}</div><div class="l">${s.l}</div></div>`).join("")}</div>
+      ${P.lots ? lotsHTML(P) : ""}${P.sizes ? sizesHTML(P) : ""}
+    </section>
+
+    <section class="block" id="models">
+      <div class="head rv"><span class="eyebrow">House models</span><h2>${P.modelsTitle}</h2><p>${P.modelsIntro}</p></div>
+      <div class="models ${models.length>2?"four":""}">
+        ${models.map(([id,m],i)=>`
+        <a class="mcard rv" style="--d:${i}" href="#${id}">
+          ${m.cover ? `<img src="${img(m.cover)}" alt="${m.name} model house">` : `<span class="nophoto"><b>${m.floor}</b>sqm<em>Photos coming soon</em></span>`}
+          ${m.coverAlt ? `<img class="alt" src="${img(m.coverAlt)}" alt="" aria-hidden="true">` : ""}
+          <div class="txt"><span class="kind">${m.kind}</span><h3>${m.name}</h3>
+            <div class="spec"><span>From <b>${shortM(priceOf(id))}</b></span><span><b>${m.floor}</b> sqm floor</span><span><b>${m.lot}</b> sqm lot</span><span><b>${m.beds}</b> BR · <b>${m.baths}</b> T&B</span></div></div>
+          <span class="details">Details ${arrow}</span>
+        </a>`).join("")}
+      </div>
+      ${nudge(P.modelsNudge)}
+    </section>
+
+    ${P.inclusions ? `
+    <section class="block" id="finished">
+      <div class="head rv"><span class="eyebrow">Turned over with</span><h2>Finished, <span class="serif">not bare.</span></h2></div>
+      <div class="incl">${P.inclusions.map((x,i)=>`<div class="inc rv" style="--d:${i}">${check}${x}</div>`).join("")}</div>
+      <p class="note rv"><span><b>Fully finished, not furnished.</b> Furniture and appliances in the model house are for display. The "As turned over" photos on each model page show exactly what you receive.</span></p>
+    </section>` : ""}
+
+    ${P.comps ? compHTML(P) : calcHTML(P)}
+
+    <section class="block" id="amenities">
+      <div class="head rv"><span class="eyebrow">Inside the community</span><h2>Things to do <span class="serif">without leaving home.</span></h2><p>${P.amenIntro}</p></div>
+      <div class="amen" id="amen">${P.amenities.map(([n,w,ic],i)=>`<button class="am rv" style="--d:${i%5}" data-a="${i}" aria-expanded="false"><span class="more" aria-hidden="true">+</span><svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[ic]}</svg><b>${n}</b><span>${w}</span></button>`).join("")}</div>
+      <p class="fine rv" style="margin-top:10px">Tap an amenity to see it.</p>
+    </section>
+
+    ${P.siteplan ? `
+    <section class="block" id="siteplan">
+      <div class="head rv"><span class="eyebrow">Site plan</span><h2>Find your <span class="serif">lot.</span></h2></div>
+      <div class="plans site">${P.siteplan.imgs.map(([f,c],i)=>`<figure class="rv" style="--d:${i}"><img class="siteImg" data-i="${i}" src="${img(f)}" alt="${P.brand} ${P.name} sales map, ${c}" loading="lazy"><figcaption>${c}</figcaption></figure>`).join("")}</div>
+      <p class="fine rv" style="margin-top:10px">${P.siteplan.note}</p>
+    </section>` : ""}
+
+    <section class="block" id="location">
+      <div class="head rv"><span class="eyebrow">Location</span><h2>Where it <span class="serif">sits.</span></h2></div>
+      <div class="locgrid">
+        <div class="mapcard rv${USE3D?" is3d":""}" id="mapcard">${USE3D?map3dHTML(P):mapBlock(P)}
+          <div class="cap"><span>${USE3D?"3D map · drag with two fingers to look around":"Simplified map · major roads only"}</span><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(P.mapsQuery)}" target="_blank" rel="noopener" style="color:var(--rust);font-weight:600;text-decoration:none">Open in Google Maps →</a></div>
+        </div>
+        <div class="darkcard rv" style="--d:1">
+          <svg class="pin" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+          <span class="eyebrow" style="color:#F4B08F">Location</span>
+          <h3>${P.area}</h3>
+          <p>${P.locText}</p>
+          <div class="road" aria-hidden="true"></div>
+          <p style="font-size:14px">${P.locNote}</p>
+          ${P.nearby ? `<ul class="near">${P.nearby.map(([n,d])=>`<li><span>${n}</span><b>${d}</b></li>`).join("")}</ul><p style="font-size:12px;opacity:.6">${P.nearbyNote||"Approximate distances."}</p>` : ""}
+        </div>
+      </div>
+      <div class="panel rv" style="margin-top:14px">
+          <span class="eyebrow">Buying safely</span>
+          <ul class="trust">
+            <li>${check}<span><b>You pay PHirst directly.</b> Every payment goes to the developer's bank account. I never collect payments from buyers.</span></li>
+            <li>${check}<span><b>Authorized PHirst seller.</b> Team HML is an accredited PHirst Park Homes sales team. <span class="todo">add license numbers</span></span></li>
+            <li>${check}<span><b>Site visits Monday to Sunday, 8 AM–5 PM.</b> Book ahead so we can show you actual units. Abroad? I can tour you by video call.</span></li>
+            <li>${check}<span><b>OFW-friendly.</b> A relative in the Philippines can process for you with an SPA.</span></li>
+          </ul>
+      </div>
+    </section>
+
+    <section class="block" id="book">
+      <div class="head rv"><span class="eyebrow">Free tripping · any day, 8 AM–5 PM</span><h2>Book your <span class="serif">visit.</span></h2>
+        <p>Pick a day and time. ${SELLER.name} confirms it with you in Messenger.</p></div>
+      <div class="book rv">${bookForm(P)}</div>
+    </section>
+
+    <section class="cta rv">
+      <span class="glow"></span>
+      <span class="eyebrow" style="color:#F4B08F">Free tripping · ${P.brand} ${P.name}</span>
+      <h2>Come see your future home in person.</h2>
+      <p>${P.ctaText}</p>
+      <div class="week" aria-label="Site viewing every day, 8 AM to 5 PM">${["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map((d,i)=>`<span class="on" style="--i:${i}">${d}</span>`).join("")}<em>8 AM – 5 PM</em></div>
+      <div class="btns"><a class="btn" href="#book" data-jump="book">Schedule a free tripping ${arrow}</a><a class="btn ghost" href="${msg("ask",P)}" target="_blank" rel="noopener">More questions? Message us</a></div>
+      <a class="alt-link" href="${msg("videotour",P)}" target="_blank" rel="noopener">Abroad? Book a video tour instead →</a>
+    </section>
+    <p class="foot">${P.foot}${PRICES.asOf ? ` Prices as of ${PRICES.asOf}.` : ""}</p>
+  </div>`;
+}
+
+/* ---------- MODEL ---------- */
+function modelView(id){
+  const m = MODELS[id], P = m.P, ids = Object.keys(P.models), next = P.models[ids[(ids.indexOf(id)+1)%ids.length]];
+  const hasPhotos = m.model.length > 0;
+  return `
+  <section class="mhero${window.__fly?" flying":""}">
+    ${m.cover ? `<img id="par" src="${img(m.cover)}" alt="${m.name} front">` : `<span class="nophoto big"><b>${m.floor}</b>sqm</span>`}
+    <div class="wrap">
+      <span class="eyebrow">${P.brand} ${P.name} · ${m.kind}</span>
+      <h1 class="words"><span style="--i:0">${m.name}</span></h1>
+      <span class="fromtag words"><span style="--i:2">From ${shortM(priceOf(id))}</span></span>
+    </div>
+  </section>
+  <div class="wrap">
+    <div class="specbar rv">
+      <div><b data-count="${m.lot}">${m.lot}<small>sqm</small></b><span>Typical lot</span></div>
+      <div><b data-count="${m.floor}">${m.floor}<small>sqm</small></b><span>Floor area</span></div>
+      <div><b data-count="${m.beds}">${m.beds}</b><span>Bedrooms</span></div>
+      <div><b data-count="${m.baths}">${m.baths}</b><span>Toilet & bath</span></div>
+      ${m.carports ? `<div><b data-count="${m.carports}">${m.carports}</b><span>Carport${m.carports>1?"s":""}</span></div>` : ""}
+    </div>
+    <p class="rv" style="font-size:clamp(18px,2.4vw,22px);max-width:46ch;margin-top:28px">${m.pitch}</p>
+
+    <section class="block" style="padding-top:48px">
+      ${m.turnover
+        ? `<div class="head rv"><span class="eyebrow">Photos</span><h2>See it <span class="serif">both ways.</span></h2></div>
+           <div class="toggle rv" role="group" aria-label="Photo set"><span class="pill"></span><button aria-pressed="true" data-set="model">Model house</button><button aria-pressed="false" data-set="turnover">As turned over</button></div>`
+        : `<div class="head rv"><span class="eyebrow">Photos</span><h2>Inside the <span class="serif">model house.</span></h2></div>`}
+      <p class="toggle-note" id="tnote"></p>
+      ${hasPhotos ? `<div class="gal" id="gal"></div>` : `<div class="nophoto-block rv"><b>Photos coming soon.</b><span>Ask me for photos or a video of the ${m.name}, or see it yourself on a free tripping.</span></div>`}
+    </section>
+
+    ${m.plan ? `
+    <section class="block">
+      <div class="head rv"><span class="eyebrow">Floor plan</span><h2>How it's <span class="serif">laid out.</span></h2></div>
+      <div class="plans">${m.plan.imgs.map(([f,c],i)=>`<figure class="rv" style="--d:${i}"><img class="planImg" data-i="${i}" src="${img(f)}" alt="${m.name} floor plan, ${c.toLowerCase()}"><figcaption>${c}</figcaption></figure>`).join("")}</div>
+      ${m.plan.rooms ? `<ul class="rooms rv" style="margin-top:18px">${m.plan.rooms.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join("")}</ul>` : ""}
+      <p class="fine rv" style="margin-top:10px">${m.plan.note}</p>
+    </section>` : ""}
+
+    ${m.videos.length ? `
+    <section class="block">
+      <div class="head rv"><span class="eyebrow">Video</span><h2>Walk <span class="serif">through.</span></h2></div>
+      <div class="vids">${m.videos.map(([f,t,s])=>`<div class="vid rv"><video controls playsinline preload="none" poster="${A}${f}-poster.jpg"><source src="${A}${f}.mp4" type="video/mp4"></video><b>${t}</b><span>${s}</span></div>`).join("")}</div>
+    </section>` : ""}
+
+    <section class="cta rv">
+      <span class="glow"></span>
+      <span class="eyebrow" style="color:#F4B08F">${m.name} · ${P.brand} ${P.name}</span>
+      <h2>See the ${m.name} in person.</h2>
+      <p>Walk through the furnished model house${m.turnover?" and an actual turnover unit":""}, then we'll go over the computation for the lot you like. The tripping is free, any day from 8 AM to 5 PM.</p>
+      <div class="btns"><a class="btn" href="${msg("book",P,id)}" target="_blank" rel="noopener">Book a free tripping ${arrow}</a><a class="btn ghost" href="${msg("ask",P,id)}" target="_blank" rel="noopener">More questions? Message us</a></div>
+      <a class="alt-link" href="${msg("videotour",P,id)}" target="_blank" rel="noopener">Abroad? Book a video tour instead →</a>
+    </section>
+    <div class="next"><span class="eyebrow">${ids.length>2?"Next model":"Compare with"}</span><a href="#${next.id}">${next.name} ${arrow}</a></div>
+    <p class="foot" style="margin-top:20px">Model house furniture and decor are for display only. Units are turned over fully finished, not furnished. ${PRICES.asOf ? `Price is the lowest on the ${PRICES.asOf} availability list.` : ""}</p>
+  </div>`;
+}
+
+/* ---------- gallery + lightbox ---------- */
+function renderGal(id, set){
+  const m = MODELS[id], list = m[set];
+  if(!$("#gal")) return;
+  $("#tnote").textContent = m.galNote ? m.galNote : !m.turnover ? "Decorated by PHirst to show how the space can be used. Units are turned over finished, not furnished."
+    : set==="model" ? "Decorated by PHirst to show how the space can be used." : "What you actually receive at turnover: finished walls, floors and fixtures, no furniture.";
+  $("#gal").innerHTML = list.map(([f,cap],i)=>`<button class="${reduce?"":"in"} ${i===0?"w":""}" style="--d:${i}" data-i="${i}"><img src="${img(f)}" alt="${cap}" loading="lazy"><span>${cap}</span></button>`).join("");
+  $("#gal").querySelectorAll("button").forEach(b=>b.onclick=()=>lightbox(list.map(([f,c])=>[img(f),c]), +b.dataset.i, b.querySelector("img")));
+  armParallax();
+}
+function wireToggle(id){
+  const t = $(".toggle");
+  if(t){ const btns=[...t.querySelectorAll("button")], pill=t.querySelector(".pill");
+    btns.forEach((b,i)=>b.onclick=()=>{ btns.forEach(x=>x.setAttribute("aria-pressed",x===b)); pill.style.transform=`translateX(${i*100}%)`; renderGal(id,b.dataset.set); }); }
+  renderGal(id,"model");
+}
+function fitRect(nw,nh){
+  const pad=16, top=70, W=innerWidth-pad*2, H=innerHeight-top-70;
+  const s=Math.min(W/nw,H/nh); const w=nw*s, h=nh*s;
+  return {left:(innerWidth-w)/2, top:top+(H-h)/2, width:w, height:h};
+}
+function lightbox(list, i, fromEl){
+  const root=$("#lbRoot");
+  root.innerHTML=`<div class="lb" role="dialog" aria-modal="true" aria-label="Photo viewer"><img alt=""><button class="ctl x" aria-label="Close">✕</button><button class="ctl pv" aria-label="Previous">‹</button><button class="ctl nx" aria-label="Next">›</button><div class="cap"></div></div>`;
+  const lb=root.firstChild, im=lb.querySelector("img"), cap=lb.querySelector(".cap");
+  let cur=i, origin=fromEl;
+  const place=(el,nw,nh,animateFrom)=>{
+    const r=fitRect(nw,nh);
+    Object.assign(im.style,{left:r.left+"px",top:r.top+"px",width:r.width+"px",height:r.height+"px"});
+    if(animateFrom && !reduce){
+      const f=animateFrom.getBoundingClientRect();
+      im.style.transition="none";
+      im.style.transform=`translate(${f.left-r.left}px,${f.top-r.top}px) scale(${f.width/r.width},${f.height/r.height})`;
+      im.getBoundingClientRect();
+      im.style.transition=""; im.style.transform="none";
+    }
+  };
+  const show=(k,from)=>{
+    cur=(k+list.length)%list.length; im.src=list[cur][0]; im.alt=list[cur][1]; cap.textContent=`${list[cur][1]} · ${cur+1} of ${list.length}`;
+    const go=()=>place(im,im.naturalWidth,im.naturalHeight,from);
+    im.complete&&im.naturalWidth?go():im.onload=()=>{go();im.onload=null;};
+  };
+  const step=d=>{ if(reduce){show(cur+d);return;} im.style.opacity=0; im.style.transform=`translateX(${-d*40}px)`; setTimeout(()=>{ im.style.transition="none"; im.style.transform=`translateX(${d*40}px)`; show(cur+d); requestAnimationFrame(()=>{ im.style.transition=""; im.style.opacity=1; im.style.transform="none"; }); },220); };
+  const close=()=>{
+    const thumbs=document.querySelectorAll("#gal img, .planImg, .siteImg"); const t=[...thumbs].find(x=>x.getAttribute("src")===list[cur][0]);
+    lb.classList.remove("on");
+    if(t && !reduce){ const f=t.getBoundingClientRect(), r=im.getBoundingClientRect(); im.style.transform=`translate(${f.left-r.left}px,${f.top-r.top}px) scale(${f.width/r.width},${f.height/r.height})`; }
+    else im.style.opacity=0;
+    setTimeout(()=>root.innerHTML="", reduce?0:500); document.removeEventListener("keydown",key);
+  };
+  const key=e=>{ if(e.key==="Escape")close(); if(e.key==="ArrowRight")step(1); if(e.key==="ArrowLeft")step(-1); };
+  document.addEventListener("keydown",key);
+  lb.querySelector(".x").onclick=close; lb.querySelector(".nx").onclick=()=>step(1); lb.querySelector(".pv").onclick=()=>step(-1);
+  lb.addEventListener("click",e=>{ if(e.target===lb) close(); });
+  let sx=null; im.addEventListener("pointerdown",e=>sx=e.clientX); im.addEventListener("pointerup",e=>{ if(sx===null)return; const dx=e.clientX-sx; sx=null; if(Math.abs(dx)>40) step(dx<0?1:-1); });
+  show(i, origin);
+  requestAnimationFrame(()=>lb.classList.add("on"));
+  lb.querySelector(".x").focus({preventScroll:true});
+}
+
+/* ---------- motion wiring ---------- */
+let io;
+function countUp(root){
+  if(reduce) return;
+  root.querySelectorAll("[data-count]").forEach(el=>{
+    const to=+el.dataset.count, tail=el.innerHTML.replace(/^[\d.]+/,""), t0=performance.now();
+    (function f(t){ const k=Math.min(1,(t-t0)/1300), e=1-Math.pow(1-k,4); el.innerHTML=Math.round(to*e)+tail; if(k<1) requestAnimationFrame(f); })(t0);
+  });
+}
+function armReveals(){
+  io?.disconnect();
+  const all=[...document.querySelectorAll(".rv, #lots, #sizes, #calcPanel, #mapcard")];
+  if(reduce) return;
+  io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.remove("armed"); countUp(e.target); io.unobserve(e.target);} }),{rootMargin:"0px 0px -10% 0px"});
+  all.forEach(el=>{ if(el.getBoundingClientRect().top>innerHeight*0.9){ el.classList.add("armed"); io.observe(el);} else countUp(el); });
+}
+function wireAmen(P){
+  const grid=$("#amen"); if(!grid) return;
+  const tiles=[...grid.querySelectorAll(".am")];
+  let panel=null, openIdx=-1;
+  const shut=(then)=>{ if(!panel){ then&&then(); return; }
+    const p=panel; panel=null; tiles.forEach(t=>t.setAttribute("aria-expanded","false"));
+    p.classList.remove("open"); setTimeout(()=>{ p.remove(); then&&then(); }, reduce?0:(then?250:600)); };
+  tiles.forEach((t,i)=>t.onclick=()=>{
+    if(openIdx===i){ openIdx=-1; shut(); return; }
+    openIdx=i;
+    shut(()=>{
+      const [n,w,ic,photo,blurb]=P.amenities[i];
+      const cols=getComputedStyle(grid).gridTemplateColumns.split(" ").length;
+      const after=tiles[Math.min((Math.floor(i/cols)+1)*cols-1, tiles.length-1)];
+      panel=document.createElement("div"); panel.className="am-panel";
+      panel.innerHTML=`<div><div class="am-card">${photo?`<img src="${img(photo)}" alt="${n}">`:`<div class="ph-slot"><svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[ic]}</svg><span style="opacity:.7;font-size:13px">Photo coming soon</span></div>`}
+        <div class="txt"><span class="eyebrow" style="color:#F4B08F">${w}</span><h3>${n}</h3><p>${blurb||"Ask me for photos or a video of this amenity, or see it yourself on a site visit."}</p></div></div></div>`;
+      after.after(panel); t.setAttribute("aria-expanded","true"); armParallax();
+      requestAnimationFrame(()=>requestAnimationFrame(()=>panel.classList.add("open")));
+      setTimeout(()=>{ const r=panel.getBoundingClientRect(); if(r.bottom>innerHeight) panel.scrollIntoView({behavior:reduce?"auto":"smooth",block:"nearest"}); }, reduce?0:450);
+    });
+  });
+}
+function locMap(g){
+  // equirectangular: lon/lat → px
+  const x=lon=>((lon-g.lon0)*g.cos*g.K).toFixed(1), y=lat=>((g.lat0-lat)*g.K).toFixed(1);
+  const pts=a=>a.map(([lo,la])=>x(lo)+","+y(la)).join(" ");
+  const road=a=>`<polyline points="${pts(a)}" fill="none" stroke="var(--line)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const label=(lo,la,t,rot,cls="")=>`<text x="${x(lo)}" y="${y(la)}" class="${cls}"${rot?` transform="rotate(${rot} ${x(lo)} ${y(la)})"`:""}>${t}</text>`;
+  const dot=([lo,la,t,dx=8,dy=4,cls=""])=>`<circle cx="${x(lo)}" cy="${y(la)}" r="4" fill="var(--ink)"/><text x="${(+x(lo)+dx).toFixed(1)}" y="${(+y(la)+dy).toFixed(1)}" class="${cls}">${t}</text>`;
+  const peak=([lo,la,t])=>`<path d="M${+x(lo)-10} ${+y(la)+6} L${x(lo)} ${+y(la)-8} L${+x(lo)+10} ${+y(la)+6}Z" fill="var(--sage)" opacity=".75"/><text x="${+x(lo)-24}" y="${+y(la)+20}">${t}</text>`;
+  const spot=([lo,la,t,dx=8,dy=4])=>{ const cx=+x(lo), cy=+y(la), st=[...Array(10)].map((_,i)=>{ const r=i%2?3:7, a=Math.PI/5*i-Math.PI/2; return (cx+r*Math.cos(a)).toFixed(1)+","+(cy+r*Math.sin(a)).toFixed(1); }).join(" ");
+    return `<polygon class="spot" points="${st}" fill="#E9B949" stroke="var(--char)" stroke-width=".8"/><text x="${cx+dx}" y="${cy+dy}" class="big" style="font-size:11px">${t}</text>`; };
+  const px=+x(g.pin[0]), py=+y(g.pin[1]);
+  const bx = g.box==="top-left" ? 3 : px-150, by = g.box==="top-left" ? 30 : g.box==="above-left" ? py-84 : py+8;
+  return `<svg class="map" viewBox="0 0 ${g.w} ${g.h}" role="img" aria-label="${g.aria}">
+    <rect width="${g.w}" height="${g.h}" fill="var(--surface)"/>
+    ${g.water.map(w=>`<polygon points="${pts(w.pts)}" fill="var(--water)"/>${label(w.at[0],w.at[1],w.label,w.rot,"water-l")}`).join("")}
+    ${g.roads.map(r=>road(r.pts)).join("")}
+    ${g.route ? `<polyline class="route" pathLength="1" points="${pts(g.route)}" fill="none" stroke="var(--rust)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>` : ""}
+    ${g.roads.map(r=>label(r.at[0],r.at[1],r.label,r.rot)).join("")}
+    ${(g.peaks||[]).map(peak).join("")}
+    ${(g.spots||[]).map(spot).join("")}
+    ${(g.lm||[]).map(([type,lo,la,t,dx=10,dy=4,anchor="start"])=>{ const cx=+x(lo), cy=+y(la);
+      return `<g class="lmk">${lmIcon(type,cx,cy)}<text class="lml" x="${cx+dx}" y="${cy+dy}" text-anchor="${anchor}">${t}</text></g>`; }).join("")}
+    ${g.places.map(dot).join("")}
+    <circle class="pulse" cx="${px}" cy="${py}" r="10" fill="var(--rust)"/>
+    <g style="animation:drop 1.3s var(--ease) both"><path d="M${px} ${py} c-9 -12 -13 -17 -13 -24 a13 13 0 0 1 26 0 c0 7 -4 12 -13 24z" fill="var(--rust)"/><circle cx="${px}" cy="${py-24}" r="5" fill="var(--surface)"/></g>
+    <rect x="${bx}" y="${by}" width="140" height="36" rx="8" fill="var(--char)"/>
+    <text x="${bx+8}" y="${by+15}" style="fill:var(--on-char);font-size:11px;font-weight:700">${g.pinTitle}</text>
+    <text x="${bx+8}" y="${by+29}" style="fill:var(--on-char);opacity:.75;font-size:10px">${g.pinSub}</text>
+    <g transform="translate(${g.compass?g.compass.join(" "):(g.w-29)+" 30"})"><path d="M0 -14 L6 4 L0 0 L-6 4Z" fill="var(--ink)"/><text x="-4" y="18" style="fill:var(--ink)">N</text></g>
+  </svg>`;
+}
+const LM = { place:["#6b7478","Town"], work:["#5B7385","Business park"], mall:["#C2542D","Mall"], school:["#3E7CB1","School"], hospital:["#D23F4E","Hospital"], church:["#7E62B3","Church"], spot:["#E9B949","Famous spot"] };
+function lmIcon(type,cx,cy){
+  const c=LM[type][0], w="#fff";
+  if(type==="spot"){ const st=[...Array(10)].map((_,i)=>{ const r=i%2?3.4:8, a=Math.PI/5*i-Math.PI/2; return (cx+r*Math.cos(a)).toFixed(1)+","+(cy+r*Math.sin(a)).toFixed(1); }).join(" ");
+    return `<polygon points="${st}" fill="${c}" stroke="var(--char)" stroke-width=".8"/>`; }
+  if(type==="place") return `<circle cx="${cx}" cy="${cy}" r="5" fill="#eef0ec" stroke="#0f1213" stroke-width="2"/>`;
+  const g = type==="hospital" ? `<rect x="${cx-1.1}" y="${cy-4}" width="2.2" height="8" fill="${w}"/><rect x="${cx-4}" y="${cy-1.1}" width="8" height="2.2" fill="${w}"/>`
+    : type==="school" ? `<path d="M${cx-5} ${cy-1}L${cx} ${cy-4}L${cx+5} ${cy-1}L${cx} ${cy+2}Z" fill="${w}"/><path d="M${cx-3} ${cy+.5}v2.5c1.5 1.3 4.5 1.3 6 0v-2.5" fill="none" stroke="${w}" stroke-width="1.2"/>`
+    : type==="work" ? `<rect x="${cx-4}" y="${cy-2.2}" width="8" height="5.6" rx="1" fill="${w}"/><path d="M${cx-1.6} ${cy-2.2}v-1.3h3.2v1.3" fill="none" stroke="${w}" stroke-width="1.1"/>`
+    : type==="church" ? `<rect x="${cx-.9}" y="${cy-4.5}" width="1.8" height="9" fill="${w}"/><rect x="${cx-3}" y="${cy-2.4}" width="6" height="1.8" fill="${w}"/>`
+    : `<rect x="${cx-3.5}" y="${cy-1.5}" width="7" height="5.5" rx="1" fill="${w}"/><path d="M${cx-1.8} ${cy-1.5}v-1.2a1.8 1.8 0 0 1 3.6 0v1.2" fill="none" stroke="${w}" stroke-width="1.1"/>`;
+  return `<circle cx="${cx}" cy="${cy}" r="7.5" fill="${c}" stroke="var(--surface)" stroke-width="1.5"/>${g}`;
+}
+function mapLegend(g){
+  const types=[...new Set((g.lm||[]).map(l=>l[0]))];
+  return types.length ? types.map(t=>`<span><svg viewBox="-9 -9 18 18" width="16" height="16" aria-hidden="true">${lmIcon(t,0,0)}</svg>${LM[t][1]}</span>`).join("") : "";
+}
+function mapBlock(P){
+  const v=P.maps;
+  return `${v.length>1?`<div class="toggle mapt" role="group" aria-label="Map view" style="display:grid;width:100%;margin:0"><span class="pill"></span>${v.map((m,i)=>`<button aria-pressed="${i===0}" data-v="${i}">${m.label}</button>`).join("")}</div>`:""}
+    <div id="mapbox">${locMap(v[0])}</div><div class="maplegend" id="maplegend">${mapLegend(v[0])}</div>`;
+}
+function wireMap(P){
+  const t=$(".mapt"); if(!t) return;
+  wireSegBtns(t,b=>{ const g=P.maps[+b.dataset.v], box=$("#mapbox"), card=$("#mapcard");
+    box.innerHTML=locMap(g); $("#maplegend").innerHTML=mapLegend(g);
+    if(!reduce){ card.classList.add("armed"); card.getBoundingClientRect(); card.classList.remove("armed");
+      box.animate([{opacity:0,transform:"scale(.98)"},{opacity:1,transform:"none"}],{duration:450,easing:"cubic-bezier(.16,1,.3,1)"}); }
+  });
+}
+// Messenger link tagged with what the client tapped (m.me ?ref=), e.g. book_batulao_corin, ask_gentri.
+// Automation tools (ManyChat "Ref URL" triggers, or a webhook) can start a different flow per tag.
+function msg(kind, P, modelId){
+  const base=SELLER.messenger||"";
+  if(!/^https:\/\/m\.me\/[^/?#]+/.test(base)) return base;
+  const ref=[kind, P&&P.slug, modelId].filter(Boolean).join("_").replace(/[^A-Za-z0-9_.-]/g,"");
+  return base+(base.includes("?")?"&":"?")+"ref="+encodeURIComponent(ref);
+}
+
+/* ---------- 3D map (MapLibre + OpenFreeMap + open elevation data; Cloudflare site only) ---------- */
+// The claude.ai preview blocks outside map data, so there the flat SVG map is used instead.
+// Terrain tiles ship with the page (tiles/dem), so the 3D map works anywhere the MapLibre script loads.
+const USE3D = true;
+const ML_VER = "5.6.0";
+let mlP;
+function loadMapLibre(){
+  return mlP ||= new Promise((res,rej)=>{
+    if(window.maplibregl) return res();
+    const sc=document.createElement("script"); sc.src=`https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/${ML_VER}/maplibre-gl.js`;
+    sc.onload=()=>res(); sc.onerror=rej; document.head.appendChild(sc); setTimeout(()=>rej(new Error("timeout")),9000);
+  });
+}
+// Full names so a tapped landmark opens the right place in Google Maps.
+const GQ = { "LPU Cavite":"Lyceum of the Philippines University Cavite", "DLSU-D":"De La Salle University Dasmariñas",
+  "DLSU Medical Center":"De La Salle University Medical Center Dasmariñas", "Kaylaway Nat'l HS":"Kaylaway National High School Nasugbu",
+  "Caleruega Church":"Caleruega Church Nasugbu", "Metropolitan Medical Center":"Metropolitan Medical Center Nasugbu",
+  "Gen. Trias town":"General Trias Cavite", "WalterMart Gen. Trias":"WalterMart General Trias", "GenTri Doctors Medical Center":"City of General Trias Doctors Medical Center",
+  "Eagle Ridge Golf":"Eagle Ridge Golf and Country Club", "First Cavite Industrial Estate":"First Cavite Industrial Estate Dasmariñas", "Gateway Business Park":"Gateway Business Park General Trias", "Robinsons Place Gen. Trias":"Robinsons Place General Trias", "Vista Mall Gen. Trias":"Vista Mall General Trias" };
+const gmSearch = q => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+const BASE = location.href.replace(/[#?].*$/,"").replace(/[^/]*$/,"");
+function style3d(){
+  return { version:8,
+    sources:{ dem:{ type:"raster-dem", tiles:[BASE+"tiles/dem/{z}/{x}/{y}.png"], encoding:"terrarium", tileSize:256, minzoom:8, maxzoom:12, bounds:[120.55,13.95,121.15,14.70] } },
+    terrain:{ source:"dem", exaggeration:1.6 },
+    sky:{ "sky-color":"#0b0e0f", "horizon-color":"#20282b", "fog-color":"#0b0e0f", "fog-ground-blend":0.55, "horizon-fog-blend":0.7, "sky-horizon-blend":0.6, "atmosphere-blend":0 },
+    layers:[
+      { id:"bg", type:"background", paint:{ "background-color":"#121816" } },
+      { id:"hill", type:"hillshade", source:"dem", paint:{ "hillshade-shadow-color":"#030505", "hillshade-highlight-color":"#7d8c80", "hillshade-accent-color":"#1c2621", "hillshade-exaggeration":0.8 } }
+    ] };
+}
+// Water and highways from the same hand-traced data as the flat map.
+function addVectors(map,P){
+  const water=[], roads=[];
+  P.maps.forEach(g=>{ (g.water||[]).forEach(w=>water.push({ type:"Feature", properties:{}, geometry:{ type:"Polygon", coordinates:[[...w.pts, w.pts[0]]] } }));
+    (g.roads||[]).forEach(r=>roads.push({ type:"Feature", properties:{}, geometry:{ type:"LineString", coordinates:r.pts } })); });
+  map.addSource("water",{ type:"geojson", data:{ type:"FeatureCollection", features:water } });
+  map.addLayer({ id:"water", type:"fill", source:"water", paint:{ "fill-color":"#1b2f36", "fill-opacity":0.85 } });
+  map.addSource("roads",{ type:"geojson", data:{ type:"FeatureCollection", features:roads } });
+  map.addLayer({ id:"roads", type:"line", source:"roads", layout:{ "line-cap":"round", "line-join":"round" }, paint:{ "line-color":"#9aa49f", "line-width":["interpolate",["linear"],["zoom"],8,1.2,14,5], "line-opacity":0.75 } });
+}
+function map3dHTML(P){
+  const v=P.maps.map((m,i)=>i===0&&m.lm3d?{...m,lm:[...(m.lm||[]),...m.lm3d]}:m);
+  return `${v.length>1?`<div class="toggle mapt" role="group" aria-label="Map view" style="display:grid;width:100%;margin:0"><span class="pill"></span>${v.map((m,i)=>`<button aria-pressed="${i===0}" data-v="${i}">${m.label}</button>`).join("")}</div>`:""}
+    <div class="map3d" id="map3d"><div class="map3d-hint">Loading 3D map…</div></div>
+    <div class="maplegend" id="maplegend">${mapLegend(v[0])}<span style="margin-left:auto">Tap a place to open it in Google Maps</span></div>`;
+}
+function wireMap3d(P){
+  const box=$("#map3d"); if(!box) return;
+  let started=false;
+  const io3=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting) && !started){ started=true; io3.disconnect(); start(); } },{ rootMargin:"200px" });
+  io3.observe(box);
+  async function start(){
+    try{ await loadMapLibre(); }catch(e){ return fallback(); }
+    if(!window.maplibregl) return fallback();
+    const near=P.maps[0], far=P.maps[1]||P.maps[0];
+    const pin=[near.pin[0], near.pin[1]];
+    let map;
+    try{
+      map=new maplibregl.Map({ container:box, style:style3d(), center:pin, zoom:9.5, pitch:0, bearing:0, maxPitch:75,
+        cooperativeGestures:true, attributionControl:{ compact:true }, fadeDuration:0 });
+    }catch(e){ return fallback(); }
+    box.querySelector(".map3d-hint")?.remove();
+    map.addControl(new maplibregl.NavigationControl({ visualizePitch:true, showZoom:true }), "top-right");
+    // project pin → Google Maps directions to the exact spot
+    const pe=document.createElement("a"); pe.className="mk-pin"; pe.target="_blank"; pe.rel="noopener";
+    pe.href=`https://www.google.com/maps/dir/?api=1&destination=${pin[1]},${pin[0]}`;
+    pe.innerHTML=`<span class="mk-pulse"></span><span class="mk-card"><b>${near.pinTitle}</b><small>Get directions →</small></span>`;
+    new maplibregl.Marker({ element:pe, anchor:"bottom" }).setLngLat(pin).addTo(map);
+    // landmarks → Google Maps search
+    const addMk=(lo,la,type,label)=>{ const a=document.createElement("a"); a.className="mk"; a.target="_blank"; a.rel="noopener";
+      a.href=gmSearch(GQ[label]||label); a.innerHTML=`<svg viewBox="-9 -9 18 18" width="22" height="22" aria-hidden="true">${lmIcon(type,0,0)}</svg><span>${label}</span>`;
+      new maplibregl.Marker({ element:a, anchor:"left" }).setLngLat([lo,la]).addTo(map); };
+    [...(near.lm||[]),...(near.lm3d||[])].forEach(([type,lo,la,label])=>addMk(lo,la,type,label));
+    (far.places||[]).filter(pl=>!near.lm?.some(l=>l[3]===pl[2])).forEach(([lo,la,label])=>addMk(lo,la,"place",label));
+    [...(near.peaks||[])].forEach(([lo,la,label])=>addMk(lo,la,"place",label));
+    map.on("load",()=>{
+      addVectors(map,P);
+      if(far.route){ map.addSource("route",{ type:"geojson", data:{ type:"Feature", geometry:{ type:"LineString", coordinates:far.route } } });
+        map.addLayer({ id:"route-glow", type:"line", source:"route", paint:{ "line-color":"#E0693F", "line-width":10, "line-opacity":0.18, "line-blur":6 } });
+        map.addLayer({ id:"route", type:"line", source:"route", paint:{ "line-color":"#E0693F", "line-width":3 } });
+        showRoute(false); }
+      if(reduce){ map.jumpTo(views[0]); return; }
+      map.flyTo({ ...views[0], duration:4200, curve:1.3, essential:true });
+      map.once("moveend",()=>orbit());
+    });
+    const lons=far.route?far.route.map(c=>c[0]):[pin[0]], lats=far.route?far.route.map(c=>c[1]):[pin[1]];
+    const views=[
+      { center:pin, zoom:near.zoom3d||13.4, pitch:62, bearing:-28 },
+      { center:[(Math.min(...lons)+Math.max(...lons))/2,(Math.min(...lats)+Math.max(...lats))/2], zoom:far.zoom3d||9.6, pitch:45, bearing:-12 }
+    ];
+    // the drawn route is approximate: only show it on the zoomed-out "getting there" view
+    const showRoute=on=>["route","route-glow"].forEach(l=>map.getLayer(l)&&map.setLayoutProperty(l,"visibility",on?"visible":"none"));
+    let spinning=false, raf=0;
+    const orbit=()=>{ if(reduce) return; spinning=true; const step=()=>{ if(!spinning) return; map.setBearing(map.getBearing()+0.045); raf=requestAnimationFrame(step); }; raf=requestAnimationFrame(step); };
+    const stop=()=>{ spinning=false; cancelAnimationFrame(raf); };
+    ["mousedown","touchstart","wheel"].forEach(ev=>box.addEventListener(ev,stop,{ passive:true }));
+    new IntersectionObserver(es=>{ es.forEach(e=>{ if(!e.isIntersecting) stop(); }); }).observe(box);
+    const t=$(".mapt");
+    if(t) wireSegBtns(t,b=>{ stop(); const i=+b.dataset.v; $("#maplegend").firstChild && ($("#maplegend").innerHTML=mapLegend(i===0&&P.maps[0].lm3d?{...P.maps[0],lm:[...P.maps[0].lm,...P.maps[0].lm3d]}:P.maps[i])+'<span style="margin-left:auto">Tap a place to open it in Google Maps</span>');
+      showRoute(i===1); map.flyTo({ ...views[i], duration:reduce?0:2600, essential:true }); if(i===0) map.once("moveend",()=>orbit()); });
+  }
+  function fallback(){ box.outerHTML=`<div id="mapbox">${locMap(P.maps[0])}</div>`; wireMap(P); }
+}
+
+/* ---------- scroll parallax for photos in frames ---------- */
+const PX=new Set(); let pxRaf=0;
+const pxIO=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?PX.add(e.target):PX.delete(e.target)),{ rootMargin:"120px" });
+function pxUpdate(){ pxRaf=0; const vh=innerHeight;
+  PX.forEach(im=>{ const b=im.parentElement.getBoundingClientRect();
+    const c=(b.top+b.height/2-vh/2)/(vh/2+b.height/2);                 // +1 entering at bottom … -1 leaving at top
+    im.style.setProperty("--py", (-Math.max(-1,Math.min(1,c))*b.height*0.075).toFixed(1)+"px"); }); }
+addEventListener("scroll",()=>{ if(!pxRaf) pxRaf=requestAnimationFrame(pxUpdate); },{ passive:true });
+addEventListener("resize",()=>{ if(!pxRaf) pxRaf=requestAnimationFrame(pxUpdate); });
+function armParallax(){
+  if(reduce) return;
+  document.querySelectorAll(".mcard img, .pcard .art img, .gal button img, .am-card img").forEach(im=>{ if(!im.classList.contains("px")){ im.classList.add("px"); pxIO.observe(im); } });
+  requestAnimationFrame(pxUpdate);
+}
+function nudge(text){
+  return `<div class="nudge rv"><span>${text}</span><a class="btn" href="${msg("book",CUR)}" target="_blank" rel="noopener">${cal}Book a free tripping</a></div>`;
+}
+function wireStickyBook(on){
+  const bar=$("#stickyBook");
+  bar.hidden=!on; if(!on){ onscroll=null; return; }
+  const hero=$(".hero,.mhero"), end=$(".cta");
+  const f=()=>{ const past=hero?hero.getBoundingClientRect().bottom<60:true; const atEnd=end?end.getBoundingClientRect().top<innerHeight:false; bar.classList.toggle("show",past&&!atEnd); };
+  onscroll=f; f();
+}
+
+/* ---------- card photo flies into the model page's hero (works in every browser) ---------- */
+function heroFly(id, card){
+  const src=card.querySelector("img");
+  if(!src||reduce){ location.hash=id; return; }
+  const R=card.getBoundingClientRect(), rad=parseFloat(getComputedStyle(card).borderRadius)||22;   // the frame, not the (oversized, parallaxed) photo
+  const cl=src.cloneNode(); cl.className="xclone";
+  Object.assign(cl.style,{ left:R.left+"px", top:R.top+"px", width:R.width+"px", height:R.height+"px", borderRadius:rad+"px" });
+  document.body.appendChild(cl);
+  let done=false; const next=()=>{ if(done) return; done=true; window.__fly={ R, rad, cl }; location.hash=id; };
+  $("#app").animate([{opacity:1},{opacity:0}],{ duration:200, easing:"ease-out", fill:"forwards" }).onfinish=next;
+  setTimeout(next, 320);
+}
+function landHero(){
+  const { R, rad, cl }=window.__fly; window.__fly=null;
+  const app=$("#app"); app.getAnimations().forEach(a=>a.cancel());
+  const sec=$(".mhero"), im=$("#par");
+  if(!im){ cl.remove(); return; }
+  im.style.animation="none"; sec.style.overflow="visible"; sec.style.zIndex="35";
+  const F=im.getBoundingClientRect();
+  const s=Math.max(R.width/F.width, R.height/F.height);
+  const dx=R.left+R.width/2-F.left-s*F.width/2, dy=R.top+R.height/2-F.top-s*F.height/2;
+  const l=(R.left-F.left-dx)/s, t=(R.top-F.top-dy)/s, r=F.width-(R.right-F.left-dx)/s, b=F.height-(R.bottom-F.top-dy)/s;
+  im.style.transformOrigin="0 0";
+  const a=im.animate([
+    { transform:`translate(${dx}px,${dy}px) scale(${s})`, clipPath:`inset(${t}px ${r}px ${b}px ${l}px round ${rad/s}px)` },
+    { transform:"translate(0px,0px) scale(1)", clipPath:"inset(0px 0px 0px 0px round 0px)" }
+  ],{ duration:640, easing:"cubic-bezier(.2,.85,.25,1.06)" });
+  requestAnimationFrame(()=>cl.remove()); setTimeout(()=>cl.remove(), 80);
+  [...app.children].forEach(el=>{ if(el!==sec) el.animate([{opacity:0,transform:"translateY(18px)"},{opacity:1,transform:"none"}],{ duration:520, delay:300, easing:"cubic-bezier(.16,1,.3,1)", fill:"backwards" }); });
+  sec.querySelectorAll(".wrap").forEach(w=>w.animate([{opacity:0},{opacity:1}],{ duration:420, delay:320, fill:"backwards" }));
+  let fin=false; const finish=()=>{ if(fin) return; fin=true; a.cancel(); im.style.transformOrigin=""; sec.style.overflow=""; sec.style.zIndex=""; sec.classList.remove("flying"); };
+  a.onfinish=finish; setTimeout(finish, 900);
+}
+function amort(P,rate,years){ const r=rate/12, n=years*12; return P*r/(1-Math.pow(1+r,-n)); }
+function tween(el,to,fmt,ms=700){
+  const from=+(el.dataset.v||0); el.dataset.v=to;
+  if(reduce||!from){ el.innerHTML=fmt(to); return; }
+  const t0=performance.now();
+  (function f(t){ const k=Math.min(1,(t-t0)/ms), e=1-Math.pow(1-k,3); el.innerHTML=fmt(from+(to-from)*e); if(k<1) requestAnimationFrame(f); })(t0);
+}
+function wireSegBtns(seg,onPick){
+  const btns=[...seg.querySelectorAll("button")], pill=seg.querySelector(".pill");
+  btns.forEach((b,i)=>b.onclick=()=>{ btns.forEach(x=>x.setAttribute("aria-pressed",x===b)); pill.style.transform=`translateX(${i*100}%)`; onPick(b); });
+}
+function wireFin(el,panes){
+  wireSegBtns(el,b=>{ Object.entries(panes).forEach(([k,p])=>p.hidden=k!==b.dataset.f); const show=panes[b.dataset.f];
+    if(!reduce) show.animate([{opacity:0,transform:"translateY(10px)"},{opacity:1,transform:"none"}],{duration:500,easing:"cubic-bezier(.16,1,.3,1)"}); });
+}
+function wireTerms(seg,out,valueFor){
+  let val=valueFor(20);
+  wireSegBtns(seg,b=>{
+    const from=val, to=valueFor(+b.dataset.y); val=to;
+    if(reduce){ out.innerHTML=peso(to)+"<small> /month</small>"; return; }
+    const t0=performance.now();
+    (function f(t){ const k=Math.min(1,(t-t0)/700), e=1-Math.pow(1-k,3); out.innerHTML=peso(from+(to-from)*e)+"<small> /month</small>"; if(k<1) requestAnimationFrame(f); })(t0);
+  });
+}
+function wireSeg(P){
+  if(!P.comps) return;
+  const wireBody=c=>{
+    const pag=y=>c.ma?c.ma[y]:amort(c.balance,0.0625,y);
+    wireTerms($('.seg[data-plan="pagibig"]'), $("#ma"), pag);
+    wireTerms($('.seg[data-plan="bank"]'), $("#maBank"), y=>amort(c.balance,P.bankRate,y));
+    wireFin($(".fin"), { pagibig: $("#finPagibig"), bank: $("#finBank") });
+  };
+  wireBody(P.comps[0]);
+  autoCycle();
+  const sw=$("#compModel");
+  if(sw) wireSegBtns(sw,b=>{ const c=P.comps[+b.dataset.c], body=$("#compBody");
+    body.innerHTML=compBody(P,c); wireBody(c); paintPH(body);
+    if(!reduce) body.animate([{opacity:0,transform:"translateY(10px)"},{opacity:1,transform:"none"}],{duration:450,easing:"cubic-bezier(.16,1,.3,1)"}); });
+}
+function wireCalc(P){
+  if(!$("#calcModel")) return;
+  const k=P.calc; let mid=Object.keys(P.models)[0], yB=20, yP=20;
+  const mo=v=>peso(v)+"<small> /month</small>";
+  const upd=()=>{
+    const tcp=priceOf(mid)||0, bal=tcp*.9;
+    tween($("#cTcp"),tcp,v=>peso(v));
+    tween($("#cDp"),tcp*.1,v=>peso(v,2)); tween($("#cMo"),tcp*.1/12,v=>peso(v,2)); tween($("#cBal"),bal,v=>peso(v,2));
+    tween($("#cMaBank"),amort(bal,k.bankRate,yB),mo);
+    const ok=bal<=k.pagMax;
+    if(ok) tween($("#cMaPag"),amort(bal,k.pagRate,yP),mo); else { $("#cMaPag").dataset.v=0; $("#cMaPag").innerHTML="—"; }
+    $("#yPag").style.opacity=ok?1:.4;
+    $("#cPagNote").textContent = ok
+      ? `Pag-IBIG at ${(k.pagRate*100).toFixed(2)}%, fixed for the first 3 years. You need at least 24 monthly contributions, and the final loan amount depends on Pag-IBIG's approval.`
+      : `The ${peso(bal)} balance is above Pag-IBIG's ₱6M maximum loan, so the ${P.models[mid].name} is financed through a bank.`;
+  };
+  wireSegBtns($("#calcModel"),b=>{ mid=b.dataset.m; upd(); });
+  wireSegBtns($("#yBank"),b=>{ yB=+b.dataset.y; upd(); });
+  wireSegBtns($("#yPag"),b=>{ yP=+b.dataset.y; upd(); });
+  wireFin($(".fin2"), { bank: $("#cBank"), pagibig: $("#cPag") });
+  upd();
+}
+let parRaf;
+function wireParallax(){
+  const p=$("#par"); if(!p||reduce) return;
+  const f=()=>{ p.style.transform=`translateY(${Math.min(scrollY,700)*0.25}px)`; };
+  addEventListener("scroll",()=>{ cancelAnimationFrame(parRaf); parRaf=requestAnimationFrame(f); },{passive:true});
+}
+
+/* ---------- view tracking (Cloudflare site only; build_site.py sets window.EVENTS_ENDPOINT) ---------- */
+// A personal link (…/batulao?c=<client id>) lets the Worker tell Zapier exactly who finished viewing.
+const CLIENT = (()=>{ let c=null; try{ c=new URLSearchParams(location.search).get("c"); }catch(e){} return c ? c.replace(/[^\w.-]/g,"").slice(0,80) : ""; })();
+const TRACK = { start: Date.now(), projects: new Set(), models: new Set(), taps: [], sent: false };
+document.addEventListener("click", e=>{ const a=e.target.closest && e.target.closest('a[href*="m.me/"]'); if(!a) return;
+  let r=""; try{ r=new URL(a.href).searchParams.get("ref")||""; }catch(e){} TRACK.taps.push(r||"message"); });
+function sendViewEnd(){
+  const ep=window.EVENTS_ENDPOINT; if(!ep || TRACK.sent) return;
+  const seconds=Math.round((Date.now()-TRACK.start)/1000); if(seconds<8) return;
+  TRACK.sent=true;
+  const body=JSON.stringify({ event:"view_end", client:CLIENT, page:ORIGIN, projects:[...TRACK.projects], models:[...TRACK.models], taps:TRACK.taps, seconds, landing:location.pathname });
+  try{ navigator.sendBeacon(ep, new Blob([body],{type:"application/json"})); }catch(e){ try{ fetch(ep,{method:"POST",body,keepalive:true}); }catch(_){} }
+}
+addEventListener("pagehide", sendViewEnd);
+document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="hidden") sendViewEnd(); });
+
+/* ---------- open Messenger in the app, not a browser login page ---------- */
+// Inside Facebook/Messenger's built-in browser, a new-window link gets pushed out to Chrome/Safari,
+// where m.me asks the client to log in. Opening it in the same window lets the app catch it.
+const UA=navigator.userAgent||"", INAPP=/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Orca-Android|Instagram/i.test(UA),
+      ANDROID=/Android/i.test(UA), IOS=/iPhone|iPad|iPod/i.test(UA);
+document.addEventListener("click", e=>{
+  const a=e.target.closest && e.target.closest('a[href*="m.me/"]'); if(!a || e.metaKey || e.ctrlKey) return;
+  if(INAPP || IOS){ e.preventDefault(); location.href=a.href; return; }            // app / universal link takes over
+  if(ANDROID && SELLER.pageId){ e.preventDefault();                                 // Android: open the Messenger app, fall back to m.me
+    location.href=`intent://user-thread/${SELLER.pageId}#Intent;scheme=fb-messenger;package=com.facebook.orca;S.browser_fallback_url=${encodeURIComponent(a.href)};end`; }
+});
+
+/* ---------- router ---------- */
+function render(){
+  let id=location.hash.slice(1);
+  if(FOCUS && !id) id=FOCUS_MODEL||FOCUS.id;                           // project/model link: land there first
+  const P=PROJECTS.find(p=>p.id===id);
+  let back=null;
+  if(MODELS[id]){ CUR=MODELS[id].P; $("#app").innerHTML=modelView(id); back="#"+CUR.id; }
+  else if(P){ CUR=P; $("#app").innerHTML=projectView(P); back=FOCUS?"#all":"#"; }
+  else { CUR=null; $("#app").innerHTML=hubView(); }
+  document.body.classList.toggle("has-back",!!back);
+  if(FOCUS) document.title = CUR ? `${CUR.brand} ${CUR.name}${MODELS[id]?" · "+MODELS[id].name:""}` : "Team HML PHirst Homes";
+  if(back) $("#back").href=back;
+  $("#lbRoot").innerHTML="";
+  window.scrollTo(0,0);
+  if(MODELS[id]){
+    wireToggle(id); wireParallax();
+    const pis=[...document.querySelectorAll(".planImg")], pl=pis.map(x=>[x.getAttribute("src"), x.nextElementSibling.textContent+" plan"]);
+    pis.forEach(x=>x.onclick=()=>lightbox(pl,+x.dataset.i,x));
+  }
+  if(P){ document.querySelectorAll(".mcard").forEach(a=>a.addEventListener("click",e=>{ if(e.metaKey||e.ctrlKey) return; e.preventDefault(); heroFly(a.getAttribute("href").slice(1), a); }));
+    const sis=[...document.querySelectorAll(".siteImg")], sl=sis.map(x=>[x.getAttribute("src"), x.nextElementSibling.textContent+" sales map"]);
+    sis.forEach(x=>x.onclick=()=>lightbox(sl,+x.dataset.i,x));
+    wireAmen(P); wireSeg(P); wireCalc(P); wireBook(); if(USE3D) wireMap3d(P); else wireMap(P); const v=$(".bgv"); if(v&&!reduce) v.play?.().catch(()=>{}); }
+  paintPH($("#app"));
+  wireStickyBook(!!CUR);
+  if(CUR) TRACK.projects.add(CUR.slug); if(MODELS[id]) TRACK.models.add(id);
+  $("#msgBtn").href=msg("book",CUR,MODELS[id]?id:null); $("#stickyBtn").href=msg("book",CUR,MODELS[id]?id:null);
+  armReveals();
+  pxIO.disconnect(); PX.clear(); armParallax();
+  if(window.__fly) landHero();
+}
+function paintPH(root){
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT), hits=[];
+  while(w.nextNode()){ const n=w.currentNode; if(n.nodeValue.includes("PHirst") && !n.parentElement.closest(".ph,title,script,style,svg")) hits.push(n); }
+  hits.forEach(n=>{ const f=document.createDocumentFragment();
+    n.nodeValue.split(/(PHirst)/).forEach(t=>{ if(t==="PHirst"){ const s=document.createElement("span"); s.className="ph"; s.textContent=t; f.appendChild(s);} else if(t) f.appendChild(document.createTextNode(t)); });
+    n.replaceWith(f); });
+}
+function go(){ if(window.__fly){ render(); return; } if(document.startViewTransition && !reduce){ const t=document.startViewTransition(render); t.ready.catch(()=>{}); t.finished.catch(()=>{}); t.updateCallbackDone.catch(()=>{}); } else render(); }
+
+/* ---------- calculator: cycle the Pag-IBIG terms until the visitor taps ---------- */
+let cycT=0;
+function autoCycle(){
+  clearInterval(cycT); if(reduce) return;
+  const body=$("#compBody"); if(!body) return;
+  let user=false;
+  body.addEventListener("pointerdown",()=>{ user=true; clearInterval(cycT); const n=$("#autonote"); if(n) n.remove(); },{ once:true });
+  const seg=()=>body.querySelector(".seg:not([hidden]) , #finPagibig:not([hidden]) .seg, #finBank:not([hidden]) .seg");
+  const tick=()=>{ if(user) return; const pane=body.querySelector("#finPagibig:not([hidden]), #finBank:not([hidden])"); const sg=pane&&pane.querySelector(".seg"); if(!sg) return;
+    const btns=[...sg.querySelectorAll("button")], i=btns.findIndex(b=>b.getAttribute("aria-pressed")==="true"); btns[(i+1)%btns.length].onclick(); };
+  const ma=body.querySelector(".ma"); if(ma && !$("#autonote")) ma.insertAdjacentHTML("afterend",'<span class="autonote" id="autonote"><i></i>Showing each term · tap one to stop</span>');
+  const start=()=>{ clearInterval(cycT); cycT=setInterval(tick,2200); };
+  const io2=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io2.disconnect(); start(); } },{ threshold:.3 }); io2.observe(body);
+}
+
+/* ---------- booking form ---------- */
+const SLOTS=["8:00 AM","9:00 AM","10:00 AM","11:00 AM","1:00 PM","2:00 PM","3:00 PM","4:00 PM"];
+function bookForm(P){
+  const d=new Date(); d.setDate(d.getDate()+((6-d.getDay()+7)%7||7));
+  const iso=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+  return `<form id="leadForm" autocomplete="on">
+    <div class="two"><label for="fName">Full name<input id="fName" required autocomplete="name" placeholder="Juan dela Cruz"></label>
+    <label for="fMobile">Mobile number<input id="fMobile" required inputmode="tel" autocomplete="tel" placeholder="0917 123 4567"></label></div>
+    <div class="two"><label for="fProj">Project<select id="fProj">${PROJECTS.map(x=>`<option${x===P?" selected":""}>${x.brand} ${x.name}</option>`).join("")}</select></label>
+    <label for="fDay">Preferred day<input id="fDay" type="date" required value="${iso}"></label></div>
+    <label>Preferred time<div class="times" id="fTimes" role="group" aria-label="Preferred time">${SLOTS.map(t=>`<button type="button" aria-pressed="${t==="10:00 AM"}">${t}</button>`).join("")}</div></label>
+    <button class="btn" type="submit">${cal}Book my free tripping</button>
+    <p class="fine">Free, no obligation. Your details go only to ${SELLER.name}.</p>
+  </form>`;
+}
+function wireBook(){
+  const f=$("#leadForm"); if(!f) return;
+  const times=[...f.querySelectorAll("#fTimes button")];
+  times.forEach(b=>b.onclick=()=>times.forEach(x=>x.setAttribute("aria-pressed",x===b)));
+  f.onsubmit=e=>{ e.preventDefault();
+    const name=$("#fName").value.trim()||"Client", first=name.split(" ")[0];
+    const time=(times.find(b=>b.getAttribute("aria-pressed")==="true")||times[2]).textContent;
+    const day=$("#fDay").value ? new Date($("#fDay").value+"T00:00").toLocaleDateString("en-PH",{weekday:"short",month:"short",day:"numeric"}) : "Any day";
+    const lead={ type:"lead", name, mobile:$("#fMobile").value, project:$("#fProj").value, day, time, agent:SELLER.name };
+    try{ if(window.parent!==window) parent.postMessage(lead,"*"); }catch(_){}
+    let root=$("#sent"); if(!root){ root=document.createElement("div"); root.id="sent"; root.className="sent"; document.body.appendChild(root); }
+    root.innerHTML=`<div class="sheet"><span class="eyebrow">Request sent</span><h3>Thanks, ${first.replace(/[<>&"]/g,"")}!</h3>
+      <p class="fine" style="font-size:15px">${SELLER.name} got your request for ${day}, ${time}. Tap below to confirm in Messenger; your details are ready to send.</p>
+      <a class="btn fb" href="${msg("book",CUR)}" target="_blank" rel="noopener">Continue in Messenger</a><button class="x" type="button">Back to the site</button></div>`;
+    root.querySelector(".x").onclick=()=>root.classList.remove("on");
+    requestAnimationFrame(()=>requestAnimationFrame(()=>root.classList.add("on")));
+  };
+}
+document.addEventListener("click",e=>{ const a=e.target.closest&&e.target.closest("[data-jump]"); if(!a) return; e.preventDefault(); const t=document.getElementById(a.dataset.jump); if(t) t.scrollIntoView({behavior:reduce?"auto":"smooth"}); });
+
+/* ---------- when shown inside the proposal's phone ---------- */
+const EMBED = window.parent!==window;
+if(EMBED) document.documentElement.classList.add("embedded");
+addEventListener("message",e=>{ const m=e.data||{};
+  if(m.type==="jump"){ const t=m.to==="top"?null:document.getElementById(m.to); if(m.to==="top") scrollTo({top:0,behavior:reduce?"auto":"smooth"}); else if(t) t.scrollIntoView({behavior:reduce?"auto":"smooth"}); }
+  if(m.type==="agent"){ SELLER.name=m.name; $("#sellerName").textContent=m.name; }
+});
+const SECS=["models","finished","compute","amenities","location","book"];
+let lastSec="";
+addEventListener("scroll",()=>{ if(!EMBED) return; let cur="top";
+  SECS.forEach(id=>{ const el=document.getElementById(id); if(el && el.getBoundingClientRect().top<innerHeight*0.45) cur=id; });
+  if(cur!==lastSec){ lastSec=cur; try{ parent.postMessage({type:"section",id:cur},"*"); }catch(_){} } },{passive:true});
+
+$("#sellerName").textContent=SELLER.name;
+$("#sellerRole").textContent="Presented by · "+SELLER.team;
+$("#sellerInitials").innerHTML='<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M36 34h-12v6c0 12 7 19 16 21M84 34h12v6c0 12-7 19-16 21" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><path d="M34 22h52v18c0 19-12 32-26 32S34 59 34 40z" fill="#F4B08F"/><rect x="54" y="72" width="12" height="12" fill="#F4B08F"/><rect x="40" y="84" width="40" height="9" rx="3" fill="currentColor"/><rect x="32" y="95" width="56" height="10" rx="3" fill="currentColor"/></svg>';
+$("#msgBtn").href=msg("book"); $("#stickyBtn").href=msg("book");
+addEventListener("hashchange",go);
+render();
+</script>
+</body></html>
