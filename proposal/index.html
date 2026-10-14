@@ -1,0 +1,834 @@
+<title>Team HML Website Proposal</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="A branded PHirst Park Homes showcase site and lead funnel for Team HML: unit pages, payment calculator, route map, booking form, agent links, logo concepts and founding-client pricing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap">
+<style>
+/* Layout: a dark "evening tripping" proposal; the client's real site sits inside a light phone, lit like a window at dusk. */
+:root{
+  color-scheme:dark;
+  --night:#0D1315; --deck:#141C1F; --deck2:#1B2528; --rule:#28343A;
+  --chalk:#E9ECE6; --fog:#9BA7A8; --amber:#F2A66A; --on-amber:#21120A;
+  --leaf:#8BC394; --leaf-soft:#1A2A20; --tg:#5DB2E6; --fb:#4E8BF5;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Figtree",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --accent:"Instrument Serif",Georgia,serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--chalk);font:400 16px/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden;margin:0}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.04;letter-spacing:-.025em;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;padding:0}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.serif{font-family:var(--accent);font-style:italic;font-weight:400;letter-spacing:0}
+.eyebrow{font:700 12px/1.2 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--leaf)}
+.muted{color:var(--fog)}
+.fine{font-size:13px;color:var(--fog)}
+section.block{padding-block:84px 8px;scroll-margin-top:70px}
+.head{display:grid;gap:12px;margin-bottom:30px;max-width:720px}
+.head h2{font-size:clamp(32px,5.2vw,52px)}
+.head h2 .serif{color:var(--amber)}
+.head p{color:var(--fog);max-width:60ch}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--night) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:58px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.brand .mark{width:34px;height:34px;flex:none;color:var(--chalk)}
+.brand b{font:700 15px var(--display);white-space:nowrap}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:14px;font-weight:600;text-decoration:none;color:var(--fog);padding:7px 11px;border-radius:999px;white-space:nowrap}
+.nav a:hover{color:var(--chalk);background:var(--deck2)}
+@media (max-width:760px){.nav{display:none}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--rule)}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,19,21,.35),rgba(13,19,21,.55) 45%,var(--night))}
+.hero .wrap{position:relative;z-index:1;padding-block:88px 56px;display:grid;gap:18px}
+.hero .logo-big{width:76px;height:76px;color:var(--chalk)}
+.hero h1{font-size:clamp(44px,8.4vw,96px);font-weight:800;letter-spacing:-.04em;line-height:.95;max-width:14ch}
+.hero h1 .serif{color:var(--amber)}
+.hero .lede{font-size:clamp(17px,2.2vw,20px);max-width:52ch;color:color-mix(in srgb,var(--chalk) 86%,transparent)}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.fact{display:grid;gap:2px;padding:12px 16px;border:1px solid var(--rule);border-radius:14px;background:color-mix(in srgb,var(--deck) 80%,transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.fact b{font:800 22px/1.1 var(--display);font-variant-numeric:tabular-nums}
+.fact span{font-size:13px;color:var(--fog)}
+.fact s{color:var(--fog);font:500 14px var(--body);margin-right:4px}
+.by{font-size:14px;color:var(--fog)}
+
+/* ---------- phone demo ---------- */
+.demo{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:40px;align-items:start}
+@media (max-width:860px){.demo{grid-template-columns:minmax(0,1fr)}}
+.phone{position:sticky;top:76px;justify-self:center;width:100%;max-width:370px;border-radius:44px;padding:11px;background:#05080A;border:1px solid #2A3438;box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 0 0 6px #10171A}
+@media (max-width:860px){.phone{position:relative;top:0}}
+.screen{position:relative;height:min(700px,78vh);min-height:520px;border-radius:34px;overflow:hidden}
+.scroller{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;scroll-behavior:smooth;scrollbar-width:none}
+.scroller::-webkit-scrollbar{display:none}
+
+/* the client site inside the phone stays light */
+.site{
+  --paper:#F3F4F1; --surface:#FFFFFF; --ink:#1F2426; --mut:#5C6568; --line:#DCE0DA;
+  --rust:#C2542D; --on-rust:#FFFFFF; --sage:#4F7F55; --sage-soft:#E3ECE1; --char:#23292B; --on-char:#F1F2EE; --water:#D6E6EA;
+  background:var(--paper);color:var(--ink);font:400 14px/1.5 var(--body);min-height:100%;
+}
+.s-bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:8px;padding:30px 12px 9px;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.s-av{width:30px;height:30px;border-radius:50%;background:var(--char);color:var(--on-char);display:grid;place-items:center;flex:none}
+.s-av svg{width:22px;height:22px}
+.s-who{min-width:0;flex:1;line-height:1.2}
+.s-who small{display:block;font-size:10.5px;color:var(--mut)}
+.s-who b{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.s-btn{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:8px 13px;font-weight:600;font-size:12.5px;background:var(--rust);color:var(--on-rust);text-decoration:none;white-space:nowrap}
+.s-url{position:absolute;top:8px;left:50%;transform:translateX(-50%);font-size:10.5px;color:var(--mut);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:2px 10px;white-space:nowrap;z-index:6}
+.s-hero{position:relative;height:330px;background:var(--char);color:var(--on-char);overflow:hidden;display:flex;align-items:flex-end}
+.s-hero video,.s-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.s-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,15,16,.15),rgba(12,15,16,.05) 40%,rgba(12,15,16,.9))}
+.s-hero .t{position:relative;z-index:1;padding:16px;display:grid;gap:6px}
+.s-hero .e{font:700 10px var(--body);letter-spacing:.14em;text-transform:uppercase;color:#F4B08F}
+.s-hero h3{font-size:46px;font-weight:800;letter-spacing:-.045em;line-height:.88}
+.s-hero h3 .serif{display:block;font-size:.66em;color:#F4B08F;letter-spacing:-.01em}
+.s-hero p{font-size:13px;opacity:.9}
+.s-chips{display:flex;flex-wrap:wrap;gap:6px}
+.s-chips span{font-size:11px;font-weight:600;padding:5px 10px;border-radius:999px;border:1px solid rgba(241,242,238,.35);background:rgba(241,242,238,.1)}
+.s-sec{padding:22px 14px 6px;display:grid;gap:12px;scroll-margin-top:70px}
+.s-sec h4{font:700 24px/1.05 var(--display);letter-spacing:-.02em;margin:0}
+.s-sec h4 .serif{color:var(--rust)}
+.s-eb{font:700 10px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--sage)}
+.s-spec{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.s-spec div{padding:10px 8px;border-right:1px solid var(--line)}
+.s-spec div:last-child{border:0}
+.s-spec b{display:block;font:800 20px/1 var(--display);letter-spacing:-.03em}
+.s-spec b small{font-size:.5em;color:var(--mut);font-weight:600}
+.s-spec span{font-size:9.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
+.s-panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;display:grid;gap:12px}
+.s-panel h5{font:700 15px var(--display);margin:0}
+.seg{position:relative;display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg button{position:relative;z-index:1;padding:7px 2px;border-radius:999px;font-weight:600;font-size:11.5px;transition:color .35s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seg button[aria-pressed="true"]{color:var(--on-rust)}
+.seg .pill{position:absolute;top:3px;bottom:3px;left:3px;width:calc((100% - 6px)/var(--n,3));border-radius:999px;background:var(--rust);transition:transform .55s var(--ease)}
+.seg.dark .pill{background:var(--char)}
+.seg.dark button[aria-pressed="true"]{color:var(--on-char)}
+.ma{font:800 38px/1 var(--display);letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.ma small{font-size:.36em;font-weight:600;color:var(--mut);letter-spacing:0}
+.months{display:grid;gap:2px;align-items:end;height:64px}
+.months i{display:block;border-radius:2px 2px 0 0;background:var(--sage);height:var(--h);transform-origin:bottom;transition:transform .9s var(--ease);transition-delay:calc(var(--d)*45ms)}
+.months i.r{background:var(--rust)}
+.months.armed i{transform:scaleY(0)}
+.mlabels{display:flex;justify-content:space-between;font-size:10.5px;color:var(--mut)}
+.kv{display:grid;gap:7px;margin:0}
+.kv div{display:flex;justify-content:space-between;gap:10px;font-variant-numeric:tabular-nums;border-bottom:1px dashed var(--line);padding-bottom:7px;font-size:12.5px}
+.kv div:last-child{border:0;padding:0}
+.kv dt{color:var(--mut)}
+.kv dd{margin:0;font-weight:600;text-align:right}
+.kv .big dd{font:800 16px var(--display)}
+.s-fine{font-size:10.5px;color:var(--mut);line-height:1.45}
+.autotag{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;color:var(--mut)}
+.autotag i{width:6px;height:6px;border-radius:50%;background:var(--rust);animation:blink 1.4s ease-in-out infinite}
+.mapcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:6px;display:grid;gap:6px}
+.mapcard svg{width:100%;height:auto;display:block;border-radius:12px}
+.map .route{stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset 2.4s var(--ease) .2s}
+.mapcard.armed .route{stroke-dashoffset:1}
+.map .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.2s ease-out infinite}
+.map text{font-family:var(--body);fill:var(--mut);font-size:11px;font-weight:600}
+.map .big{font:700 13px var(--display);fill:var(--ink)}
+.map .water-l{fill:var(--sage);opacity:.75;font-style:italic;font-weight:500;font-size:12px}
+.trip{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:2px 6px 4px;font-size:11.5px;color:var(--mut)}
+.trip b{color:var(--ink)}
+.s-form{display:grid;gap:9px}
+.s-form label{display:grid;gap:4px;font-size:11.5px;font-weight:600;color:var(--mut)}
+.s-form input,.s-form select{width:100%;padding:10px 11px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:14px;color-scheme:light}
+.s-form .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.s-form .s-btn{justify-content:center;padding:11px;font-size:14px}
+.times{display:flex;flex-wrap:wrap;gap:5px}
+.times button{font-size:12px;font-weight:600;padding:7px 9px;border-radius:9px;border:1px solid var(--line);background:var(--surface)}
+.times button[aria-pressed="true"]{background:var(--char);color:var(--on-char);border-color:var(--char)}
+.s-foot{padding:18px 14px 30px;font-size:10.5px;color:var(--mut);display:grid;gap:4px}
+.s-foot b{color:var(--ink)}
+.sent{position:absolute;inset:0;z-index:8;display:grid;align-content:end;background:rgba(10,14,15,.45);opacity:0;pointer-events:none;transition:opacity .35s}
+.sent.on{opacity:1;pointer-events:auto}
+.sheet{background:var(--paper);border-radius:22px 22px 0 0;padding:20px 16px 22px;display:grid;gap:10px;transform:translateY(100%);transition:transform .55s var(--ease)}
+.sent.on .sheet{transform:none}
+.sheet h5{font:700 20px var(--display);margin:0}
+.sheet .fb{background:#0866FF;color:#fff;justify-content:center;padding:12px;font-size:14px}
+.sheet .x{font-size:13px;font-weight:600;color:var(--mut);justify-self:center}
+
+/* chapter list next to the phone */
+.chapters{display:grid;gap:12px}
+.chap{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;text-align:left;padding:18px;border:1px solid var(--rule);border-radius:18px;background:var(--deck);transition:border-color .3s,background .3s}
+.chap:hover{border-color:color-mix(in srgb,var(--amber) 50%,var(--rule))}
+.chap[aria-current="true"]{border-color:var(--amber);background:var(--deck2)}
+.chap .n{grid-row:span 2;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:700 13px var(--display);border:1px solid var(--rule);color:var(--fog)}
+.chap[aria-current="true"] .n{background:var(--amber);color:var(--on-amber);border-color:var(--amber)}
+.chap b{font:700 18px var(--display)}
+.chap span{font-size:14px;color:var(--fog)}
+.chap .new{display:inline-block;margin-left:8px;font:700 10px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--amber);vertical-align:2px}
+
+/* what fires on submit */
+.fires{display:grid;gap:10px;margin-top:18px}
+.fires h3{font-size:22px}
+.fire{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--rule);border-radius:14px;background:var(--deck);opacity:.55;transition:opacity .4s,border-color .4s,transform .5s var(--ease)}
+.fire.on{opacity:1;border-color:color-mix(in srgb,var(--leaf) 55%,var(--rule));transform:translateX(4px)}
+.fire .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center}
+.fire .ic svg{width:20px;height:20px}
+.fire b{display:block;font-size:15px}
+.fire small{display:block;font-size:13px;color:var(--fog);overflow-wrap:anywhere}
+.fire .st{font-size:12px;font-weight:700;color:var(--fog);white-space:nowrap}
+.fire.on .st{color:var(--leaf)}
+.tgcard{border:1px solid var(--rule);border-radius:16px;background:#17212B;padding:14px 16px;display:grid;gap:6px;font-size:14px;max-width:440px}
+.tgcard .hd{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--tg)}
+.tgcard pre{margin:0;font:500 13px/1.55 var(--body);white-space:pre-wrap;color:var(--chalk)}
+
+.callout{display:flex;gap:12px;align-items:flex-start;border-left:3px solid var(--amber);padding:4px 0 4px 14px;color:var(--fog);font-size:15px;max-width:72ch}
+.callout b{color:var(--chalk)}
+
+/* funnel strip */
+.funnel{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;counter-reset:f}
+@media (max-width:900px){.funnel{grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))}}
+.step{position:relative;padding:18px;border:1px solid var(--rule);border-radius:18px;background:var(--deck);display:grid;gap:8px;align-content:start}
+.step .k{font:700 12px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
+.step b{font:700 18px/1.15 var(--display)}
+.step p{font-size:14px;color:var(--fog)}
+
+/* agent links */
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px}
+.card{border:1px solid var(--rule);border-radius:20px;background:var(--deck);padding:22px;display:grid;gap:12px;align-content:start;min-width:0}
+.card h3{font-size:22px}
+.url{font:600 clamp(16px,2.6vw,20px)/1.3 var(--body);overflow-wrap:anywhere}
+.url .path{color:var(--amber)}
+.url s{color:var(--fog);font-weight:500;font-size:.8em}
+.typer{display:flex;flex-wrap:wrap;gap:6px}
+.typer button{font-size:13px;font-weight:600;padding:6px 11px;border-radius:999px;border:1px solid var(--rule)}
+.typer button[aria-pressed="true"]{background:var(--amber);color:var(--on-amber);border-color:var(--amber)}
+.pages{display:grid;gap:8px}
+.pg{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--rule);border-radius:12px;font-size:14px}
+.pg i{width:26px;height:26px;border-radius:50%;background:var(--fb);display:grid;place-items:center;flex:none;font:700 12px var(--display);font-style:normal;color:#fff}
+.pg span{color:var(--fog);font-size:13px;margin-left:auto;white-space:nowrap}
+
+/* tables */
+.tbl{overflow-x:auto;border:1px solid var(--rule);border-radius:18px;background:var(--deck)}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font:700 13px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--fog);background:var(--deck2)}
+td.c,th.c{text-align:center;width:150px}
+.yes{color:var(--leaf);font-weight:700}
+.no{color:color-mix(in srgb,var(--fog) 60%,transparent)}
+.rec{background:color-mix(in srgb,var(--amber) 8%,transparent)}
+th.rec{color:var(--amber)}
+.tag{display:inline-block;font:700 11px var(--body);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--leaf-soft);color:var(--leaf);margin-left:6px;vertical-align:1px}
+
+/* logos */
+.logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:12px}
+.lg{display:grid;gap:10px;justify-items:center;text-align:center;padding:22px 14px 16px;border:1px solid var(--rule);border-radius:20px;background:var(--deck);transition:border-color .3s,transform .45s var(--ease)}
+.lg:hover{transform:translateY(-3px)}
+.lg svg{width:92px;height:92px;color:var(--chalk)}
+.lg b{font:700 15px var(--display)}
+.lg span{font-size:12.5px;color:var(--fog);line-height:1.4}
+.lg[aria-pressed="true"]{border-color:var(--amber);background:var(--deck2)}
+.lg[aria-pressed="true"] b::after{content:" · picked";color:var(--amber);font-weight:600}
+.lg-light{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.lg-light .sw{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;background:#F3F4F1;color:#1F2426}
+.lg-light .sw svg{width:40px;height:40px}
+.lg-light .sw b{font:700 15px var(--display)}
+
+/* pricing builder */
+.build{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:18px;align-items:start}
+@media (max-width:860px){.build{grid-template-columns:minmax(0,1fr)}}
+.opts{display:grid;gap:22px}
+.optrow{display:grid;gap:10px}
+.optrow>b{font:700 13px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--fog)}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px}
+.choice{display:grid;gap:6px;text-align:left;padding:16px;border:1px solid var(--rule);border-radius:16px;background:var(--deck);transition:border-color .3s,background .3s;align-content:start}
+.choice[aria-pressed="true"]{border-color:var(--amber);background:var(--deck2)}
+.choice .nm{font:700 17px var(--display)}
+.choice .pr{font:800 24px/1.1 var(--display);font-variant-numeric:tabular-nums}
+.choice .pr s{font:500 14px var(--body);color:var(--fog);margin-right:6px}
+.choice .pr small{font:500 13px var(--body);color:var(--fog)}
+.choice .ds{font-size:13.5px;color:var(--fog)}
+.choice .badge{justify-self:start;font:700 10.5px var(--body);letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--amber);color:var(--on-amber)}
+.total{position:sticky;top:76px;border:1px solid var(--amber);border-radius:22px;background:var(--deck2);padding:22px;display:grid;gap:14px}
+@media (max-width:860px){.total{position:relative;top:0}}
+.total h3{font-size:20px}
+.total .row{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;font-variant-numeric:tabular-nums;border-bottom:1px dashed var(--rule);padding-bottom:9px}
+.total .row span:first-child{color:var(--fog)}
+.total .sum{display:grid;gap:2px}
+.total .sum b{font:800 34px/1.05 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.total .sum span{font-size:13px;color:var(--fog)}
+.total .save{font-size:13.5px;color:var(--leaf);font-weight:600}
+.founding{display:inline-flex;align-items:center;gap:8px;font:700 12px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--amber);border:1px solid color-mix(in srgb,var(--amber) 50%,transparent);padding:6px 12px;border-radius:999px}
+
+.ai{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.ai ul,.list{margin:0;padding-left:18px;display:grid;gap:6px;color:var(--fog);font-size:15px}
+.ai li b,.list b{color:var(--chalk)}
+.pend{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--amber)}
+.pend i{width:7px;height:7px;border-radius:50%;background:var(--amber);animation:blink 1.6s ease-in-out infinite}
+
+.time{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
+.need{display:grid;gap:8px;padding:0;margin:0;list-style:none}
+.need li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.need li::before{content:"";flex:none;width:16px;height:16px;margin-top:4px;border-radius:5px;border:1.5px solid var(--leaf)}
+.foot{padding-block:70px 50px;color:var(--fog);font-size:13px;display:grid;gap:6px}
+
+@keyframes pulse{0%{transform:scale(.4);opacity:.9}100%{transform:scale(2.4);opacity:0}}
+@keyframes blink{50%{opacity:.25}}
+@keyframes drop{0%{transform:translateY(-14px)}60%{transform:translateY(2px)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .mapcard.armed .route{stroke-dashoffset:0}.months.armed i{transform:none}
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg class="mark" data-logo viewBox="0 0 120 120" aria-hidden="true"></svg><b>Team HML</b></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#site">The site</a><a href="#funnel">Funnel</a><a href="#links">Agent links</a><a href="#domain">Domain</a><a href="#logo">Logo</a><a href="#pricing">Pricing</a><a href="#ai">AI</a><a href="#care">Care</a><a href="#start">Start</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <video autoplay muted loop playsinline poster="assets/hero-poster.jpg" aria-hidden="true"><source src="assets/hero.mp4" type="video/mp4"></video>
+  <div class="wrap">
+    <svg class="logo-big" data-logo viewBox="0 0 120 120" role="img" aria-label="Team HML logo"></svg>
+    <span class="eyebrow">Website &amp; lead funnel proposal · Team HML</span>
+    <h1>Your own PHirst site, <span class="serif">built to book trippings.</span></h1>
+    <p class="lede">A branded showcase of every PHirst project on your own domain, with a page link for every agent, the animated payment calculator, a route map from Manila, and a booking form that alerts your agent on Telegram and opens the right Facebook page in Messenger.</p>
+    <div class="facts">
+      <div class="fact"><b><s>₱30,000</s>₱20,000</b><span>Setup from, founding client rate</span></div>
+      <div class="fact"><b>₱6,000<small style="font-size:.55em;color:var(--fog)">/mo</small></b><span>Care plan from</span></div>
+      <div class="fact"><b>10–14 days</b><span>From go-signal to launch</span></div>
+      <div class="fact"><b>1st year</b><span>Domain included</span></div>
+    </div>
+    <p class="by">Prepared by Angel · October 2026</p>
+  </div>
+</section>
+
+<!-- ============ THE SITE ============ -->
+<section class="block" id="site">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">What your clients see</span><h2>The unit page, <span class="serif">live.</span></h2>
+      <p>This phone runs the real thing: the Gen Tri video, the calculator cycling through payment terms, the route from Manila, and the booking form. Tap a step to jump there, or scroll inside the phone.</p></div>
+    <div class="demo">
+      <div class="phone">
+        <div class="screen">
+          <div class="scroller" id="scroller">
+            <div class="site" id="siteRoot">
+              <span class="s-url" id="sUrl">phirstparkhomes-hml.com/juan</span>
+              <div class="s-bar">
+                <div class="s-av"><svg data-logo viewBox="0 0 120 120" aria-hidden="true"></svg></div>
+                <div class="s-who"><small>Presented by</small><b id="sAgent">Juan dela Cruz · Team HML</b></div>
+                <a class="s-btn" href="#sForm" data-jump="form">Book tripping</a>
+              </div>
+              <div class="s-hero" id="sHero">
+                <video autoplay muted loop playsinline poster="assets/hero-poster.jpg" aria-label="Aerial video of PHirst Impressions Gen Tri"><source src="assets/hero.mp4" type="video/mp4"></video>
+                <div class="t">
+                  <span class="e">PHirst Impressions · General Trias, Cavite</span>
+                  <h3>Gen Tri<span class="serif">Impressions</span></h3>
+                  <p>23.8 hectares of green, open living. Finished townhomes on bigger lots.</p>
+                  <div class="s-chips"><span>Calista Mid</span><span>Calista End</span><span>Manila ⇄ Gen Tri</span></div>
+                </div>
+              </div>
+              <div class="s-sec" id="sUnit">
+                <span class="s-eb">Townhouse · inner unit</span>
+                <h4>Calista <span class="serif">Mid</span></h4>
+                <div class="s-spec"><div><b>60<small>sqm</small></b><span>Lot</span></div><div><b>40<small>sqm</small></b><span>Floor</span></div><div><b>2</b><span>Beds</span></div><div><b>1</b><span>T&amp;B</span></div></div>
+              </div>
+              <div class="s-sec" id="sCalc">
+                <span class="s-eb">Sample computation</span>
+                <h4>What it <span class="serif">costs</span> per month.</h4>
+                <div class="s-panel">
+                  <h5>Downpayment · 10% over 12 months</h5>
+                  <div class="months armed" id="sMonths" aria-hidden="true"></div>
+                  <div class="mlabels"><span>Reserve</span><span>Spot DP</span><span>12 monthly</span></div>
+                  <dl class="kv">
+                    <div><dt>Reservation fee</dt><dd>₱30,000</dd></div>
+                    <div><dt>Spot downpayment</dt><dd>₱124,474.97</dd></div>
+                    <div><dt>Monthly for 12 months</dt><dd>₱12,872.91</dd></div>
+                    <div class="big"><dt>Total downpayment</dt><dd>₱308,949.94</dd></div>
+                  </dl>
+                </div>
+                <div class="s-panel">
+                  <h5>Monthly amortization after the DP</h5>
+                  <div class="seg dark" id="sFin" style="--n:2" role="group" aria-label="Financing"><span class="pill"></span><button aria-pressed="true" data-f="pag">Pag-IBIG Loan</button><button aria-pressed="false" data-f="bank">Bank Loan</button></div>
+                  <div class="seg" id="sYears" style="--n:5" role="group" aria-label="Years to pay"><span class="pill"></span></div>
+                  <div class="ma" id="sMa">—</div>
+                  <span class="autotag" id="sAuto"><i></i>Cycling through terms · tap a term to stop</span>
+                  <dl class="kv">
+                    <div><dt>Net contract price</dt><dd>₱3,089,499.38</dd></div>
+                    <div class="big"><dt>Balance to finance (90%)</dt><dd>₱2,780,549.44</dd></div>
+                  </dl>
+                  <p class="s-fine" id="sFinNote"></p>
+                </div>
+              </div>
+              <div class="s-sec" id="sMap">
+                <span class="s-eb">Location</span>
+                <h4>About an hour from <span class="serif">Manila.</span></h4>
+                <div class="seg dark" id="sMapT" style="--n:2" role="group" aria-label="Map view"><span class="pill"></span><button aria-pressed="true" data-v="0">From Manila</button><button aria-pressed="false" data-v="1">Nearby</button></div>
+                <div class="mapcard" id="sMapCard"><div id="sMapBox"></div>
+                  <div class="trip"><span>Manila ⇄ Gen Tri</span><b>≈ 1 hr via CAVITEX + CALAX</b></div></div>
+              </div>
+              <div class="s-sec" id="sForm">
+                <span class="s-eb">Free tripping · any day, 8 AM–5 PM</span>
+                <h4>Book your <span class="serif">visit.</span></h4>
+                <form class="s-form" id="leadForm" autocomplete="off">
+                  <label for="fName">Full name<input id="fName" required value="Maria Santos"></label>
+                  <label for="fMobile">Mobile number<input id="fMobile" inputmode="tel" required value="0917 555 0123"></label>
+                  <label for="fProj">Project<select id="fProj"><option>PHirst Impressions Gen Tri</option><option>PHirst Editions Batulao</option></select></label>
+                  <div class="two">
+                    <label for="fDay">Preferred day<input id="fDay" type="date" required></label>
+                    <label for="fTimeSel">Preferred time<select id="fTimeSel"></select></label>
+                  </div>
+                  <div class="times" id="fTimes" role="group" aria-label="Preferred time"></div>
+                  <button class="s-btn" type="submit">Book my free tripping</button>
+                </form>
+              </div>
+              <div class="s-foot"><b>Authorized PHirst Park Homes Seller · Team HML</b><span>Prices change often; confirm before reserving. Privacy policy · Data deletion</span></div>
+            </div>
+          </div>
+          <div class="sent" id="sent" aria-live="polite">
+            <div class="sheet site">
+              <span class="s-eb">Request sent</span>
+              <h5 id="sentTitle">Thanks, Maria!</h5>
+              <p id="sentText" style="font-size:13px;color:var(--mut)"></p>
+              <a class="s-btn fb" id="sentMsgr" href="#" target="_blank" rel="noopener">Continue in Messenger</a>
+              <button class="x" id="sentClose" type="button">Back to the site</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="chapters" id="chapters">
+          <button class="chap" data-jump="hero" aria-current="true"><span class="n">1</span><b>Gen Tri video</b><span>The project opens with your drone video instead of a still photo.</span></button>
+          <button class="chap" data-jump="calc"><span class="n">2</span><b>Animated calculator</b><span>Terms cycle on their own until the client taps one. Pag-IBIG and bank, from the official sheet.</span></button>
+          <button class="chap" data-jump="map"><span class="n">3</span><b>Route map</b><span>Manila and NAIA to Gen Tri via CAVITEX and CALAX, plus malls, schools and hospitals nearby.</span></button>
+          <button class="chap" data-jump="form"><span class="n">4</span><b>Booking form<span class="new">now with time</span></b><span>Name, mobile, project, preferred day and time. Try it: tap "Book my free tripping".</span></button>
+        </div>
+        <div class="fires" id="fires">
+          <h3>What happens when they tap Book</h3>
+          <div class="fire" data-k="pixel"><span class="ic" style="background:#1C2A44"><svg viewBox="0 0 24 24" fill="none" stroke="#7FA8FF" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span><div><b>Meta Pixel "Lead"</b><small>Your ads learn who books, not just who clicks</small></div><span class="st">waiting</span></div>
+          <div class="fire" data-k="tg"><span class="ic" style="background:#16303F"><svg viewBox="0 0 24 24" fill="#5DB2E6"><path d="M21.5 4.3 18.4 19c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.4 12.9 1.7 11.4c-1-.3-1-1 .2-1.5L20.1 3c.9-.3 1.6.2 1.4 1.3z"/></svg></span><div><b>Telegram alert to Juan</b><small id="fireTg">Instant, with the client's day and time</small></div><span class="st">waiting</span></div>
+          <div class="fire" data-k="sheet"><span class="ic" style="background:#16301F"><svg viewBox="0 0 24 24" fill="none" stroke="#6FD08C" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M4 15h16M10 3v18"/></svg></span><div><b>Row added to Google Sheet</b><small>Team HML's lead list, tagged by agent and ad</small></div><span class="st">waiting</span></div>
+          <div class="fire" data-k="fb"><span class="ic" style="background:#16264A"><svg viewBox="0 0 24 24" fill="#4E8BF5"><path d="M12 2C6.4 2 2 6.1 2 11.6c0 2.9 1.2 5.4 3.2 7.1V22l3-1.6c1.2.3 2.5.5 3.8.5 5.6 0 10-4.1 10-9.6S17.6 2 12 2zm1 12.9-2.5-2.7-5 2.7 5.5-5.8 2.6 2.7 4.9-2.7-5.5 5.8z"/></svg></span><div><b>Messenger opens on Juan's page</b><small>The page the client came from, with their details prefilled</small></div><span class="st">waiting</span></div>
+          <div class="tgcard" id="tgcard" hidden><div class="hd"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21.5 4.3 18.4 19c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.4 12.9 1.7 11.4c-1-.3-1-1 .2-1.5L20.1 3c.9-.3 1.6.2 1.4 1.3z"/></svg>Team HML Leads</div><pre id="tgText"></pre></div>
+          <p class="callout"><span><b>About sending to the Facebook page.</b> Meta only lets a page receive a message after the client messages it first, so the form can't post into the page inbox by itself. The client taps "Continue in Messenger", which opens the page they came from with their details ready to send. Your agent gets the Telegram alert either way.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FUNNEL ============ -->
+<section class="block" id="funnel">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">How the funnel works</span><h2>From ad to <span class="serif">tripping.</span></h2>
+      <p>Every visitor is tracked from the ad to the agent's Messenger, so your ads learn who actually books a tripping.</p></div>
+    <div class="funnel">
+      <div class="step"><span class="k">Step 1</span><b>Facebook ad</b><p>Sends people to the site or to an agent's own link.</p></div>
+      <div class="step"><span class="k">Step 2</span><b>Showcase site</b><p>Every PHirst project: video, photos, floor plans, route map and the payment calculator.</p></div>
+      <div class="step"><span class="k">Step 3</span><b>Booking form</b><p>Name, mobile, project, and preferred tripping day and time.</p></div>
+      <div class="step"><span class="k">Step 4</span><b>Alerts fire</b><p>Pixel "Lead" to Meta, Telegram to the agent, and a row in the Google Sheet.</p></div>
+      <div class="step"><span class="k">Step 5</span><b>Messenger</b><p>Opens on the Facebook page the client came from, ready to confirm the tripping.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AGENT LINKS ============ -->
+<section class="block" id="links">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Agent links</span><h2>One short link <span class="serif">per agent.</span></h2>
+      <p>Every agent gets their own page at your domain. Their name shows at the top, and their leads, alerts and Messenger go to them. Adding or removing agents is unlimited, because every agent page uses the same template: one fix updates them all.</p></div>
+    <div class="links">
+      <div class="card">
+        <h3>The link</h3>
+        <div class="url" aria-live="polite">phirstparkhomes-hml.com/<span class="path" id="slug">juan</span></div>
+        <div class="typer" id="typer" role="group" aria-label="Example agents">
+          <button aria-pressed="true" data-s="juan" data-n="Juan dela Cruz">juan</button><button aria-pressed="false" data-s="maria" data-n="Maria Reyes">maria</button><button aria-pressed="false" data-s="ken" data-n="Ken Bautista">ken</button>
+        </div>
+        <p class="fine">Shorter and easier to say out loud than a sub-domain like <s>juan.phirstparkhomes-hml.com</s>. New agents need no setup on our side beyond adding a name to the list.</p>
+      </div>
+      <div class="card">
+        <h3>Up to 3 Facebook pages included</h3>
+        <div class="pages">
+          <div class="pg"><i>H</i>Team HML page<span>default</span></div>
+          <div class="pg"><i>J</i>Juan's page<span>/juan</span></div>
+          <div class="pg"><i>M</i>Maria's page<span>/maria</span></div>
+        </div>
+        <p class="fine">Each agent link can point Messenger at one of up to 3 Facebook pages. Agents without their own page use the Team HML page. A 4th page or more can be added; let's agree the price before launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOMAIN ============ -->
+<section class="block" id="domain">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Your domain</span><h2>First year <span class="serif">on us.</span></h2>
+      <p>We recommend <b style="color:var(--chalk)">phirstparkhomes-hml.com</b>: clients see PHirst Park Homes first, and HML marks it as your team's site. It's registered in Team HML's name, so you always own it. The setup fee covers the first year; renewal is about ₱650 a year from year two.</p></div>
+    <div class="tbl"><table>
+      <thead><tr><th>Domain</th><th>Why it works</th><th>Agent link</th></tr></thead>
+      <tbody>
+        <tr class="rec"><td><b>phirstparkhomes-hml.com</b><span class="tag">Recommended</span></td><td>Brand first, team clearly named</td><td>phirstparkhomes-hml.com/juan</td></tr>
+        <tr><td>phirstparkhomesteamhml.com</td><td>Full team name, no hyphen</td><td>phirstparkhomesteamhml.com/juan</td></tr>
+        <tr><td>phirstparkhomescavite.com</td><td>Location-led, strong for Cavite ads</td><td>phirstparkhomescavite.com/juan</td></tr>
+        <tr><td>phirstparkhomesbatangas.com</td><td>Location-led, strong for Batangas ads</td><td>phirstparkhomesbatangas.com/juan</td></tr>
+        <tr><td>phirsthomesbyhml.com</td><td>Shorter, still reads as PHirst</td><td>phirsthomesbyhml.com/juan</td></tr>
+      </tbody></table></div>
+    <p class="fine" style="margin-top:12px">Availability changes until purchase; we confirm before buying. The footer reads "Authorized PHirst Park Homes Seller · Team HML" so visitors know who they're dealing with.</p>
+  </div>
+</section>
+
+<!-- ============ LOGO ============ -->
+<section class="block" id="logo">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Logo · included in setup</span><h2>Ten directions <span class="serif">for Team HML.</span></h2>
+      <p>Tap one to try it across this page and inside the phone. We refine the one you pick: colors, spacing, and versions for Facebook and print.</p></div>
+    <div class="logos" id="logos"></div>
+    <div class="lg-light" aria-label="Picked logo on a light background"><span class="fine">On the light site:</span><span class="sw"><svg data-logo viewBox="0 0 120 120" aria-hidden="true"></svg><b>Team HML</b></span></div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="block" id="pricing">
+  <div class="wrap">
+    <div class="head"><span class="founding">Founding client rate</span><h2>Build your <span class="serif">package.</span></h2>
+      <p>Team HML is our first team site, so you get the founding rate. Regular prices are shown crossed out. Pick a setup, an AI option and a care plan to see your total.</p></div>
+    <div class="build">
+      <div class="opts">
+        <div class="optrow"><b>Setup · one-time</b><div class="choices" id="optPkg"></div></div>
+        <div class="optrow"><b>AI assistant · optional</b><div class="choices" id="optAi"></div></div>
+        <div class="optrow"><b>Care plan · monthly</b><div class="choices" id="optCare"></div></div>
+      </div>
+      <aside class="total" aria-live="polite">
+        <h3>Your total</h3>
+        <div id="tRows" style="display:grid;gap:9px"></div>
+        <div class="sum"><b id="tSetup">—</b><span>One-time setup</span></div>
+        <div class="sum"><b id="tMonth">—</b><span>Monthly, from launch day (3-month minimum)</span></div>
+        <p class="save" id="tSave"></p>
+        <p class="fine" id="tDue"></p>
+      </aside>
+    </div>
+
+    <div class="tbl" style="margin-top:28px"><table>
+      <thead><tr><th>What's in each setup</th><th class="c">Starter</th><th class="c rec">Growth</th></tr></thead>
+      <tbody>
+        <tr><td>Branded showcase site with every PHirst project: Gen Tri video, photos, floor plans, route map, animated payment calculator</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Domain connected, first year included, secure (https), fast hosting</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Custom Team HML logo (from the 10 directions above)</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Personal agent links (phirstparkhomes-hml.com/juan)</td><td class="c yes">Unlimited</td><td class="c yes rec">Unlimited</td></tr>
+        <tr><td>Messenger routing to up to 3 Facebook pages</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Booking form with day and time, Telegram alert, Google Sheet, Continue in Messenger</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Link previews with photo and price for Messenger and Facebook</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Meta Pixel (page views and leads)</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Full funnel events (unit viewed, calculator used, form sent, Messenger tapped)</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Conversions API (tracking that survives ad blockers and iPhone privacy)</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Traffic dashboard by agent, ad and source</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Ready-made tracked links for every ad (UTM kit)</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Privacy policy and data deletion pages</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+      </tbody></table></div>
+    <p class="fine" style="margin-top:12px">Team HML runs and pays for its own ads. We connect the Pixel to your ad account so tracking works from day one.</p>
+  </div>
+</section>
+
+<!-- ============ AI ============ -->
+<section class="block" id="ai">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Optional · add any time</span><h2>An assistant that <span class="serif">answers at 2 AM.</span></h2>
+      <p>Two places it can live: on the website, on your Facebook page's Messenger, or both. It answers in Taglish from your current price list, collects the tripping day and time, and hands off to the right agent.</p></div>
+    <div class="ai">
+      <div class="card"><h3>Website assistant</h3><p class="url" style="font-size:18px">₱5,000 setup · ₱2,500/mo</p>
+        <ul><li>Chat bubble on every page, 24/7</li><li>Answers models, lot and floor sizes, prices, reservation fees</li><li>Estimates monthly payments and points to the calculator</li><li>Sends leads through the same Pixel, Telegram and Sheet triggers</li></ul></div>
+      <div class="card"><h3>Messenger chatbot</h3><p class="url" style="font-size:18px">₱5,000 setup · ₱2,500/mo</p>
+        <ul><li>Replies on Team HML's Facebook page, where most clients start</li><li>Same answers and lead capture as the website assistant</li><li>Runs on our existing chatbot platform, so there's no extra server cost</li></ul>
+        <span class="pend"><i></i>Goes live once Meta approves it, usually 1–4 weeks</span></div>
+      <div class="card" style="border-color:var(--amber)"><h3>Both <span class="tag" style="background:color-mix(in srgb,var(--amber) 18%,transparent);color:var(--amber)">Best value</span></h3><p class="url" style="font-size:18px">₱10,000 setup · ₱4,000/mo</p>
+        <ul><li>One assistant, two doors: website and Messenger</li><li>Saves ₱1,000 every month versus buying them separately</li></ul></div>
+    </div>
+    <p class="fine" style="margin-top:14px">Each option covers up to 1,500 conversations a month. Above that, usage is billed at cost and we tell you before it happens. The assistant never invents prices or promos.</p>
+  </div>
+</section>
+
+<!-- ============ CARE ============ -->
+<section class="block" id="care">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Monthly care</span><h2>Keeps prices and units <span class="serif">current.</span></h2>
+      <p>Inventory is updated weekly; prices and the calculator every quarter, when PHirst releases new price lists. Plans start the month of launch, with a 3-month minimum.</p></div>
+    <div class="tbl"><table>
+      <thead><tr><th>What's included</th><th class="c">Care ₱6,000/mo</th><th class="c rec">Growth Care ₱10,000/mo</th></tr></thead>
+      <tbody>
+        <tr><td>Hosting, security and uptime</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Weekly inventory updates (available units, sold-outs)</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Quarterly price list and calculator update</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Adding or removing agent links</td><td class="c yes">Unlimited</td><td class="c yes rec">Unlimited</td></tr>
+        <tr><td>Booking form, alerts and Pixel kept working</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Fixes and small text or photo changes</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Monthly report: visits, leads, top agents and ad sources</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Cost per lead (using your ad spend)</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Monthly Pixel and Conversions API health check</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>One funnel improvement a month (new section, A/B test, new form question)</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
+      </tbody></table></div>
+    <p class="fine" style="margin-top:12px">If the plan is paused or ended, updates stop and prices and the calculator go out of date, so keep a plan active while the site runs ads.</p>
+  </div>
+</section>
+
+<!-- ============ START ============ -->
+<section class="block" id="start">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Timeline, what we need, payment</span><h2>Live in <span class="serif">two weeks.</span></h2>
+      <p>The site goes live 10 to 14 days after the down payment and the items below are in.</p></div>
+    <div class="time">
+      <div class="card"><span class="eyebrow">Week 1</span><h3>Build</h3><p class="muted">Domain bought, logo refined, site rebranded for Team HML, agent links, Facebook pages and booking form set up.</p></div>
+      <div class="card"><span class="eyebrow">Week 2</span><h3>Connect and launch</h3><p class="muted">Pixel, Conversions API and analytics connected; a full test with a real form, Telegram alert and Messenger tap; launch.</p></div>
+      <div class="card"><span class="eyebrow">After launch</span><h3>Chatbot, if added</h3><p class="muted">Submitted to Meta for approval at launch; it switches on as soon as Meta approves, usually 1–4 weeks.</p></div>
+    </div>
+    <div class="time" style="margin-top:14px">
+      <div class="card"><h3>What we need from Team HML</h3>
+        <ul class="need"><li>Your pick from the 10 logo directions, and preferred colors</li><li>Agent list: name, Facebook page or Messenger link, and short link name (for example "juan")</li><li>Which Facebook pages (up to 3) receive leads</li><li>Tripping hours to offer in the time picker</li><li>Your choice of domain</li><li>Partner access to your Meta Business account (for the Pixel)</li><li>A Telegram group for lead alerts</li></ul></div>
+      <div class="card"><h3>Payment terms</h3>
+        <ul class="list"><li><b>50%</b> of setup to start, <b>50%</b> on launch day.</li><li>Care and AI plans are billed monthly in advance, from launch day.</li><li>Domain: first year included. Renewal (about ₱650 a year) from year two is paid by Team HML directly.</li><li>Ad spend is paid by Team HML directly.</li><li>Payment by GCash or bank transfer.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot wrap"><b style="color:var(--chalk)">Team HML · Website &amp; lead funnel proposal</b><span>Calculator figures are from the official Calista Mid sample sheet (Phase 1, Block 42 Lot 24, August 2026). Prices change often and are unofficial until signed by PHirst Sales Administration.</span></footer>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const peso=(v,d=0)=>"₱"+v.toLocaleString("en-PH",{minimumFractionDigits:d,maximumFractionDigits:d});
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+/* ---------- logos ---------- */
+const AM="var(--amber)";
+const LOGOS=[
+ ["Roofline","The H becomes a house; the roof pitch carries all three letters.",
+  `<path d="M14 58 60 20l46 38" fill="none" stroke="${AM}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 52v44M30 74h20M50 52v44" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path d="M62 96V60l11 16 11-16v36" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M96 60v36h10" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>`],
+ ["Three Homes","H, M and L as a row of townhouses, like a Calista row.",
+  `<path d="M10 100V56l16-14 16 14v44" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/><path d="M42 100V48l18-16 18 16v52" fill="none" stroke="${AM}" stroke-width="6" stroke-linejoin="round"/><path d="M78 100V56l16-14 16 14v44" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/><text x="26" y="88" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="22" fill="currentColor">H</text><text x="60" y="86" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="24" fill="${AM}">M</text><text x="94" y="88" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="22" fill="currentColor">L</text><path d="M4 104h112" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>`],
+ ["Pin Home","A map pin with a doorway: we take you there.",
+  `<path d="M60 112C36 82 24 66 24 48a36 36 0 0 1 72 0c0 18-12 34-36 64z" fill="${AM}"/><path d="M42 62V46l18-14 18 14v16" fill="none" stroke="var(--on-amber)" stroke-width="6" stroke-linejoin="round"/><rect x="54" y="48" width="12" height="14" rx="2" fill="var(--on-amber)"/>`],
+ ["Front Door","HML set inside an arched front door.",
+  `<path d="M28 108V50a32 32 0 0 1 64 0v58z" fill="none" stroke="currentColor" stroke-width="6"/><text x="60" y="78" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="26" letter-spacing="-1" fill="currentColor">HML</text><circle cx="80" cy="92" r="4" fill="${AM}"/><path d="M16 108h88" stroke="${AM}" stroke-width="6" stroke-linecap="round"/>`],
+ ["Window","Four panes, warm light in one: home is lit.",
+  `<rect x="18" y="18" width="84" height="84" rx="10" fill="none" stroke="currentColor" stroke-width="6"/><path d="M60 18v84M18 60h84" stroke="currentColor" stroke-width="6"/><rect x="66" y="24" width="30" height="30" rx="3" fill="${AM}"/><text x="39" y="50" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="22" fill="currentColor">H</text><text x="39" y="92" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="22" fill="currentColor">M</text><text x="81" y="92" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="22" fill="currentColor">L</text>`],
+ ["House Key","A key whose teeth spell out the handover moment.",
+  `<circle cx="36" cy="60" r="22" fill="none" stroke="${AM}" stroke-width="8"/><circle cx="36" cy="60" r="7" fill="${AM}"/><path d="M58 60h52" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path d="M78 60v16M92 60v10M104 60v18" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><text x="84" y="48" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="18" fill="currentColor">HML</text>`],
+ ["Sunrise","Sun rising over a roof: your first home, a fresh start.",
+  `<path d="M28 76a32 32 0 0 1 64 0" fill="${AM}"/><path d="M60 22v10M30 34l7 7M90 34l-7 7M16 62h10M94 62h10" stroke="${AM}" stroke-width="5" stroke-linecap="round"/><path d="M14 98 60 66l46 32" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 108h92" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>`],
+ ["Highland","A roofline that doubles as Mount Batulao's ridge.",
+  `<path d="M8 92 38 52l16 18 22-38 36 60z" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/><path d="M60 92V74l14-12 14 12v18" fill="${AM}"/><path d="M8 100h104" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><circle cx="92" cy="30" r="7" fill="${AM}"/>`],
+ ["Seal","A round badge for page photos and signage.",
+  `<circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="60" cy="60" r="38" fill="${AM}"/><path id="sealArc" d="M20 60a40 40 0 0 1 80 0" fill="none"/><text font-family="Figtree,sans-serif" font-weight="700" font-size="9.5" letter-spacing="2.6" fill="currentColor"><textPath href="#sealArc" startOffset="50%" text-anchor="middle">PHIRST SELLERS</textPath></text><text x="60" y="66" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="24" fill="var(--on-amber)">HML</text><text x="60" y="80" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="8" letter-spacing="2" fill="var(--on-amber)">TEAM</text>`],
+ ["Stacked","A bold wordmark with a roof tick for small sizes.",
+  `<path d="M22 38 60 14l38 24" fill="none" stroke="${AM}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="84" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="44" letter-spacing="-2" fill="currentColor">HML</text><text x="60" y="104" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="11" letter-spacing="5" fill="currentColor" opacity=".7">TEAM</text>`]
+];
+let logoIdx=+(store.get("hml-logo")||0); if(!(logoIdx>=0&&logoIdx<LOGOS.length)) logoIdx=0;
+function paintLogos(){
+  $$("svg[data-logo]").forEach((s,i)=>{ s.innerHTML=LOGOS[logoIdx][2].replace(/sealArc/g,"sealArc"+i); });
+  $$("#logos .lg").forEach((b,i)=>b.setAttribute("aria-pressed",i===logoIdx));
+}
+$("#logos").innerHTML=LOGOS.map(([n,d,svg],i)=>`<button class="lg" aria-pressed="false" data-i="${i}"><svg viewBox="0 0 120 120" aria-hidden="true">${svg.replace(/sealArc/g,"sealArcL"+i)}</svg><b>${i+1}. ${n}</b><span>${d}</span></button>`).join("");
+$$("#logos .lg").forEach(b=>b.onclick=()=>{ logoIdx=+b.dataset.i; store.set("hml-logo",logoIdx); paintLogos(); });
+paintLogos();
+
+/* ---------- segmented controls ---------- */
+function seg(el,onPick){
+  const btns=[...el.querySelectorAll("button")], pill=el.querySelector(".pill");
+  const set=(b,user)=>{ const i=btns.indexOf(b); btns.forEach(x=>x.setAttribute("aria-pressed",x===b)); pill.style.transform=`translateX(${i*100}%)`; onPick(b,user); };
+  btns.forEach(b=>b.onclick=()=>set(b,true));
+  const cur=btns.find(b=>b.getAttribute("aria-pressed")==="true")||btns[0]; pill.style.transform=`translateX(${btns.indexOf(cur)*100}%)`;
+  return set;
+}
+function tween(el,to,fmt,ms=700){
+  const from=+(el.dataset.v||0); el.dataset.v=to;
+  if(reduce||!from){ el.innerHTML=fmt(to); return; }
+  const t0=performance.now();
+  (function f(t){ const k=Math.min(1,(t-t0)/ms), e=1-Math.pow(1-k,3); el.innerHTML=fmt(from+(to-from)*e); if(k<1) requestAnimationFrame(f); })(t0);
+}
+
+/* ---------- calculator (Calista Mid official sheet) ---------- */
+const CALC={ balance:2780549.44, bankRate:.07, pag:{30:17120.32,25:18342.43,20:20323.82,15:23841.07,10:31220.04},
+  schedule:[[30000,"r"],[124474.97,"r"],...Array(12).fill([12872.91,""])] };
+const amort=(P,rate,y)=>{ const r=rate/12,n=y*12; return P*r/(1-Math.pow(1+r,-n)); };
+(function(){
+  const hmax=Math.max(...CALC.schedule.map(x=>x[0]));
+  const m=$("#sMonths"); m.style.gridTemplateColumns=`repeat(${CALC.schedule.length},1fr)`;
+  m.innerHTML=CALC.schedule.map(([a,c],i)=>`<i class="${c}" style="--d:${i};--h:${Math.max(6,a/hmax*100).toFixed(0)}%"></i>`).join("");
+})();
+let fin="pag", years=20, auto=true, autoT;
+const TERMS={pag:[30,25,20,15,10],bank:[25,20,15,10,5]};
+const mo=v=>peso(v)+"<small> /month</small>";
+function renderYears(){
+  const ys=TERMS[fin]; if(!ys.includes(years)) years=20;
+  $("#sYears").innerHTML=`<span class="pill"></span>`+ys.map(y=>`<button aria-pressed="${y===years}" data-y="${y}">${y} yrs</button>`).join("");
+  setYear=seg($("#sYears"),(b,user)=>{ years=+b.dataset.y; if(user) stopAuto(); updMa(); });
+}
+let setYear;
+function updMa(){
+  const v=fin==="pag"?CALC.pag[years]:amort(CALC.balance,CALC.bankRate,years);
+  tween($("#sMa"),v,mo);
+  $("#sFinNote").textContent = fin==="pag"
+    ? "Pag-IBIG at 6.25%, fixed for the first 3 years. Needs at least 24 monthly contributions; the final loan amount depends on Pag-IBIG's approval."
+    : "Indicative at 7% a year on the same balance. Actual rates and terms depend on the bank and the borrower's age.";
+}
+seg($("#sFin"),(b,user)=>{ fin=b.dataset.f; if(user) stopAuto(); renderYears(); updMa(); });
+renderYears(); updMa();
+function stopAuto(){ auto=false; clearInterval(autoT); $("#sAuto").innerHTML="Tap any term to compare"; }
+function startAuto(){
+  if(reduce) { $("#sAuto").hidden=true; return; }
+  autoT=setInterval(()=>{ if(!auto) return; const ys=TERMS[fin], i=(ys.indexOf(years)+1)%ys.length;
+    const b=$(`#sYears button[data-y="${ys[i]}"]`); if(b) setYear(b,false); }, 2200);
+}
+
+/* ---------- map (from the prototype; OpenStreetMap positions) ---------- */
+const MAPS=[{
+  lon0:120.80, lat0:14.62, K:1500, cos:0.969, w:407, h:600,
+  water:[{pts:[[120.975,14.62],[120.98,14.58],[120.985,14.54],[120.99,14.51],[120.975,14.49],[120.955,14.465],[120.925,14.455],[120.905,14.45],[120.895,14.475],[120.885,14.492],[120.87,14.465],[120.86,14.445],[120.84,14.435],[120.82,14.425],[120.80,14.415],[120.80,14.62]],label:"Manila Bay",at:[120.83,14.55]}],
+  roads:[{pts:[[120.993,14.52],[120.99,14.5],[120.965,14.472],[120.935,14.458],[120.91,14.447]],label:"CAVITEX",at:[120.96,14.487],rot:28},
+         {pts:[[120.91,14.447],[120.905,14.41],[120.908,14.37],[120.922,14.32],[120.935,14.285],[120.96,14.262],[121.0,14.255],[121.05,14.265],[121.071,14.27]],label:"CALAX",at:[120.93,14.35]}],
+  route:[[121.015,14.509],[120.993,14.505],[120.99,14.5],[120.965,14.472],[120.935,14.458],[120.91,14.447],[120.905,14.41],[120.908,14.37],[120.922,14.32],[120.918,14.281]],
+  places:[[120.985,14.593,"Manila",8,4,"big"],[121.015,14.509,"NAIA",8,4,"big"],[120.881,14.386,"General Trias",-78,4],[120.968,14.235,"Silang",8,4]],
+  lm:[], pin:[120.918,14.281], pinTitle:"PHirst Impressions Gen Tri", pinSub:"Brgy. Biclatan",
+  aria:"Map: PHirst Impressions Gen Tri in Brgy. Biclatan, General Trias, reached from Manila and NAIA via CAVITEX and CALAX"
+},{
+  lon0:120.845, lat0:14.41, K:2700, cos:0.969, w:392, h:405, water:[],
+  roads:[{pts:[[120.905,14.41],[120.908,14.37],[120.922,14.32],[120.935,14.285],[120.96,14.262],[120.99,14.256]],label:"CALAX",at:[120.9135,14.352],rot:75}],
+  places:[[120.881,14.386,"Gen. Trias town",8,4]],
+  lm:[["mall",120.9117,14.3231,"Vista Mall Gen. Trias",10,4],["mall",120.9568,14.3018,"SM City Dasmariñas",-10,4,"end"],["mall",120.8648,14.3971,"Robinsons Place Gen. Trias",10,4],["mall",120.9823,14.3596,"The District Dasmariñas",-10,4,"end"],["school",120.9160,14.2902,"LPU Cavite",-10,4,"end"],["school",120.9586,14.3242,"DLSU-D",10,16],["hospital",120.9433,14.3278,"DLSU Medical Center",-10,-6,"end"],["hospital",120.9121,14.3650,"King Solomon Hospital",10,4]],
+  pin:[120.918,14.281], pinTitle:"PHirst Impressions Gen Tri", pinSub:"Brgy. Biclatan",
+  aria:"Map: malls, schools and hospitals near PHirst Impressions Gen Tri in Brgy. Biclatan, General Trias"
+}];
+const LM={mall:"#C2542D",school:"#3E7CB1",hospital:"#D23F4E"};
+function lmIcon(type,cx,cy){
+  const w="#fff", g = type==="hospital" ? `<rect x="${cx-1.1}" y="${cy-4}" width="2.2" height="8" fill="${w}"/><rect x="${cx-4}" y="${cy-1.1}" width="8" height="2.2" fill="${w}"/>`
+    : type==="school" ? `<path d="M${cx-5} ${cy-1}L${cx} ${cy-4}L${cx+5} ${cy-1}L${cx} ${cy+2}Z" fill="${w}"/>`
+    : `<rect x="${cx-3.5}" y="${cy-1.5}" width="7" height="5.5" rx="1" fill="${w}"/>`;
+  return `<circle cx="${cx}" cy="${cy}" r="7.5" fill="${LM[type]}" stroke="var(--surface)" stroke-width="1.5"/>${g}`;
+}
+function locMap(g){
+  const x=lon=>((lon-g.lon0)*g.cos*g.K).toFixed(1), y=lat=>((g.lat0-lat)*g.K).toFixed(1);
+  const pts=a=>a.map(([lo,la])=>x(lo)+","+y(la)).join(" ");
+  const label=(lo,la,t,rot,cls="")=>`<text x="${x(lo)}" y="${y(la)}" class="${cls}"${rot?` transform="rotate(${rot} ${x(lo)} ${y(la)})"`:""}>${t}</text>`;
+  const dot=([lo,la,t,dx=8,dy=4,cls=""])=>`<circle cx="${x(lo)}" cy="${y(la)}" r="4" fill="var(--ink)"/><text x="${(+x(lo)+dx).toFixed(1)}" y="${(+y(la)+dy).toFixed(1)}" class="${cls}">${t}</text>`;
+  const px=+x(g.pin[0]), py=+y(g.pin[1]), bx=px-150, by=py+8;
+  return `<svg class="map" viewBox="0 0 ${g.w} ${g.h}" role="img" aria-label="${g.aria}">
+    <rect width="${g.w}" height="${g.h}" fill="var(--surface)"/>
+    ${g.water.map(w=>`<polygon points="${pts(w.pts)}" fill="var(--water)"/>${label(w.at[0],w.at[1],w.label,0,"water-l")}`).join("")}
+    ${g.roads.map(r=>`<polyline points="${pts(r.pts)}" fill="none" stroke="var(--line)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`).join("")}
+    ${g.route?`<polyline class="route" pathLength="1" points="${pts(g.route)}" fill="none" stroke="var(--rust)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>`:""}
+    ${g.roads.map(r=>label(r.at[0],r.at[1],r.label,r.rot)).join("")}
+    ${g.lm.map(([t,lo,la,txt,dx=10,dy=4,an="start"])=>{const cx=+x(lo),cy=+y(la);return `<g>${lmIcon(t,cx,cy)}<text x="${cx+dx}" y="${cy+dy}" text-anchor="${an}" style="fill:var(--ink);font-size:10.5px;paint-order:stroke;stroke:var(--surface);stroke-width:3px">${txt}</text></g>`}).join("")}
+    ${g.places.map(dot).join("")}
+    <circle class="pulse" cx="${px}" cy="${py}" r="10" fill="var(--rust)"/>
+    <g style="animation:drop 1.3s var(--ease) both"><path d="M${px} ${py} c-9 -12 -13 -17 -13 -24 a13 13 0 0 1 26 0 c0 7 -4 12 -13 24z" fill="var(--rust)"/><circle cx="${px}" cy="${py-24}" r="5" fill="var(--surface)"/></g>
+    <rect x="${bx}" y="${by}" width="140" height="36" rx="8" fill="var(--char)"/>
+    <text x="${bx+8}" y="${by+15}" style="fill:var(--on-char);font-size:11px;font-weight:700">${g.pinTitle}</text>
+    <text x="${bx+8}" y="${by+29}" style="fill:var(--on-char);opacity:.75;font-size:10px">${g.pinSub}</text>
+    <g transform="translate(${g.w-29} 30)"><path d="M0 -14 L6 4 L0 0 L-6 4Z" fill="var(--ink)"/><text x="-4" y="18" style="fill:var(--ink)">N</text></g>
+  </svg>`;
+}
+function drawMap(i){
+  const card=$("#sMapCard"); $("#sMapBox").innerHTML=locMap(MAPS[i]);
+  if(!reduce){ card.classList.add("armed"); card.getBoundingClientRect(); requestAnimationFrame(()=>card.classList.remove("armed")); }
+}
+drawMap(0);
+seg($("#sMapT"),b=>drawMap(+b.dataset.v));
+
+/* ---------- reveal inside the phone ---------- */
+const scroller=$("#scroller");
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting) return;
+  if(e.target.id==="sMonths") e.target.classList.remove("armed");
+  if(e.target.id==="sMapCard") drawMap(+$("#sMapT button[aria-pressed=true]").dataset.v);
+  if(e.target.id==="sCalc" && !autoT) startAuto();
+  io.unobserve(e.target);
+}),{root:scroller,threshold:.35});
+["#sMonths","#sMapCard","#sCalc"].forEach(s=>io.observe($(s)));
+if(reduce) $("#sMonths").classList.remove("armed");
+
+/* chapters ↔ phone */
+const JUMP={hero:"#sHero",calc:"#sCalc",map:"#sMap",form:"#sForm"};
+function jump(k){ const t=$(JUMP[k]); scroller.scrollTo({top:t.offsetTop-(k==="hero"?0:58),behavior:reduce?"auto":"smooth"}); }
+$$("[data-jump]").forEach(b=>b.addEventListener("click",e=>{ e.preventDefault(); jump(b.dataset.jump);
+  if(b.classList.contains("chap") && innerWidth<=860) $(".phone").scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"}); }));
+scroller.addEventListener("scroll",()=>{
+  const y=scroller.scrollTop+120; let cur="hero";
+  for(const k of ["calc","map","form"]) if($(JUMP[k]).offsetTop<=y) cur=k;
+  $$(".chap").forEach(c=>c.setAttribute("aria-current",c.dataset.jump===cur));
+},{passive:true});
+
+/* ---------- booking form ---------- */
+const SLOTS=["8:00 AM","9:00 AM","10:00 AM","11:00 AM","1:00 PM","2:00 PM","3:00 PM","4:00 PM"];
+$("#fTimeSel").innerHTML=SLOTS.map(s=>`<option${s==="10:00 AM"?" selected":""}>${s}</option>`).join("");
+$("#fTimes").innerHTML=SLOTS.map(s=>`<button type="button" aria-pressed="${s==="10:00 AM"}">${s}</button>`).join("");
+$$("#fTimes button").forEach(b=>b.onclick=()=>{ $$("#fTimes button").forEach(x=>x.setAttribute("aria-pressed",x===b)); $("#fTimeSel").value=b.textContent; });
+$("#fTimeSel").onchange=e=>$$("#fTimes button").forEach(x=>x.setAttribute("aria-pressed",x.textContent===e.target.value));
+$("#fTimeSel").parentElement.style.display="none"; // chips are the picker; the select stays as the form value
+(function(){ const d=new Date(); d.setDate(d.getDate()+((6-d.getDay()+7)%7||7)); $("#fDay").value=d.toISOString().slice(0,10); })();
+
+let agent={slug:"juan",name:"Juan dela Cruz"};
+const MSGR="https://m.me/";
+$("#leadForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=$("#fName").value.trim()||"Client", first=name.split(" ")[0];
+  const day=$("#fDay").value?new Date($("#fDay").value+"T00:00").toLocaleDateString("en-PH",{weekday:"short",month:"short",day:"numeric"}):"Any day";
+  const time=$("#fTimeSel").value, proj=$("#fProj").value;
+  $("#sentTitle").textContent=`Thanks, ${first}!`;
+  $("#sentText").textContent=`${agent.name.split(" ")[0]} got your request for ${day}, ${time}. Tap below to confirm in Messenger; your details are ready to send.`;
+  $("#sentMsgr").href=MSGR+"TeamHML?ref="+encodeURIComponent(`book_${agent.slug}_gentri`);
+  $("#sent").classList.add("on");
+  $("#tgText").textContent=`🏠 New tripping request\nAgent: ${agent.name} (/${agent.slug})\nClient: ${name}\nMobile: ${$("#fMobile").value}\nProject: ${proj}\nWhen: ${day}, ${time}\nSource: Facebook ad`;
+  $("#fireTg").textContent=`To ${agent.name.split(" ")[0]}: ${day}, ${time}`;
+  const fires=$$(".fire"); fires.forEach(f=>{ f.classList.remove("on"); f.querySelector(".st").textContent="waiting"; });
+  $("#tgcard").hidden=true;
+  fires.forEach((f,i)=>setTimeout(()=>{ f.classList.add("on"); f.querySelector(".st").textContent="sent ✓"; if(f.dataset.k==="tg") $("#tgcard").hidden=false; }, reduce?0:350+i*450));
+});
+$("#sentClose").onclick=()=>$("#sent").classList.remove("on");
+
+/* ---------- agent link demo ---------- */
+$$("#typer button").forEach(b=>b.onclick=()=>{
+  $$("#typer button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  agent={slug:b.dataset.s,name:b.dataset.n};
+  $("#slug").textContent=agent.slug; $("#sUrl").textContent="phirstparkhomes-hml.com/"+agent.slug;
+  $("#sAgent").textContent=agent.name+" · Team HML";
+  $("#fireTg").textContent="Instant, with the client's day and time";
+  const tg=$(".fire[data-k=tg] b"); tg.textContent="Telegram alert to "+agent.name.split(" ")[0];
+  const fb=$(".fire[data-k=fb] b"); fb.textContent="Messenger opens on "+agent.name.split(" ")[0]+"'s page";
+});
+
+/* ---------- pricing builder ---------- */
+const PKG=[{id:"starter",nm:"Starter",was:30000,now:20000,ds:"Full site, logo, domain, agent links, booking form, Pixel."},
+           {id:"growth",nm:"Growth",was:45000,now:30000,ds:"Everything in Starter plus full tracking, Conversions API and the analytics dashboard.",badge:"Recommended"}];
+const AI=[{id:"none",nm:"No AI for now",set:0,mo:0,ds:"Add it any time after launch."},
+          {id:"web",nm:"Website assistant",set:5000,mo:2500,ds:"Chat on the site, 24/7."},
+          {id:"bot",nm:"Messenger chatbot",set:5000,mo:2500,ds:"Replies on your Facebook page. Live after Meta approval."},
+          {id:"both",nm:"Both",set:10000,mo:4000,ds:"Website and Messenger. Saves ₱1,000 a month.",badge:"Best value"}];
+const CARE=[{id:"care",nm:"Care",mo:6000,ds:"Updates, hosting, unlimited agent links."},
+            {id:"gcare",nm:"Growth Care",mo:10000,ds:"Plus monthly report, cost per lead and one improvement a month.",badge:"Pairs with Growth"}];
+const sel={pkg:"growth",ai:"none",care:"gcare"};
+function choices(el,list,key,price){
+  el.innerHTML=list.map(o=>`<button class="choice" aria-pressed="${sel[key]===o.id}" data-id="${o.id}">${o.badge?`<span class="badge">${o.badge}</span>`:""}<span class="nm">${o.nm}</span><span class="pr">${price(o)}</span><span class="ds">${o.ds}</span></button>`).join("");
+  el.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{ sel[key]=b.dataset.id; el.querySelectorAll(".choice").forEach(x=>x.setAttribute("aria-pressed",x===b)); total(); });
+}
+choices($("#optPkg"),PKG,"pkg",o=>`<s>${peso(o.was)}</s>${peso(o.now)}`);
+choices($("#optAi"),AI,"ai",o=>o.set?`${peso(o.set)} <small>+ ${peso(o.mo)}/mo</small>`:"₱0");
+choices($("#optCare"),CARE,"care",o=>`${peso(o.mo)} <small>/mo</small>`);
+function total(){
+  const p=PKG.find(x=>x.id===sel.pkg), a=AI.find(x=>x.id===sel.ai), c=CARE.find(x=>x.id===sel.care);
+  const setup=p.now+a.set, month=c.mo+a.mo;
+  $("#tRows").innerHTML=[[`${p.nm} setup`,peso(p.now)],a.set?[`${a.nm} setup`,peso(a.set)]:null,[`${c.nm}`,peso(c.mo)+"/mo"],a.mo?[`${a.nm}`,peso(a.mo)+"/mo"]:null]
+    .filter(Boolean).map(([l,v])=>`<div class="row"><span>${l}</span><span>${v}</span></div>`).join("");
+  tween($("#tSetup"),setup,v=>peso(Math.round(v)));
+  tween($("#tMonth"),month,v=>peso(Math.round(v))+"<small style='font-size:.45em;color:var(--fog)'> /mo</small>");
+  $("#tSave").textContent=`Founding rate saves ${peso(p.was-p.now)} on setup.`;
+  $("#tDue").textContent=`${peso(setup/2)} to start, ${peso(setup/2)} on launch day. Domain's first year is included.`;
+}
+total();
+</script>
