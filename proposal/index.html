@@ -500,12 +500,13 @@ th.rec{color:var(--amber)}
         <tr><td>Cost per lead (using your ad spend)</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
         <tr><td>Monthly Pixel and Conversions API health check</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
         <tr><td>One funnel improvement a month (new section, A/B test, new form question)</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
+        <tr><td>Seasonal ad creatives (one set per season, see below)</td><td class="c no">No</td><td class="c yes rec">Bonus</td></tr>
       </tbody></table></div>
     <p class="fine" style="margin-top:12px">If the plan is paused or ended, updates stop and prices and the calculator go out of date, so keep a plan active while the site runs ads.</p>
     <div class="card" style="margin-top:18px">
-      <span class="eyebrow">Suggested add-on · when the timing is right</span>
+      <span class="eyebrow">Growth Care bonus · when the timing is right</span>
       <h3>Seasonal ad creatives</h3>
-      <p class="muted">We'll suggest ad designs when a season or a social media trend fits, and quote each set before we start. You decide each time; nothing is billed automatically.</p>
+      <p class="muted">With Growth Care, we design a set of ads whenever a season or a social media trend fits, at no extra cost: one set per season, about four a year. On the Care plan, we can quote a set when you want one.</p>
       <ul class="list">
         <li><b>Ber months and 13th-month pay (Oct–Dec):</b> "Start the new year in your own home" reservation pushes.</li>
         <li><b>OFW Month (June):</b> video-tour and SPA-friendly messages for buyers abroad.</li>
@@ -673,7 +674,7 @@ const AI=[{id:"none",nm:"No AI for now",set:0,mo:0,ds:"Add it any time after lau
           {id:"bot",nm:"Messenger chatbot",set:5000,mo:2500,ds:"Replies on your Facebook page. Live after Meta approval."},
           {id:"both",nm:"Both",set:10000,mo:4000,ds:"Website and Messenger. Saves ₱1,000 a month.",badge:"Best value"}];
 const CARE=[{id:"care",nm:"Care",was:6000,mo:3000,ds:"Updates, hosting, unlimited agent links."},
-            {id:"gcare",nm:"Growth Care",was:10000,mo:5000,ds:"Plus monthly report, cost per lead and one improvement a month.",badge:"Pairs with Growth"}];
+            {id:"gcare",nm:"Growth Care",was:10000,mo:5000,ds:"Plus monthly report, cost per lead, one improvement a month and seasonal ad creatives.",badge:"Pairs with Growth"}];
 const sel={pkg:"growth",ai:"none",care:"gcare"};
 function choices(el,list,key,price){
   el.innerHTML=list.map(o=>`<button class="choice" aria-pressed="${sel[key]===o.id}" data-id="${o.id}">${o.badge?`<span class="badge">${o.badge}</span>`:""}<span class="nm">${o.nm}</span><span class="pr">${price(o)}</span><span class="ds">${o.ds}</span></button>`).join("");
