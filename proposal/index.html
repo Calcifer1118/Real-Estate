@@ -437,7 +437,7 @@ th.rec{color:var(--amber)}
         <div class="optrow"><b>Care plan · monthly</b><div class="choices" id="optCare"></div></div>
         <div class="optrow"><b>Facebook pages</b>
           <div class="pager"><button type="button" id="pgMinus" aria-label="Fewer pages">−</button><output id="pgN" aria-live="polite">3</output><button type="button" id="pgPlus" aria-label="More pages">+</button>
-          <span class="fine" id="pgNote">3 included. Each extra page: ₱1,500 one-time, plus ₱500 a month on Growth Care.</span></div></div>
+          <span class="fine" id="pgNote">3 included. Each extra page: ₱1,500 one-time, plus ₱500 a month on Growth Care and ₱500 a month on the Messenger chatbot.</span></div></div>
       </div>
       <aside class="total" aria-live="polite">
         <h3>Your total</h3>
@@ -478,14 +478,14 @@ th.rec{color:var(--amber)}
       <p>Two places it can live: on the website, on your Facebook page's Messenger, or both. It answers in Taglish from your current price list, collects the tripping day and time, and hands off to the right agent.</p></div>
     <div class="ai">
       <div class="card"><h3>Website assistant</h3><p class="url" style="font-size:18px">₱5,000 setup · ₱2,500/mo</p>
-        <ul><li>Chat bubble on every page, 24/7</li><li>Answers models, lot and floor sizes, prices, reservation fees</li><li>Estimates monthly payments and points to the calculator</li><li>Sends leads through the same Pixel, Telegram and Sheet triggers</li></ul></div>
+        <ul><li>One assistant for the whole site: every agent link shares it</li><li>Chat bubble on every page, 24/7</li><li>Answers models, lot and floor sizes, prices, reservation fees</li><li>Estimates monthly payments and points to the calculator</li><li>Sends leads through the same Pixel, Telegram and Sheet triggers</li></ul></div>
       <div class="card"><h3>Messenger chatbot</h3><p class="url" style="font-size:18px">₱5,000 setup · ₱2,500/mo</p>
-        <ul><li>Replies on Team HML's Facebook page, where most clients start</li><li>Same answers and lead capture as the website assistant</li><li>Runs on our existing chatbot platform, so there's no extra server cost</li></ul>
+        <ul><li>Covers your first 3 Facebook pages; each extra page adds ₱500 a month</li><li>Replies in each page's Messenger, where most clients start</li><li>Same answers and lead capture as the website assistant</li><li>Runs on our existing chatbot platform, so there's no extra server cost</li></ul>
         <span class="pend"><i></i>Goes live once Meta approves it, usually 1–4 weeks</span></div>
       <div class="card" style="border-color:var(--amber)"><h3>Both <span class="tag" style="background:color-mix(in srgb,var(--amber) 18%,transparent);color:var(--amber)">Best value</span></h3><p class="url" style="font-size:18px">₱10,000 setup · ₱4,000/mo</p>
-        <ul><li>One assistant, two doors: website and Messenger</li><li>Saves ₱1,000 every month versus buying them separately</li></ul></div>
+        <ul><li>One assistant, two doors: website and Messenger (first 3 pages; ₱500 a month per extra page)</li><li>Saves ₱1,000 every month versus buying them separately</li></ul></div>
     </div>
-    <p class="fine" style="margin-top:14px">Each option covers up to 1,500 conversations a month. Above that, usage is billed at cost and we tell you before it happens. The assistant never invents prices or promos.</p>
+    <p class="fine" style="margin-top:14px">Each option includes 1,500 conversations a month, shared across all its pages (for example, 3 Messenger pages share one 1,500). Above that, each extra 1,500 conversations is ₱1,000, and we tell you before it happens. The assistant never invents prices or promos.</p>
   </div>
 </section>
 
@@ -541,7 +541,8 @@ th.rec{color:var(--amber)}
         <li><b>Down payment:</b> the 50% is non-refundable once work has started.</li>
         <li><b>Care plan:</b> 3-month minimum, then cancel any time with 30 days' notice. When it ends, the site stays up, but prices, units and the calculator are no longer updated and go out of date. The domain, logo and leads stay with Team HML.</li>
         <li><b>Extra projects:</b> free. Any PHirst project in the Philippines can be added beyond Gen Tri and Batulao, as long as Team HML provides its photos and videos.</li>
-        <li><b>Extra Facebook pages:</b> ₱1,500 each, one-time, beyond the 3 included. On Growth Care, each extra page also adds ₱500 a month, since its report, tracking and ads are covered too.</li>
+        <li><b>Extra Facebook pages:</b> ₱1,500 each, one-time, beyond the 3 included. Each extra page also adds ₱500 a month on Growth Care (its report, tracking and ads) and ₱500 a month on the Messenger chatbot (its replies).</li>
+        <li><b>AI conversations:</b> 1,500 a month per AI option, shared across its pages. Each extra 1,500 is ₱1,000, and we tell you before it happens.</li>
       </ul></div>
   </div>
 </section>
@@ -679,7 +680,7 @@ const PKG=[{id:"starter",nm:"Starter",was:30000,now:20000,ds:"Full site, logo, d
            {id:"growth",nm:"Growth",was:45000,now:30000,ds:"Everything in Starter plus full tracking, Conversions API and the analytics dashboard.",badge:"Recommended"}];
 const AI=[{id:"none",nm:"No AI for now",set:0,mo:0,ds:"Add it any time after launch."},
           {id:"web",nm:"Website assistant",set:5000,mo:2500,ds:"Chat on the site, 24/7."},
-          {id:"bot",nm:"Messenger chatbot",set:5000,mo:2500,ds:"Replies on your Facebook page. Live after Meta approval."},
+          {id:"bot",nm:"Messenger chatbot",set:5000,mo:2500,ds:"Replies on your first 3 Facebook pages. Live after Meta approval."},
           {id:"both",nm:"Both",set:10000,mo:4000,ds:"Website and Messenger. Saves ₱1,000 a month.",badge:"Best value"}];
 const CARE=[{id:"care",nm:"Care",was:6000,mo:3000,ds:"Updates, hosting, unlimited agent links."},
             {id:"gcare",nm:"Growth Care",was:10000,mo:5000,ds:"Plus monthly report, cost per lead, one improvement a month and seasonal ad creatives.",badge:"Pairs with Growth"}];
@@ -696,10 +697,10 @@ $("#pgMinus").onclick=()=>{ if(pages>1){ pages--; total(); } };
 $("#pgPlus").onclick=()=>{ if(pages<20){ pages++; total(); } };
 function total(){
   const p=PKG.find(x=>x.id===sel.pkg), a=AI.find(x=>x.id===sel.ai), c=CARE.find(x=>x.id===sel.care);
-  const extra=Math.max(0,pages-3), exSet=extra*1500, exMo=c.id==="gcare"?extra*500:0;
-  const setup=p.now+a.set+exSet, month=c.mo+a.mo+exMo;
+  const extra=Math.max(0,pages-3), exSet=extra*1500, exMo=c.id==="gcare"?extra*500:0, exBot=(a.id==="bot"||a.id==="both")?extra*500:0;
+  const setup=p.now+a.set+exSet, month=c.mo+a.mo+exMo+exBot;
   $("#pgN").textContent=pages; $("#pgMinus").disabled=pages<=1;
-  $("#tRows").innerHTML=[[`${p.nm} setup`,peso(p.now)],a.set?[`${a.nm} setup`,peso(a.set)]:null,extra?[`${extra} extra page${extra>1?"s":""} setup`,peso(exSet)]:null,[`${c.nm}`,peso(c.mo)+"/mo"],exMo?[`Growth Care, ${extra} extra page${extra>1?"s":""}`,peso(exMo)+"/mo"]:null,a.mo?[`${a.nm}`,peso(a.mo)+"/mo"]:null]
+  $("#tRows").innerHTML=[[`${p.nm} setup`,peso(p.now)],a.set?[`${a.nm} setup`,peso(a.set)]:null,extra?[`${extra} extra page${extra>1?"s":""} setup`,peso(exSet)]:null,[`${c.nm}`,peso(c.mo)+"/mo"],exMo?[`Growth Care, ${extra} extra page${extra>1?"s":""}`,peso(exMo)+"/mo"]:null,a.mo?[`${a.nm}`,peso(a.mo)+"/mo"]:null,exBot?[`Messenger chatbot, ${extra} extra page${extra>1?"s":""}`,peso(exBot)+"/mo"]:null]
     .filter(Boolean).map(([l,v])=>`<div class="row"><span>${l}</span><span>${v}</span></div>`).join("");
   tween($("#tSetup"),setup,v=>peso(Math.round(v)));
   tween($("#tMonth"),month,v=>peso(Math.round(v))+"<small style='font-size:.45em;color:var(--fog)'> /mo</small>");
