@@ -303,7 +303,7 @@ th.rec{color:var(--amber)}
     <p class="lede">A branded showcase of every PHirst project on your own domain, with a page link for every agent, the animated payment calculator, a route map from Manila, and a booking form that alerts your agent on Telegram and opens the right Facebook page in Messenger.</p>
     <div class="facts">
       <div class="fact"><b><s>₱30,000</s>₱20,000</b><span>Setup from, founding client rate</span></div>
-      <div class="fact"><b>₱6,000<small style="font-size:.55em;color:var(--fog)">/mo</small></b><span>Care plan from</span></div>
+      <div class="fact"><b><s>₱6,000</s>₱3,000<small style="font-size:.55em;color:var(--fog)">/mo</small></b><span>Care plan from, founding rate</span></div>
       <div class="fact"><b>10–14 days</b><span>From go-signal to launch</span></div>
       <div class="fact"><b>1st year</b><span>Domain included</span></div>
     </div>
@@ -560,9 +560,9 @@ th.rec{color:var(--amber)}
 <section class="block" id="care">
   <div class="wrap">
     <div class="head"><span class="eyebrow">Monthly care</span><h2>Keeps prices and units <span class="serif">current.</span></h2>
-      <p>Inventory is updated weekly; prices and the calculator every quarter, when PHirst releases new price lists. Plans start the month of launch, with a 3-month minimum.</p></div>
+      <p>Inventory is updated weekly; prices and the calculator every quarter, when PHirst releases new price lists. Plans start the month of launch, with a 3-month minimum. The founding rate stays locked for as long as the plan stays active.</p></div>
     <div class="tbl"><table>
-      <thead><tr><th>What's included</th><th class="c">Care ₱6,000/mo</th><th class="c rec">Growth Care ₱10,000/mo</th></tr></thead>
+      <thead><tr><th>What's included</th><th class="c">Care <s style="opacity:.6">₱6,000</s> ₱3,000/mo</th><th class="c rec">Growth Care <s style="opacity:.6">₱10,000</s> ₱5,000/mo</th></tr></thead>
       <tbody>
         <tr><td>Hosting, security and uptime</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
         <tr><td>Weekly inventory updates (available units, sold-outs)</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
@@ -816,8 +816,8 @@ const AI=[{id:"none",nm:"No AI for now",set:0,mo:0,ds:"Add it any time after lau
           {id:"web",nm:"Website assistant",set:5000,mo:2500,ds:"Chat on the site, 24/7."},
           {id:"bot",nm:"Messenger chatbot",set:5000,mo:2500,ds:"Replies on your Facebook page. Live after Meta approval."},
           {id:"both",nm:"Both",set:10000,mo:4000,ds:"Website and Messenger. Saves ₱1,000 a month.",badge:"Best value"}];
-const CARE=[{id:"care",nm:"Care",mo:6000,ds:"Updates, hosting, unlimited agent links."},
-            {id:"gcare",nm:"Growth Care",mo:10000,ds:"Plus monthly report, cost per lead and one improvement a month.",badge:"Pairs with Growth"}];
+const CARE=[{id:"care",nm:"Care",was:6000,mo:3000,ds:"Updates, hosting, unlimited agent links."},
+            {id:"gcare",nm:"Growth Care",was:10000,mo:5000,ds:"Plus monthly report, cost per lead and one improvement a month.",badge:"Pairs with Growth"}];
 const sel={pkg:"growth",ai:"none",care:"gcare"};
 function choices(el,list,key,price){
   el.innerHTML=list.map(o=>`<button class="choice" aria-pressed="${sel[key]===o.id}" data-id="${o.id}">${o.badge?`<span class="badge">${o.badge}</span>`:""}<span class="nm">${o.nm}</span><span class="pr">${price(o)}</span><span class="ds">${o.ds}</span></button>`).join("");
@@ -825,7 +825,7 @@ function choices(el,list,key,price){
 }
 choices($("#optPkg"),PKG,"pkg",o=>`<s>${peso(o.was)}</s>${peso(o.now)}`);
 choices($("#optAi"),AI,"ai",o=>o.set?`${peso(o.set)} <small>+ ${peso(o.mo)}/mo</small>`:"₱0");
-choices($("#optCare"),CARE,"care",o=>`${peso(o.mo)} <small>/mo</small>`);
+choices($("#optCare"),CARE,"care",o=>`<s>${peso(o.was)}</s>${peso(o.mo)} <small>/mo</small>`);
 function total(){
   const p=PKG.find(x=>x.id===sel.pkg), a=AI.find(x=>x.id===sel.ai), c=CARE.find(x=>x.id===sel.care);
   const setup=p.now+a.set, month=c.mo+a.mo;
@@ -833,7 +833,7 @@ function total(){
     .filter(Boolean).map(([l,v])=>`<div class="row"><span>${l}</span><span>${v}</span></div>`).join("");
   tween($("#tSetup"),setup,v=>peso(Math.round(v)));
   tween($("#tMonth"),month,v=>peso(Math.round(v))+"<small style='font-size:.45em;color:var(--fog)'> /mo</small>");
-  $("#tSave").textContent=`Founding rate saves ${peso(p.was-p.now)} on setup.`;
+  $("#tSave").textContent=`Founding rate saves ${peso(p.was-p.now)} on setup and ${peso(c.was-c.mo)} every month.`;
   $("#tDue").textContent=`${peso(setup/2)} to start, ${peso(setup/2)} on launch day. Domain's first year is included.`;
 }
 total();
