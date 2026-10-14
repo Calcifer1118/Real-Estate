@@ -263,6 +263,10 @@ th.rec{color:var(--amber)}
 .total .sum b{font:800 34px/1.05 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .total .sum span{font-size:13px;color:var(--fog)}
 .total .save{font-size:13.5px;color:var(--leaf);font-weight:600}
+.pager{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pager button{width:40px;height:40px;border-radius:50%;border:1px solid var(--rule);background:var(--deck);font:700 20px var(--body)}
+.pager button:disabled{opacity:.35}
+.pager output{font:800 26px var(--display);min-width:2ch;text-align:center;font-variant-numeric:tabular-nums}
 .founding{display:inline-flex;align-items:center;gap:8px;font:700 12px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--amber);border:1px solid color-mix(in srgb,var(--amber) 50%,transparent);padding:6px 12px;border-radius:999px}
 
 .ai{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
@@ -387,7 +391,7 @@ th.rec{color:var(--amber)}
           <div class="pg"><i>J</i>Juan's page<span>/juan</span></div>
           <div class="pg"><i>M</i>Maria's page<span>/maria</span></div>
         </div>
-        <p class="fine">Each agent link can point Messenger at one of up to 3 Facebook pages. Agents without their own page use the Team HML page. More pages are ₱1,500 each, one-time: each one is a copy of the main page with its own Messenger link.</p>
+        <p class="fine">Each agent link can point Messenger at one of up to 3 Facebook pages. Agents without their own page use the Team HML page. More pages are ₱1,500 each, one-time: each one is a copy of the main page with its own Messenger link. On Growth Care, each page beyond 3 also adds ₱500 a month.</p>
       </div>
     </div>
   </div>
@@ -431,6 +435,9 @@ th.rec{color:var(--amber)}
         <div class="optrow"><b>Setup · one-time</b><div class="choices" id="optPkg"></div></div>
         <div class="optrow"><b>AI assistant · optional</b><div class="choices" id="optAi"></div></div>
         <div class="optrow"><b>Care plan · monthly</b><div class="choices" id="optCare"></div></div>
+        <div class="optrow"><b>Facebook pages</b>
+          <div class="pager"><button type="button" id="pgMinus" aria-label="Fewer pages">−</button><output id="pgN" aria-live="polite">3</output><button type="button" id="pgPlus" aria-label="More pages">+</button>
+          <span class="fine" id="pgNote">3 included. Each extra page: ₱1,500 one-time, plus ₱500 a month on Growth Care.</span></div></div>
       </div>
       <aside class="total" aria-live="polite">
         <h3>Your total</h3>
@@ -496,6 +503,7 @@ th.rec{color:var(--amber)}
         <tr><td>Adding or removing agent links</td><td class="c yes">Unlimited</td><td class="c yes rec">Unlimited</td></tr>
         <tr><td>Booking form, alerts and Pixel kept working</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
         <tr><td>Fixes and small text or photo changes</td><td class="c yes">Yes</td><td class="c yes rec">Yes</td></tr>
+        <tr><td><b>Facebook pages covered by the Growth Care extras below</b></td><td class="c no">—</td><td class="c yes rec">First 3 included, then ₱500/mo per page</td></tr>
         <tr><td>Monthly report: visits, leads, top agents and ad sources</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
         <tr><td>Cost per lead (using your ad spend)</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
         <tr><td>Monthly Pixel and Conversions API health check</td><td class="c no">No</td><td class="c yes rec">Yes</td></tr>
@@ -533,7 +541,7 @@ th.rec{color:var(--amber)}
         <li><b>Down payment:</b> the 50% is non-refundable once work has started.</li>
         <li><b>Care plan:</b> 3-month minimum, then cancel any time with 30 days' notice. When it ends, the site stays up, but prices, units and the calculator are no longer updated and go out of date. The domain, logo and leads stay with Team HML.</li>
         <li><b>Extra projects:</b> free. Any PHirst project in the Philippines can be added beyond Gen Tri and Batulao, as long as Team HML provides its photos and videos.</li>
-        <li><b>Extra Facebook pages:</b> ₱1,500 each, one-time, beyond the 3 included.</li>
+        <li><b>Extra Facebook pages:</b> ₱1,500 each, one-time, beyond the 3 included. On Growth Care, each extra page also adds ₱500 a month, since its report, tracking and ads are covered too.</li>
       </ul></div>
   </div>
 </section>
@@ -683,10 +691,15 @@ function choices(el,list,key,price){
 choices($("#optPkg"),PKG,"pkg",o=>`<s>${peso(o.was)}</s>${peso(o.now)}`);
 choices($("#optAi"),AI,"ai",o=>o.set?`${peso(o.set)} <small>+ ${peso(o.mo)}/mo</small>`:"₱0");
 choices($("#optCare"),CARE,"care",o=>`<s>${peso(o.was)}</s>${peso(o.mo)} <small>/mo</small>`);
+let pages=3;
+$("#pgMinus").onclick=()=>{ if(pages>1){ pages--; total(); } };
+$("#pgPlus").onclick=()=>{ if(pages<20){ pages++; total(); } };
 function total(){
   const p=PKG.find(x=>x.id===sel.pkg), a=AI.find(x=>x.id===sel.ai), c=CARE.find(x=>x.id===sel.care);
-  const setup=p.now+a.set, month=c.mo+a.mo;
-  $("#tRows").innerHTML=[[`${p.nm} setup`,peso(p.now)],a.set?[`${a.nm} setup`,peso(a.set)]:null,[`${c.nm}`,peso(c.mo)+"/mo"],a.mo?[`${a.nm}`,peso(a.mo)+"/mo"]:null]
+  const extra=Math.max(0,pages-3), exSet=extra*1500, exMo=c.id==="gcare"?extra*500:0;
+  const setup=p.now+a.set+exSet, month=c.mo+a.mo+exMo;
+  $("#pgN").textContent=pages; $("#pgMinus").disabled=pages<=1;
+  $("#tRows").innerHTML=[[`${p.nm} setup`,peso(p.now)],a.set?[`${a.nm} setup`,peso(a.set)]:null,extra?[`${extra} extra page${extra>1?"s":""} setup`,peso(exSet)]:null,[`${c.nm}`,peso(c.mo)+"/mo"],exMo?[`Growth Care, ${extra} extra page${extra>1?"s":""}`,peso(exMo)+"/mo"]:null,a.mo?[`${a.nm}`,peso(a.mo)+"/mo"]:null]
     .filter(Boolean).map(([l,v])=>`<div class="row"><span>${l}</span><span>${v}</span></div>`).join("");
   tween($("#tSetup"),setup,v=>peso(Math.round(v)));
   tween($("#tMonth"),month,v=>peso(Math.round(v))+"<small style='font-size:.45em;color:var(--fog)'> /mo</small>");
