@@ -316,7 +316,7 @@ th.rec{color:var(--amber)}
 <section class="block" id="site">
   <div class="wrap">
     <div class="head"><span class="eyebrow">What your clients see</span><h2>The unit page, <span class="serif">live.</span></h2>
-      <p>This phone runs the full Gen Tri page from your current site, rebranded for Team HML: video, house models, the calculator, amenities, the 3D map and the booking form. Tap a step to jump there, or scroll inside the phone. <a href="https://claude.ai/artifact/Pz9BecntgwqYC1JarJW3dN" target="_blank" rel="noopener" style="color:var(--amber)">Open it full screen →</a></p></div>
+      <p>This phone runs the full Gen Tri page from your current site, rebranded for Team HML: video, 3D map, house models, amenities, the calculator, what the TCP covers, and the booking form. Tap a step to jump there, or scroll inside the phone. <a href="https://claude.ai/artifact/Pz9BecntgwqYC1JarJW3dN" target="_blank" rel="noopener" style="color:var(--amber)">Open it full screen →</a></p></div>
     <div class="demo">
       <div class="phone">
         <div class="screen">
@@ -327,13 +327,15 @@ th.rec{color:var(--amber)}
 
       <div>
         <div class="chapters" id="chapters">
-          <button class="chap" data-jump="top" aria-current="true"><span class="n">1</span><b>Gen Tri video</b><span>The project opens with your drone video, then the key numbers.</span></button>
-          <button class="chap" data-jump="models"><span class="n">2</span><b>House models</b><span>Calista Mid and End: model house and as-turned-over photos, floor plan and walkthrough video.</span></button>
-          <button class="chap" data-jump="finished"><span class="n">3</span><b>Finished, not bare</b><span>What every unit is turned over with.</span></button>
-          <button class="chap" data-jump="compute"><span class="n">4</span><b>Animated calculator</b><span>Terms cycle on their own until the client taps one. Pag-IBIG and bank, from the official sheet.</span></button>
+          <button class="chap" data-jump="top" aria-current="true"><span class="n">1</span><b>Gen Tri video</b><span>The project opens with your drone video and a monthly price for each model.</span></button>
+          <button class="chap" data-jump="location"><span class="n">2</span><b>3D map and nearby places</b><span>Fly-in 3D map with malls, schools and hospitals, the drive to and from Manila, and distances.</span></button>
+          <button class="chap" data-jump="models"><span class="n">3</span><b>House models</b><span>Calista Mid and End: model house and as-turned-over photos, floor plan and walkthrough video.</span></button>
+          <button class="chap" data-jump="finished"><span class="n">4</span><b>Finished, not bare</b><span>What every unit is turned over with.</span></button>
           <button class="chap" data-jump="amenities"><span class="n">5</span><b>Things to do</b><span>Tap an amenity to open its photo.</span></button>
-          <button class="chap" data-jump="location"><span class="n">6</span><b>3D map and nearby places</b><span>Fly-in 3D terrain map with malls, schools and hospitals, the route from Manila, and distances.</span></button>
-          <button class="chap" data-jump="book"><span class="n">7</span><b>Booking form<span class="new">now with time</span></b><span>Name, mobile, project, preferred day and time. Try it.</span></button>
+          <button class="chap" data-jump="compute"><span class="n">6</span><b>Animated calculator</b><span>Terms cycle on their own until the client taps one. Pag-IBIG and bank, from the official sheet.</span></button>
+          <button class="chap" data-jump="tcp"><span class="n">7</span><b>What's in the TCP</b><span>Bank charges, title transfer, move-in and utility fees: no hidden charges.</span></button>
+          <button class="chap" data-jump="book"><span class="n">8</span><b>Booking form<span class="new">now with time</span></b><span>Inside the "Come see your future home" card. Name, mobile, project, preferred day and time. Try it.</span></button>
+          <button class="chap" data-jump="chat"><span class="n">9</span><b>AI assistant<span class="new">optional add-on</span></b><span>The chat bubble at the lower left. Tap to play a sample conversation in Taglish.</span></button>
         </div>
         <div class="fires" id="fires">
           <h3>What happens when they tap Book</h3>
@@ -636,7 +638,7 @@ const frame=$("#siteFrame");
 const toSite=m=>{ try{ frame.contentWindow.postMessage(m,"*"); }catch(e){} };
 let agent={slug:"juan",name:"Juan dela Cruz"};
 frame.addEventListener("load",()=>toSite({type:"agent",name:agent.name}));
-$$(".chap").forEach(b=>b.addEventListener("click",()=>{ toSite({type:"jump",to:b.dataset.jump});
+$$(".chap").forEach(b=>b.addEventListener("click",()=>{ toSite(b.dataset.jump==="chat"?{type:"chat"}:{type:"jump",to:b.dataset.jump});
   $$(".chap").forEach(c=>c.setAttribute("aria-current",c===b));
   if(innerWidth<=860) $(".phone").scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"}); }));
 addEventListener("message",e=>{ if(e.source!==frame.contentWindow) return; const m=e.data||{};
