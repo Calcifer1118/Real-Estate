@@ -433,7 +433,7 @@ th.rec{color:var(--amber)}
     <div class="build">
       <div class="opts">
         <div class="optrow"><b>Setup · one-time</b><div class="choices" id="optPkg"></div></div>
-        <div class="optrow"><b>AI assistant · optional</b><div class="choices" id="optAi"></div></div>
+        <div class="optrow"><b>AI assistant · optional, pick one or both</b><div class="choices" id="optAi"></div><span class="fine" id="aiNote">Together they're one assistant trained once: ₱8,000 setup + ₱4,000 a month, instead of ₱10,000 + ₱5,000.</span></div>
         <div class="optrow"><b>Care plan · monthly</b><div class="choices" id="optCare"></div></div>
         <div class="optrow"><b>Facebook pages</b>
           <div class="pager"><button type="button" id="pgMinus" aria-label="Fewer pages">−</button><output id="pgN" aria-live="polite">3</output><button type="button" id="pgPlus" aria-label="More pages">+</button>
@@ -482,8 +482,8 @@ th.rec{color:var(--amber)}
       <div class="card"><h3>Messenger chatbot</h3><p class="url" style="font-size:18px">₱5,000 setup · ₱2,500/mo</p>
         <ul><li>Covers your first 3 Facebook pages; each extra page adds ₱500 a month</li><li>Replies in each page's Messenger, where most clients start</li><li>Same answers and lead capture as the website assistant</li><li>Runs on our existing chatbot platform, so there's no extra server cost</li></ul>
         <span class="pend"><i></i>Goes live once Meta approves it, usually 1–4 weeks</span></div>
-      <div class="card" style="border-color:var(--amber)"><h3>Both <span class="tag" style="background:color-mix(in srgb,var(--amber) 18%,transparent);color:var(--amber)">Best value</span></h3><p class="url" style="font-size:18px">₱10,000 setup · ₱4,000/mo</p>
-        <ul><li>One assistant, two doors: website and Messenger (first 3 pages; ₱500 a month per extra page)</li><li>Saves ₱1,000 every month versus buying them separately</li></ul></div>
+      <div class="card" style="border-color:var(--amber)"><h3>Website + Messenger <span class="tag" style="background:color-mix(in srgb,var(--amber) 18%,transparent);color:var(--amber)">Best value</span></h3><p class="url" style="font-size:18px">₱8,000 setup · ₱4,000/mo</p>
+        <ul><li>One assistant, two doors: website and Messenger (first 3 pages; ₱500 a month per extra page)</li><li>Trained once for both, so it saves ₱2,000 on setup and ₱1,000 every month versus buying them separately</li></ul></div>
     </div>
     <div class="card" style="margin-top:14px"><h3>Trained in your tone and voice</h3>
       <p class="muted">We train each assistant on Team HML's own way of talking: your greetings, your Taglish, how your agents explain prices and invite clients to a tripping. Send us a few real chats your agents handled well, and we tune the tone during the first month until it sounds like your team, not a robot.</p></div>
@@ -684,7 +684,7 @@ const PKG=[{id:"starter",nm:"Starter",was:30000,now:20000,ds:"Full site, logo, d
 const AI=[{id:"none",nm:"No AI for now",set:0,mo:0,ds:"Add it any time after launch."},
           {id:"web",nm:"Website assistant",set:5000,mo:2500,ds:"Chat on the site, 24/7."},
           {id:"bot",nm:"Messenger chatbot",set:5000,mo:2500,ds:"Replies on your first 3 Facebook pages. Live after Meta approval."},
-          {id:"both",nm:"Both",set:10000,mo:4000,ds:"Website and Messenger. Saves ₱1,000 a month.",badge:"Best value"}];
+          {id:"both",nm:"Website + Messenger AI",set:8000,mo:4000}];
 const CARE=[{id:"care",nm:"Care",was:6000,mo:3000,ds:"Updates, hosting, unlimited agent links."},
             {id:"gcare",nm:"Growth Care",was:10000,mo:5000,ds:"Plus monthly report, cost per lead, one improvement a month and seasonal ad creatives.",badge:"Pairs with Growth"}];
 const sel={pkg:"growth",ai:"none",care:"gcare"};
@@ -693,7 +693,11 @@ function choices(el,list,key,price){
   el.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{ sel[key]=b.dataset.id; el.querySelectorAll(".choice").forEach(x=>x.setAttribute("aria-pressed",x===b)); total(); });
 }
 choices($("#optPkg"),PKG,"pkg",o=>`<s>${peso(o.was)}</s>${peso(o.now)}`);
-choices($("#optAi"),AI,"ai",o=>o.set?`${peso(o.set)} <small>+ ${peso(o.mo)}/mo</small>`:"₱0");
+(function(){ const el=$("#optAi"), on={web:false,bot:false};
+  el.innerHTML=AI.filter(o=>o.id==="web"||o.id==="bot").map(o=>`<button class="choice" aria-pressed="false" data-id="${o.id}"><span class="nm">${o.nm}</span><span class="pr">${peso(o.set)} <small>+ ${peso(o.mo)}/mo</small></span><span class="ds">${o.ds}</span></button>`).join("");
+  el.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{ on[b.dataset.id]=!on[b.dataset.id]; b.setAttribute("aria-pressed",on[b.dataset.id]);
+    sel.ai = on.web&&on.bot ? "both" : on.web ? "web" : on.bot ? "bot" : "none"; total(); });
+})();
 choices($("#optCare"),CARE,"care",o=>`<s>${peso(o.was)}</s>${peso(o.mo)} <small>/mo</small>`);
 let pages=3;
 $("#pgMinus").onclick=()=>{ if(pages>1){ pages--; total(); } };
