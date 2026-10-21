@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Receipt Printer</title>
+<style>
+  :root {
+    --bg: #f4f5f7; --panel: #fff; --text: #1d2330; --muted: #667085; --line: #e3e6ec;
+    --accent: #1f6feb; --accent-text: #fff; --danger: #c62828; --ok: #1b7f3b; --warn: #a15c00;
+    --field: #fff; --soft: #eef2f8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171c; --panel: #1c2027; --text: #e6e9ef; --muted: #98a2b3; --line: #2c323c;
+      --accent: #4c8dff; --accent-text: #fff; --danger: #ff6b6b; --ok: #4ccf7a; --warn: #f0b04a;
+      --field: #232832; --soft: #232a36;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  header { display: flex; align-items: center; gap: 16px; padding: 10px 20px; background: var(--panel); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5; flex-wrap: wrap; }
+  header h1 { font-size: 16px; margin: 0; }
+  nav { display: flex; gap: 4px; }
+  nav button { background: none; border: 0; padding: 7px 12px; border-radius: 7px; color: var(--muted); font: inherit; cursor: pointer; }
+  nav button.active { background: var(--soft); color: var(--text); font-weight: 600; }
+  .spacer { flex: 1; }
+  .badge { font-size: 12px; padding: 3px 9px; border-radius: 99px; background: var(--soft); color: var(--muted); }
+  .badge.test { color: var(--warn); }
+  main { padding: 20px; max-width: 1280px; margin: 0 auto; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; align-items: start; }
+  .grid.three { grid-template-columns: 200px minmax(0, 1fr) auto; }
+  .grid.two { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  @media (max-width: 900px) { .grid, .grid.two, .grid.three { grid-template-columns: 1fr; } .paper-wrap { position: static; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+  .panel + .panel { margin-top: 16px; }
+  h2 { font-size: 15px; margin: 0 0 12px; }
+  h3 { font-size: 13px; margin: 18px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 3px; }
+  input, select, textarea { width: 100%; padding: 7px 9px; border: 1px solid var(--line); border-radius: 7px; background: var(--field); color: var(--text); font: inherit; }
+  input[type=checkbox], input[type=radio] { width: auto; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+  .row { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); margin-bottom: 10px; }
+  .check { display: flex; gap: 6px; align-items: center; color: var(--text); font-size: 13px; margin: 0; }
+  a.btn { display: inline-block; text-decoration: none; }
+  .btn { border: 1px solid var(--line); background: var(--panel); color: var(--text); padding: 7px 13px; border-radius: 7px; font: inherit; cursor: pointer; white-space: nowrap; }
+  .btn:hover { background: var(--soft); }
+  button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); font-weight: 600; }
+  button.primary:hover { filter: brightness(1.08); background: var(--accent); }
+  button.big { padding: 11px 18px; font-size: 15px; }
+  button.danger { color: var(--danger); }
+  button.icon { padding: 4px 8px; }
+  button:disabled { opacity: .5; cursor: default; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 14px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 12px; color: var(--muted); font-weight: 500; padding: 6px; border-bottom: 1px solid var(--line); }
+  td { padding: 5px 6px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.click { cursor: pointer; } tr.click:hover td { background: var(--soft); }
+  .items td input { padding: 5px 7px; }
+  .muted { color: var(--muted); }
+  .small { font-size: 12px; }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .status { font-size: 12px; padding: 2px 8px; border-radius: 99px; background: var(--soft); }
+  .status.void { color: var(--danger); } .status.err { color: var(--warn); }
+  .lines .line { display: grid; grid-template-columns: minmax(0, 1fr) 92px 96px auto auto; gap: 6px; align-items: center; margin-bottom: 6px; }
+  .bizlist button { display: block; width: 100%; text-align: left; margin-bottom: 4px; }
+  .bizlist button.active { border-color: var(--accent); }
+  .empty { text-align: center; padding: 40px 20px; color: var(--muted); }
+
+  /* Paper preview: one row = one printed line, monospace, 58mm wide */
+  .paper-wrap { position: sticky; top: 70px; }
+  .paper { background: #fff; color: #111; padding: 14px 12px 24px; width: max-content; box-shadow: 0 1px 3px rgba(0,0,0,.15), 0 8px 24px rgba(0,0,0,.08); border-radius: 2px;
+           font: 13px/18px "SF Mono", Menlo, Consolas, monospace; }
+  .paper .r { white-space: pre; height: 18px; overflow: visible; }
+  .paper .r.b { font-weight: 700; }
+  .paper .r span { display: inline-block; transform-origin: left top; }
+  .paper .r.tall, .paper .r.big { height: 36px; }
+  .paper .r.tall span { transform: scale(1, 2); }
+  .paper .r.wide span { transform: scale(2, 1); }
+  .paper .r.big span { transform: scale(2, 2); }
+  .paper .logo { text-align: center; margin-bottom: 4px; }
+  .paper .logo img { image-rendering: pixelated; }
+  .paper-note { font-size: 12px; color: var(--muted); margin-top: 8px; max-width: 300px; }
+
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); padding: 11px 16px; border-radius: 9px; background: #222; color: #fff; z-index: 20; max-width: min(560px, 90vw); box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+  .toast.error { background: var(--danger); } .toast.ok { background: var(--ok); }
+  dialog { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); color: var(--text); padding: 18px; max-width: 95vw; }
+  dialog::backdrop { background: rgba(0,0,0,.4); }
+  .banner { padding: 10px 12px; border-radius: 8px; background: var(--soft); margin-bottom: 12px; font-size: 13px; }
+  .banner.warn { color: var(--warn); }
+  ol.steps { padding-left: 20px; margin: 0; } ol.steps li { margin-bottom: 6px; }
+  code { background: var(--soft); padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Receipt Printer</h1>
+  <nav id="nav">
+    <button data-view="sell" class="active">New invoice</button>
+    <button data-view="history">History</button>
+    <button data-view="biz">Businesses</button>
+    <button data-view="printer">Printer</button>
+  </nav>
+  <div class="spacer"></div>
+  <select id="bizSelect" style="width:auto;min-width:200px" aria-label="Business"></select>
+  <span id="printerBadge" class="badge"></span>
+</header>
+<main id="main"></main>
+<dialog id="dlg"></dialog>
+
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const S = { businesses: [], settings: {}, ports: [], view: "sell", bizId: null, draft: null, editing: null };
+
+function store(key, value) {
+  try { if (value === undefined) return localStorage.getItem(key); localStorage.setItem(key, value); } catch { return null; }
+}
+
+async function api(method, url, body) {
+  const res = await fetch(url, { method, headers: { "Content-Type": "application/json" }, body: body === undefined ? undefined : JSON.stringify(body) });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) { const e = new Error(data.error || res.statusText); e.printer = data.printer_error; throw e; }
+  return data;
+}
+
+let toastTimer;
+function toast(msg, kind = "") {
+  document.querySelectorAll(".toast").forEach(t => t.remove());
+  const t = document.createElement("div");
+  t.className = "toast " + kind; t.textContent = msg; document.body.append(t);
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.remove(), kind === "error" ? 9000 : 4000);
+}
+
+const fileName = p => String(p || "").split("/").pop();
+
+function debounce(fn, ms = 250) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+
+function paperHTML(p) {
+  if (!p) return "";
+  let html = "";
+  for (const r of p.rows) {
+    if (r.logo) { if (p.logo_preview) html += `<div class="logo"><img src="${p.logo_preview}" alt="logo" style="width:${(p.logo_width || 384) / 12}ch"></div>`; continue; }
+    html += `<div class="r ${r.bold ? "b" : ""} ${r.size}"><span>${esc(r.text) || " "}</span></div>`;
+  }
+  return `<div class="paper" style="width:calc(${p.cols}ch + 24px)">${html}</div>`;
+}
+
+// Each view gets a fresh <main> so its event listeners don't pile up across re-renders.
+function freshMain() { const m = document.createElement("main"); m.id = "main"; $("#main").replaceWith(m); return m; }
+
+function current() { return S.businesses.find(b => b.id === S.bizId); }
+
+// ---------------------------------------------------------------- state
+async function load() {
+  const st = await api("GET", "/api/state");
+  S.businesses = st.businesses; S.settings = st.settings; S.ports = st.ports; S.dataDir = st.data_dir;
+  const saved = Number(store("bizId"));
+  if (!S.businesses.some(b => b.id === S.bizId)) S.bizId = S.businesses.some(b => b.id === saved) ? saved : S.businesses[0]?.id ?? null;
+  renderHeader();
+}
+
+function renderHeader() {
+  const sel = $("#bizSelect");
+  sel.innerHTML = S.businesses.length ? S.businesses.map(b => `<option value="${b.id}" ${b.id === S.bizId ? "selected" : ""}>${esc(b.name)}</option>`).join("") : `<option>No businesses yet</option>`;
+  sel.disabled = !S.businesses.length;
+  const badge = $("#printerBadge");
+  if (S.settings.mode === "file") { badge.textContent = "Test mode: saving to file"; badge.className = "badge test"; }
+  else { badge.textContent = "Printer: " + (S.settings.device ? S.settings.device.replace("/dev/cu.", "") : "auto-detect"); badge.className = "badge"; }
+  document.querySelectorAll("#nav button").forEach(b => b.classList.toggle("active", b.dataset.view === S.view));
+}
+
+$("#bizSelect").addEventListener("change", e => { S.bizId = Number(e.target.value); store("bizId", S.bizId); S.draft = null; show(S.view); });
+$("#nav").addEventListener("click", e => { if (e.target.dataset.view) show(e.target.dataset.view); });
+
+function show(view) {
+  S.view = view; renderHeader();
+  ({ sell: viewSell, history: viewHistory, biz: viewBiz, printer: viewPrinter })[view]();
+}
+
+function needBusiness() {
+  if (current()) return false;
+  $("#main").innerHTML = `<div class="panel empty"><p>Add your first business to start issuing invoices.</p><button class="btn primary" id="goBiz">Add a business</button></div>`;
+  $("#goBiz").onclick = () => { S.editing = "new"; show("biz"); };
+  return true;
+}
+
+// ---------------------------------------------------------------- new invoice
+function blankDraft() { return { customer: {}, items: [{ description: "", qty: 1, price: "" }], discount: "", cash: "", notes: "", cashier: store("cashier") || "" }; }
+
+function viewSell() {
+  freshMain();
+  if (needBusiness()) return;
+  const b = current(), t = b.template;
+  S.draft = S.draft || blankDraft();
+  const d = S.draft;
+  const fields = t.customer_fields.filter(f => f.enabled);
+  const exhausted = b.series_end != null && b.next_number > b.series_end;
+  $("#main").innerHTML = `
+  <div class="grid">
+    <div>
+      ${exhausted ? `<div class="banner warn">This business's invoice series ended at ${b.series_end}. Update it on the Businesses tab before issuing more.</div>` : ""}
+      ${b.series_end != null && !exhausted && b.series_end - b.next_number < 50 ? `<div class="banner warn">Only ${b.series_end - b.next_number + 1} invoice numbers left in this series.</div>` : ""}
+      ${fields.length ? `<div class="panel"><h2>Customer</h2><div class="row">${fields.map(f => `
+        <div><label>${esc(f.label)}</label><input data-cust="${f.key}" value="${esc(d.customer[f.key])}"></div>`).join("")}</div></div>` : ""}
+      <div class="panel">
+        <h2>Items</h2>
+        <table class="items"><thead><tr><th>Description</th><th style="width:80px">Qty</th><th style="width:120px">Price</th><th class="num" style="width:110px">Amount</th><th style="width:36px"></th></tr></thead>
+        <tbody id="itemRows"></tbody></table>
+        <div class="actions" style="margin-top:8px"><button class="btn" id="addItem">+ Add item</button></div>
+        <div class="row" style="margin-top:14px">
+          <div><label>Discount</label><input id="discount" inputmode="decimal" value="${esc(d.discount)}"></div>
+          <div><label>Cash received</label><input id="cash" inputmode="decimal" value="${esc(d.cash)}"></div>
+          ${t.show_cashier ? `<div><label>Cashier</label><input id="cashier" value="${esc(d.cashier)}"></div>` : ""}
+        </div>
+        <div><label>Note (optional, printed)</label><input id="notes" value="${esc(d.notes)}"></div>
+        <div class="actions">
+          <button class="btn primary big" id="issue" ${exhausted ? "disabled" : ""}>Issue &amp; print ${esc(b.next_invoice_no)}</button>
+          <button class="btn" id="issueNoPrint" ${exhausted ? "disabled" : ""}>Save without printing</button>
+          <span class="spacer"></span>
+          <button class="btn" id="clear">Clear</button>
+        </div>
+      </div>
+    </div>
+    <div class="paper-wrap"><div id="preview"></div><div class="paper-note">Preview of the next invoice. Each row is one printed line on 58mm paper.</div></div>
+  </div>`;
+  renderItems();
+  const refresh = debounce(previewSell);
+  $("#main").addEventListener("input", e => {
+    const el = e.target;
+    if (el.dataset.cust) d.customer[el.dataset.cust] = el.value;
+    else if (el.dataset.item) { d.items[el.dataset.i][el.dataset.item] = el.value; updateAmounts(); }
+    else if (["discount", "cash", "notes", "cashier"].includes(el.id)) { d[el.id] = el.value; if (el.id === "cashier") store("cashier", el.value); }
+    refresh();
+  });
+  $("#addItem").onclick = () => { d.items.push({ description: "", qty: 1, price: "" }); renderItems(); $(`[data-i="${d.items.length - 1}"][data-item=description]`).focus(); };
+  $("#clear").onclick = () => { S.draft = null; viewSell(); };
+  $("#issue").onclick = () => issue(true);
+  $("#issueNoPrint").onclick = () => issue(false);
+  previewSell();
+}
+
+function renderItems() {
+  const d = S.draft;
+  $("#itemRows").innerHTML = d.items.map((it, i) => `<tr>
+    <td><input data-i="${i}" data-item="description" value="${esc(it.description)}" placeholder="Item or service"></td>
+    <td><input data-i="${i}" data-item="qty" inputmode="decimal" value="${esc(it.qty)}"></td>
+    <td><input data-i="${i}" data-item="price" inputmode="decimal" value="${esc(it.price)}" placeholder="0.00"></td>
+    <td class="num" data-amount="${i}"></td>
+    <td><button class="btn icon" data-del="${i}" title="Remove" aria-label="Remove item">✕</button></td></tr>`).join("");
+  $("#itemRows").querySelectorAll("[data-del]").forEach(btn => btn.onclick = () => {
+    d.items.splice(Number(btn.dataset.del), 1); if (!d.items.length) d.items.push({ description: "", qty: 1, price: "" });
+    renderItems(); previewSell();
+  });
+  updateAmounts();
+}
+
+function updateAmounts() {
+  S.draft.items.forEach((it, i) => {
+    const a = (parseFloat(it.qty) || 0) * (parseFloat(it.price) || 0);
+    const cell = $(`[data-amount="${i}"]`); if (cell) cell.textContent = a ? a.toLocaleString("en-PH", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "";
+  });
+}
+
+async function previewSell() {
+  try {
+    const p = await api("POST", "/api/preview", { business_id: S.bizId, receipt: S.draft });
+    if ($("#preview")) $("#preview").innerHTML = paperHTML(p);
+  } catch (e) { if ($("#preview")) $("#preview").innerHTML = `<div class="banner warn">${esc(e.message)}</div>`; }
+}
+
+async function issue(doPrint) {
+  const btns = [$("#issue"), $("#issueNoPrint")]; btns.forEach(b => b.disabled = true);
+  try {
+    const r = await api("POST", "/api/receipts", { business_id: S.bizId, receipt: S.draft, print: doPrint });
+    const no = r.receipt.invoice_no;
+    if (!doPrint) toast(`Saved invoice ${no} (not printed).`, "ok");
+    else if (r.printed) toast(S.settings.mode === "file" ? `Invoice ${no} issued. Test mode: saved as ${fileName(r.saved_to)}` : `Invoice ${no} printed.`, "ok");
+    else toast(`Invoice ${no} was issued but didn't print: ${r.print_error} Reprint it from History.`, "error");
+    S.draft = { ...blankDraft(), cashier: S.draft.cashier };
+    await load(); viewSell();
+  } catch (e) {
+    toast(e.printer ? `${e.message} No invoice number was used.` : e.message, "error");
+    btns.forEach(b => b.disabled = false);
+  }
+}
+
+// ---------------------------------------------------------------- history
+async function viewHistory() {
+  freshMain();
+  if (needBusiness()) return;
+  const b = current();
+  $("#main").innerHTML = `<div class="panel">
+    <div class="actions" style="margin:0 0 12px"><h2 style="margin:0">Invoices: ${esc(b.name)}</h2><span class="spacer"></span>
+      <input id="search" placeholder="Search invoice no. or customer" style="width:260px" value="${esc(S.search || "")}">
+      <a class="btn" href="/api/receipts.csv?business_id=${b.id}">Export CSV</a></div>
+    <div id="histTable"></div></div>`;
+  const run = debounce(async () => {
+    S.search = $("#search").value;
+    const list = await api("GET", `/api/receipts?business_id=${b.id}&search=${encodeURIComponent(S.search)}`);
+    $("#histTable").innerHTML = list.length ? `<table><thead><tr><th>Invoice No.</th><th>Date</th><th>Customer</th><th class="num">Total</th><th>Status</th><th class="num">Printed</th></tr></thead><tbody>
+      ${list.map(r => `<tr class="click" data-id="${r.id}"><td><b>${esc(r.invoice_no)}</b></td><td>${esc(r.issued_at.replace("T", " "))}</td>
+        <td>${esc(r.snapshot.receipt.customer?.name || "")}</td><td class="num">${Number(r.total).toLocaleString("en-PH", { minimumFractionDigits: 2 })}</td>
+        <td>${r.status === "void" ? `<span class="status void">Void</span>` : r.last_print_error ? `<span class="status err">Print failed</span>` : `<span class="status">Issued</span>`}</td>
+        <td class="num">${r.print_count}×</td></tr>`).join("")}</tbody></table>` : `<div class="empty">No invoices yet.</div>`;
+    $("#histTable").querySelectorAll("tr[data-id]").forEach(tr => tr.onclick = () => openReceipt(Number(tr.dataset.id)));
+  }, 200);
+  $("#search").addEventListener("input", run);
+  run();
+}
+
+async function openReceipt(id) {
+  const { receipt: r, preview } = await api("GET", `/api/receipts/${id}`);
+  const dlg = $("#dlg");
+  dlg.innerHTML = `<h2>Invoice ${esc(r.invoice_no)}</h2>
+    ${r.status === "void" ? `<div class="banner warn">Void: ${esc(r.void_reason)}</div>` : ""}
+    ${r.last_print_error ? `<div class="banner warn">Last print failed: ${esc(r.last_print_error)}</div>` : ""}
+    ${paperHTML(preview)}
+    <div class="actions">
+      ${r.status !== "void" ? `<button class="btn primary" id="rp">${r.print_count ? "Reprint" : "Print"}</button><button class="btn danger" id="vd">Void…</button>` : ""}
+      <span class="spacer"></span><button class="btn" id="cl">Close</button></div>
+    ${r.print_count ? `<div class="hint">Reprints are marked "REPRINT".</div>` : ""}`;
+  dlg.showModal();
+  $("#cl", dlg).onclick = () => dlg.close();
+  if ($("#rp", dlg)) $("#rp", dlg).onclick = async () => {
+    try { const res = await api("POST", `/api/receipts/${id}/reprint`); toast(S.settings.mode === "file" ? `Test mode: saved as ${fileName(res.saved_to)}` : "Printed.", "ok"); dlg.close(); viewHistory(); }
+    catch (e) { toast(e.message, "error"); }
+  };
+  if ($("#vd", dlg)) $("#vd", dlg).onclick = async () => {
+    const reason = prompt(`Void invoice ${r.invoice_no}? The number stays used and is kept on record.\n\nReason:`);
+    if (!reason) return;
+    try { await api("POST", `/api/receipts/${id}/void`, { reason }); toast(`Invoice ${r.invoice_no} voided.`, "ok"); dlg.close(); viewHistory(); }
+    catch (e) { toast(e.message, "error"); }
+  };
+}
+
+// ---------------------------------------------------------------- businesses
+function newBusiness() {
+  return { name: "", prefix: "", next_number: 1, number_width: 6, series_end: "", logo: null,
+    template: { chars_per_line: 32, header_lines: [], title: "SALES INVOICE", title_size: "normal", invoice_label: "Invoice No.", date_label: "Date",
+      date_format: "%m/%d/%Y %I:%M %p", customer_fields: [
+        { key: "name", label: "Sold to", enabled: true }, { key: "address", label: "Address", enabled: true },
+        { key: "tin", label: "TIN", enabled: true }, { key: "business_style", label: "Bus. Style", enabled: false }],
+      blank_customer_lines: true, item_style: "detailed", vat_mode: "vat", vat_rate: 12, show_exempt_zero_rated: true,
+      show_cashier: false, footer_lines: [], feed_lines: 4, currency: "" } };
+}
+
+function viewBiz() {
+  freshMain();
+  if (S.editing !== "new" && !S.businesses.length) S.editing = "new";
+  const editingNew = S.editing === "new";
+  const src = editingNew ? newBusiness() : current();
+  const b = JSON.parse(JSON.stringify(src));
+  if (b.series_end == null) b.series_end = "";
+  const t = b.template;
+  const sel = (id, opts, val) => `<select id="${id}">${opts.map(([v, l]) => `<option value="${v}" ${String(v) === String(val) ? "selected" : ""}>${l}</option>`).join("")}</select>`;
+  $("#main").innerHTML = `
+  <div class="grid three">
+    <div class="bizlist">
+      ${S.businesses.map(x => `<button class="btn ${!editingNew && x.id === S.bizId ? "active" : ""}" data-biz="${x.id}">${esc(x.name)}</button>`).join("")}
+      <button class="btn ${editingNew ? "active" : ""}" id="addBiz">+ Add business</button>
+    </div>
+    <div>
+      <div class="panel">
+        <h2>${editingNew ? "New business" : esc(b.name)}</h2>
+        <div class="row"><div style="grid-column:1/-1"><label>Business name</label><input id="b_name" value="${esc(b.name)}"></div></div>
+        <h3>Invoice numbering</h3>
+        <div class="row">
+          <div><label>Prefix (optional)</label><input id="b_prefix" value="${esc(b.prefix)}" placeholder="e.g. INV-"></div>
+          <div><label>Next invoice number</label><input id="b_next" inputmode="numeric" value="${esc(b.next_number)}"></div>
+          <div><label>Digits (zero-padded)</label><input id="b_width" inputmode="numeric" value="${esc(b.number_width)}"></div>
+          <div><label>Last number in series</label><input id="b_end" inputmode="numeric" value="${esc(b.series_end)}" placeholder="optional"></div>
+        </div>
+        <div class="hint">Next invoice will be <b id="nextNo"></b>. Set this to one more than the last invoice in the business's old booklet or system. "Last number in series" stops issuing past the end of an approved range.</div>
+
+        <h3>Logo</h3>
+        <div class="actions" style="margin-top:0">
+          <input type="file" id="logoFile" accept="image/*" style="width:auto">
+          <label class="check">Width <input id="logoW" type="number" step="8" min="64" max="384" value="${b.logo?.width || 256}" style="width:80px"> dots</label>
+          <label class="check"><input type="checkbox" id="logoDither" checked> Dither (photos)</label>
+          ${b.logo ? `<button class="btn danger" id="logoRemove">Remove logo</button>` : ""}
+        </div>
+        <div class="hint">Max 384 dots wide (full paper width). Black-and-white logos print best.</div>
+
+        <h3>Header lines (top of receipt)</h3>
+        <div class="lines" id="headerLines"></div>
+        <button class="btn" id="addHeader">+ Add line</button>
+        <div class="hint">Copy the top of the business's old receipt line by line: name, owner, address, VAT/Non-VAT Reg. TIN, etc. You can use {invoice_no}, {date} and {business}.</div>
+
+        <h3>Invoice details</h3>
+        <div class="row">
+          <div><label>Title</label><input id="t_title" value="${esc(t.title)}"></div>
+          <div><label>Title size</label>${sel("t_title_size", [["normal", "Normal"], ["tall", "Tall"], ["wide", "Wide"], ["big", "Big"]], t.title_size)}</div>
+          <div><label>Invoice number label</label><input id="t_invoice_label" value="${esc(t.invoice_label)}"></div>
+          <div><label>Date label</label><input id="t_date_label" value="${esc(t.date_label)}"></div>
+          <div><label>Date format</label>${sel("t_date_format", [["%m/%d/%Y %I:%M %p", "10/21/2026 02:30 PM"], ["%m/%d/%Y", "10/21/2026"], ["%b %d, %Y %I:%M %p", "Oct 21, 2026 02:30 PM"], ["%B %d, %Y", "October 21, 2026"], ["%Y-%m-%d %H:%M", "2026-10-21 14:30"]], t.date_format)}</div>
+        </div>
+        <label class="check"><input type="checkbox" id="t_show_cashier" ${t.show_cashier ? "checked" : ""}> Show cashier name</label>
+
+        <h3>Customer fields</h3>
+        <div id="custFields"></div>
+        <label class="check" style="margin-top:6px"><input type="checkbox" id="t_blank" ${t.blank_customer_lines ? "checked" : ""}> Print a blank line (____) when a field is left empty</label>
+
+        <h3>Items and totals</h3>
+        <div class="row">
+          <div><label>Item style</label>${sel("t_item_style", [["detailed", "Name, then qty × price"], ["compact", "One line per item"]], t.item_style)}</div>
+          <div><label>Tax</label>${sel("t_vat_mode", [["vat", "VAT-registered (show breakdown)"], ["none", "Non-VAT (no breakdown)"]], t.vat_mode)}</div>
+          <div><label>VAT rate %</label><input id="t_vat_rate" inputmode="decimal" value="${esc(t.vat_rate)}"></div>
+          <div><label>Currency before total</label><input id="t_currency" value="${esc(t.currency)}" placeholder="e.g. P"></div>
+        </div>
+        <label class="check"><input type="checkbox" id="t_exempt" ${t.show_exempt_zero_rated ? "checked" : ""}> Show VAT-Exempt and Zero-Rated lines</label>
+
+        <h3>Footer lines (bottom of receipt)</h3>
+        <div class="lines" id="footerLines"></div>
+        <button class="btn" id="addFooter">+ Add line</button>
+        <div class="hint">For example: printer/supplier details, permit or accreditation numbers, "THIS DOCUMENT IS NOT VALID FOR CLAIM OF INPUT TAX", "Thank you!".</div>
+
+        <h3>Paper</h3>
+        <div class="row">
+          <div><label>Characters per line</label><input id="t_cols" type="number" min="24" max="64" value="${esc(t.chars_per_line)}"></div>
+          <div><label>Blank lines after receipt</label><input id="t_feed" type="number" min="0" max="10" value="${esc(t.feed_lines)}"></div>
+        </div>
+        <div class="hint">58mm paper fits 32 characters. Print the test page on the Printer tab to confirm.</div>
+
+        <div class="actions">
+          <button class="btn primary" id="saveBiz">${editingNew ? "Create business" : "Save changes"}</button>
+          <button class="btn" id="samplePrint">Sample print</button>
+          <span class="spacer"></span>
+          ${editingNew ? "" : `<button class="btn danger" id="delBiz">Delete</button>`}
+        </div>
+      </div>
+    </div>
+    <div class="paper-wrap"><div id="preview"></div><div class="paper-note">Sample receipt with this layout. Changes appear as you type; nothing is saved until you click ${editingNew ? "Create" : "Save"}.</div></div>
+  </div>`;
+
+  const lineEditor = (key, el) => {
+    const list = t[key];
+    $(el).innerHTML = list.map((l, i) => `<div class="line">
+      <input data-k="${key}" data-i="${i}" data-f="text" value="${esc(l.text)}" placeholder="Text">
+      ${`<select data-k="${key}" data-i="${i}" data-f="align">${["left", "center", "right"].map(a => `<option ${l.align === a ? "selected" : ""}>${a}</option>`).join("")}</select>`}
+      ${`<select data-k="${key}" data-i="${i}" data-f="size">${[["normal", "normal"], ["tall", "tall"], ["wide", "wide"], ["big", "big"]].map(([v, n]) => `<option value="${v}" ${l.size === v ? "selected" : ""}>${n}</option>`).join("")}</select>`}
+      <label class="check"><input type="checkbox" data-k="${key}" data-i="${i}" data-f="bold" ${l.bold ? "checked" : ""}>Bold</label>
+      <span><button class="btn icon" data-move="${key}:${i}:-1" title="Move up" aria-label="Move up">↑</button><button class="btn icon" data-move="${key}:${i}:1" title="Move down" aria-label="Move down">↓</button><button class="btn icon" data-rm="${key}:${i}" title="Remove" aria-label="Remove">✕</button></span>
+    </div>`).join("") || `<div class="hint" style="margin-bottom:6px">No lines yet.</div>`;
+  };
+  const renderLines = () => { lineEditor("header_lines", "#headerLines"); lineEditor("footer_lines", "#footerLines"); };
+  const renderCust = () => {
+    $("#custFields").innerHTML = t.customer_fields.map((f, i) => `<div class="line" style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;margin-bottom:6px">
+      <label class="check"><input type="checkbox" data-cf="${i}" data-f="enabled" ${f.enabled ? "checked" : ""}> Show</label>
+      <input data-cf="${i}" data-f="label" value="${esc(f.label)}"></div>`).join("");
+  };
+  renderLines(); renderCust();
+
+  const read = () => {
+    b.name = $("#b_name").value; b.prefix = $("#b_prefix").value; b.next_number = $("#b_next").value;
+    b.number_width = $("#b_width").value; b.series_end = $("#b_end").value;
+    Object.assign(t, { title: $("#t_title").value, title_size: $("#t_title_size").value, invoice_label: $("#t_invoice_label").value,
+      date_label: $("#t_date_label").value, date_format: $("#t_date_format").value, show_cashier: $("#t_show_cashier").checked,
+      blank_customer_lines: $("#t_blank").checked, item_style: $("#t_item_style").value, vat_mode: $("#t_vat_mode").value,
+      vat_rate: $("#t_vat_rate").value, currency: $("#t_currency").value, show_exempt_zero_rated: $("#t_exempt").checked,
+      chars_per_line: Number($("#t_cols").value) || 32, feed_lines: Number($("#t_feed").value) || 0 });
+    const n = parseInt(b.next_number, 10), w = parseInt(b.number_width, 10) || 0;
+    $("#nextNo").textContent = isNaN(n) ? "—" : b.prefix + String(n).padStart(w, "0");
+  };
+  const refresh = debounce(async () => {
+    try { $("#preview").innerHTML = paperHTML(await api("POST", "/api/preview", { business: b })); }
+    catch (e) { $("#preview").innerHTML = `<div class="banner warn">${esc(e.message)}</div>`; }
+  });
+  const changed = () => { read(); refresh(); };
+
+  const main = $("#main");
+  main.addEventListener("input", e => {
+    const el = e.target;
+    if (el.dataset.k) { t[el.dataset.k][el.dataset.i][el.dataset.f] = el.type === "checkbox" ? el.checked : el.value; }
+    else if (el.dataset.cf) { t.customer_fields[el.dataset.cf][el.dataset.f] = el.type === "checkbox" ? el.checked : el.value; }
+    if (el.id !== "logoFile" && el.id !== "logoW" && el.id !== "logoDither") changed();
+  });
+  main.addEventListener("change", e => { if (["logoW", "logoDither"].includes(e.target.id) && $("#logoFile").files[0]) loadLogo(); });
+  main.addEventListener("click", e => {
+    const mv = e.target.dataset.move, rm = e.target.dataset.rm;
+    if (mv) { const [k, i, d] = mv.split(":"); const a = t[k], j = +i + +d; if (j >= 0 && j < a.length) { [a[i], a[j]] = [a[j], a[i]]; renderLines(); changed(); } }
+    if (rm) { const [k, i] = rm.split(":"); t[k].splice(+i, 1); renderLines(); changed(); }
+    if (e.target.dataset.biz) { S.bizId = Number(e.target.dataset.biz); store("bizId", S.bizId); S.editing = null; show("biz"); }
+  });
+  $("#addBiz").onclick = () => { S.editing = "new"; viewBiz(); };
+  $("#addHeader").onclick = () => { t.header_lines.push({ text: "", align: "center", bold: false, size: "normal" }); renderLines(); $(`[data-k=header_lines][data-i="${t.header_lines.length - 1}"][data-f=text]`).focus(); };
+  $("#addFooter").onclick = () => { t.footer_lines.push({ text: "", align: "center", bold: false, size: "normal" }); renderLines(); $(`[data-k=footer_lines][data-i="${t.footer_lines.length - 1}"][data-f=text]`).focus(); };
+  $("#logoFile").addEventListener("change", loadLogo);
+  if ($("#logoRemove")) $("#logoRemove").onclick = () => { b.logo = null; $("#logoRemove").remove(); changed(); };
+
+  async function loadLogo() {
+    const file = $("#logoFile").files[0]; if (!file) return;
+    try { b.logo = await imageToLogo(file, Number($("#logoW").value) || 256, $("#logoDither").checked); changed(); }
+    catch (e) { toast("Couldn't read that image: " + e.message, "error"); }
+  }
+
+  $("#saveBiz").onclick = async () => {
+    read();
+    if (!editingNew && Number(b.next_number) < src.next_number &&
+        !confirm(`You're lowering the next invoice number from ${src.next_invoice_no} to ${$("#nextNo").textContent}. Continue?`)) return;
+    try {
+      const saved = await api(editingNew ? "POST" : "PUT", editingNew ? "/api/businesses" : `/api/businesses/${b.id}`, b);
+      S.bizId = saved.id; store("bizId", saved.id); S.editing = null; S.draft = null;
+      await load(); toast(`Saved ${saved.name}. Next invoice: ${saved.next_invoice_no}`, "ok"); viewBiz();
+    } catch (e) { toast(e.message, "error"); }
+  };
+  $("#samplePrint").onclick = async () => {
+    read();
+    try { const r = await api("POST", "/api/sample-print", { business: b }); toast(S.settings.mode === "file" ? `Test mode: saved as ${fileName(r.saved_to)}` : "Sample printed.", "ok"); }
+    catch (e) { toast(e.message, "error"); }
+  };
+  if ($("#delBiz")) $("#delBiz").onclick = async () => {
+    if (!confirm(`Delete ${b.name}? This is only possible if it has no invoices.`)) return;
+    try { await api("DELETE", `/api/businesses/${b.id}`); S.bizId = null; await load(); viewBiz(); toast("Deleted.", "ok"); }
+    catch (e) { toast(e.message, "error"); }
+  };
+  read(); refresh();
+}
+
+// Turn an image into the printer's 1-bit format: rows of bits, 1 = black, MSB first.
+function imageToLogo(file, width, dither) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      width = Math.max(8, Math.min(384, Math.round(width / 8) * 8));
+      const height = Math.max(1, Math.round(img.height * width / img.width));
+      if (height > 400) return reject(new Error("image is too tall; crop it or use a smaller width"));
+      const c = document.createElement("canvas"); c.width = width; c.height = height;
+      const ctx = c.getContext("2d"); ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, width, height); ctx.drawImage(img, 0, 0, width, height);
+      const px = ctx.getImageData(0, 0, width, height);
+      const g = new Float32Array(width * height);
+      for (let i = 0; i < g.length; i++) {
+        const a = px.data[i * 4 + 3] / 255;
+        g[i] = (px.data[i * 4] * .299 + px.data[i * 4 + 1] * .587 + px.data[i * 4 + 2] * .114) * a + 255 * (1 - a);
+      }
+      const bytes = new Uint8Array(width / 8 * height);
+      for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
+        const i = y * width + x, old = g[i], black = old < 128, err = old - (black ? 0 : 255);
+        if (black) bytes[y * width / 8 + (x >> 3)] |= 0x80 >> (x & 7);
+        px.data[i * 4] = px.data[i * 4 + 1] = px.data[i * 4 + 2] = black ? 0 : 255; px.data[i * 4 + 3] = 255;
+        if (dither) { // Floyd–Steinberg
+          if (x + 1 < width) g[i + 1] += err * 7 / 16;
+          if (y + 1 < height) { if (x > 0) g[i + width - 1] += err * 3 / 16; g[i + width] += err * 5 / 16; if (x + 1 < width) g[i + width + 1] += err / 16; }
+        }
+      }
+      ctx.putImageData(px, 0, 0);
+      let bin = ""; bytes.forEach(v => bin += String.fromCharCode(v));
+      resolve({ width, height, data: btoa(bin), preview: c.toDataURL("image/png") });
+    };
+    img.onerror = () => reject(new Error("not an image"));
+    img.src = URL.createObjectURL(file);
+  });
+}
+
+// ---------------------------------------------------------------- printer
+async function viewPrinter() {
+  freshMain();
+  const s = S.settings;
+  $("#main").innerHTML = `<div class="grid two">
+    <div class="panel">
+      <h2>Printer connection</h2>
+      <label class="check" style="margin-bottom:6px"><input type="radio" name="mode" value="serial" ${s.mode !== "file" ? "checked" : ""}> Bluetooth printer (PT-210 / MTP-2)</label>
+      <label class="check" style="margin-bottom:12px"><input type="radio" name="mode" value="file" ${s.mode === "file" ? "checked" : ""}> Test mode: save print data to a file instead of printing</label>
+      <div class="row"><div style="grid-column:1/-1"><label>Printer port</label>
+        <div style="display:flex;gap:6px"><select id="device"></select><button class="btn" id="refreshPorts">Refresh</button></div>
+        <div class="hint" id="portHint"></div></div></div>
+      <details><summary class="small muted" style="cursor:pointer">Advanced</summary>
+        <div class="row" style="margin-top:10px">
+          <div><label>Chunk size (bytes)</label><input id="chunk" type="number" value="${esc(s.chunk_size)}"></div>
+          <div><label>Pause between chunks (ms)</label><input id="delay" type="number" value="${esc(s.chunk_delay_ms)}"></div>
+          <div><label>Connect timeout (s)</label><input id="timeout" type="number" value="${esc(s.timeout_s)}"></div>
+        </div>
+        <div class="hint">If long receipts print garbled or stop halfway, lower the chunk size or raise the pause.</div>
+      </details>
+      <div class="actions"><button class="btn primary" id="saveSettings">Save</button><button class="btn" id="testPage">Print test page</button></div>
+      <div class="hint">Data folder: <code>${esc(S.dataDir)}</code>. Back this folder up; it holds every invoice and each business's next number.</div>
+    </div>
+    <div class="panel">
+      <h2>First-time setup on the Mac</h2>
+      <ol class="steps">
+        <li>Remove the yellow tape from the printer battery, charge it, and switch the printer on.</li>
+        <li>On the Mac: System Settings → Bluetooth. Click <b>Connect</b> next to <b>MTP-2</b>. If asked for a PIN, enter <b>0000</b>.</li>
+        <li>Come back here and click <b>Refresh</b>. Pick the port with <b>MTP-2</b> in its name (or leave it on auto-detect).</li>
+        <li>Choose <b>Bluetooth printer</b>, click <b>Save</b>, then <b>Print test page</b>.</li>
+        <li>The row of digits on the test page should fit on one line. If it wraps, lower "Characters per line" in each business's settings.</li>
+      </ol>
+      <p class="small muted">If no MTP-2 port appears after pairing, run <code>ls /dev/cu.*</code> in Terminal and send the output to whoever set this up.</p>
+    </div></div>`;
+  const fillPorts = () => {
+    const opts = [`<option value="">Auto-detect</option>`].concat(S.ports.map(p => `<option value="${esc(p.path)}" ${p.path === s.device ? "selected" : ""}>${esc(p.path)}${p.likely ? "  (printer?)" : ""}</option>`));
+    if (s.device && !S.ports.some(p => p.path === s.device)) opts.push(`<option value="${esc(s.device)}" selected>${esc(s.device)} (not found now)</option>`);
+    $("#device").innerHTML = opts.join("");
+    $("#portHint").textContent = S.ports.some(p => p.likely) ? "Printer port found." : "No printer port found. Pair MTP-2 in Bluetooth settings, then Refresh.";
+  };
+  fillPorts();
+  $("#refreshPorts").onclick = async () => { S.ports = await api("GET", "/api/printer/ports"); fillPorts(); };
+  const save = async () => {
+    S.settings = await api("PUT", "/api/settings", { mode: $("input[name=mode]:checked").value, device: $("#device").value,
+      chunk_size: Number($("#chunk").value) || 256, chunk_delay_ms: Number($("#delay").value) || 0, timeout_s: Number($("#timeout").value) || 15 });
+    renderHeader();
+  };
+  $("#saveSettings").onclick = async () => { try { await save(); toast("Printer settings saved.", "ok"); } catch (e) { toast(e.message, "error"); } };
+  $("#testPage").onclick = async () => {
+    try { await save(); const r = await api("POST", "/api/printer/test", { cols: current()?.template.chars_per_line || 32 }); toast(S.settings.mode === "file" ? `Test mode: saved as ${fileName(r.saved_to)}` : "Test page sent.", "ok"); }
+    catch (e) { toast(e.message, "error"); }
+  };
+}
+
+load().then(() => show("sell")).catch(e => { $("#main").innerHTML = `<div class="panel empty">Couldn't reach the app: ${esc(e.message)}. Is server.py running?</div>`; });
+</script>
+</body>
+</html>
